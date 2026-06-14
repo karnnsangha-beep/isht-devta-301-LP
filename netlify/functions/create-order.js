@@ -22,6 +22,7 @@ exports.handler = async (event) => {
       receipt: 'isht_' + Date.now(),
       notes: {
         customer_name: body.fullName || '',
+        customer_email: body.email || '',
         whatsapp_number: body.phone || '',
         dob: body.dob || '',
         birth_time: body.tob || '',
