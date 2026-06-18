@@ -13,7 +13,7 @@ exports.handler = async (event) => {
     }
 
     const body = JSON.parse(event.body || '{}');
-    const amount = 30100;
+    const amount = 20100;
 
     const razorpay = new Razorpay({ key_id, key_secret });
     const order = await razorpay.orders.create({
@@ -21,6 +21,7 @@ exports.handler = async (event) => {
       currency: 'INR',
       receipt: 'isht_' + Date.now(),
       notes: {
+        amount: '201',
         customer_name: body.fullName || '',
         customer_email: body.email || '',
         whatsapp_number: body.phone || '',
