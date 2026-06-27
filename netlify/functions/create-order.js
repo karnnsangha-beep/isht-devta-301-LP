@@ -13,7 +13,11 @@ exports.handler = async (event) => {
     }
 
     const body = JSON.parse(event.body || '{}');
-    const amount = 20100;
+    const addOnSelected = !!body.addOnSelected;
+    const baseAmount = 201;
+    const addOnAmount = addOnSelected ? 99 : 0;
+    const totalAmount = baseAmount + addOnAmount;
+    const amount = totalAmount * 100;
 
     const razorpay = new Razorpay({ key_id, key_secret });
     const order = await razorpay.orders.create({
@@ -21,7 +25,10 @@ exports.handler = async (event) => {
       currency: 'INR',
       receipt: 'isht_' + Date.now(),
       notes: {
-        amount: '201',
+        base_amount: String(baseAmount),
+        add_on_selected: addOnSelected ? 'yes' : 'no',
+        add_on_amount: String(addOnAmount),
+        amount: String(totalAmount),
         customer_name: body.fullName || '',
         customer_email: body.email || '',
         whatsapp_number: body.phone || '',

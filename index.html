@@ -6,6 +6,8 @@
   <title>Isht Devta Discovery Report | DivyaLok Bhakti</title>
   <meta name="description" content="Discover your Isht Devta direction and receive a personalised devotional PDF guide prepared manually from your birth details. Available in Hindi and English. WhatsApp delivery in 24-48 hours." />
   <meta name="theme-color" content="#09111d" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/favicon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -86,16 +88,15 @@
     .hero-stat b { display:block; font-size:25px; color:var(--accent); }
     .hero-stat span { display:block; margin-top:2px; font-size:13px; color:var(--muted); line-height:1.35; font-weight:700; }
 
-    .divine-stage { position:relative; min-height:700px; border-radius:38px; overflow:hidden; background:radial-gradient(circle at 50% 24%, color-mix(in srgb,var(--accent) 9%, transparent), transparent 38%), linear-gradient(180deg, rgba(0,0,0,.42), rgba(0,0,0,.14)); border:1px solid var(--line); box-shadow:inset 0 0 0 1px rgba(255,255,255,.02), 0 24px 70px rgba(0,0,0,.34); }
-    .divine-stage::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 20%, transparent); pointer-events:none; }
-    .halo { position:absolute; left:50%; top:45%; transform:translate(-50%,-50%); width:560px; height:560px; border-radius:50%; border:1px solid color-mix(in srgb,var(--accent) 36%, transparent); box-shadow:0 0 80px color-mix(in srgb,var(--accent) 12%, transparent), inset 0 0 26px rgba(255,255,255,.02); animation:haloPulse 8s ease-in-out infinite; }
-    .halo::before, .halo::after { content:""; position:absolute; inset:52px; border-radius:50%; border:1px dashed color-mix(in srgb,var(--accent) 24%, transparent); }
-    .halo::after { inset:104px; }
-    .deity-orb { position:absolute; left:50%; top:45%; width:560px; height:560px; transform:translate(-50%,-50%); border-radius:50%; overflow:hidden; z-index:2; }
-    .deity-frame { position:absolute; left:50%; bottom:8px; transform:translateX(-50%); width:88%; max-width:500px; z-index:2; display:flex; justify-content:center; align-items:flex-end; }
-    .deity-frame img { width:100%; max-width:500px; height:auto; display:block; opacity:1; visibility:visible; filter:brightness(1.16) contrast(1.06) saturate(1.03); animation:deityFloat 10s ease-in-out infinite; }
-    .stage-badge { position:absolute; z-index:3; min-width:116px; padding:12px 14px; border-radius:22px; background:var(--badge-bg); border:1px solid var(--line); backdrop-filter:blur(12px); color:var(--text); box-shadow:0 16px 38px rgba(0,0,0,.24); text-align:left; font-weight:900; line-height:1.12; }
-    .sb1 { left:18px; top:18px; } .sb2 { right:18px; top:18px; text-align:right; } .sb3 { left:18px; bottom:56px; } .sb4 { right:18px; bottom:56px; text-align:right; }
+    .divine-stage { position:relative; border-radius:38px; overflow:hidden; padding:16px; background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(0,0,0,.18)); border:1px solid var(--line); box-shadow:inset 0 0 0 1px rgba(255,255,255,.02), 0 24px 70px rgba(0,0,0,.34); }
+    .divine-stage::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,.025), transparent 22%, transparent); pointer-events:none; }
+    .halo { display:none; }
+    .deity-orb { position:relative; width:100%; max-width:900px; margin:0 auto; border-radius:28px; overflow:hidden; z-index:2; background:#0b0704; border:1px solid rgba(255,255,255,.08); }
+    .deity-frame { position:relative; width:100%; max-width:none; z-index:2; display:block; }
+    .deity-frame img { width:100%; max-width:none; height:auto; display:block; opacity:1; visibility:visible; filter:brightness(1.08) contrast(1.03) saturate(1.03); animation:none; }
+    .stage-badges { position:relative; z-index:3; display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px; }
+    .stage-badge { min-height:58px; padding:12px 13px; border-radius:18px; background:var(--badge-bg); border:1px solid var(--line); backdrop-filter:blur(12px); color:var(--text); box-shadow:0 12px 26px rgba(0,0,0,.2); text-align:center; font-weight:900; line-height:1.12; display:flex; align-items:center; justify-content:center; }
+    .sb1,.sb2,.sb3,.sb4 { position:static; text-align:center; }
 section { padding:62px 0; }
     .section-head { text-align:center; max-width:840px; margin:0 auto 34px; }
     .section-head h2 { margin:0 0 12px; font-family:Cinzel,"Noto Sans Devanagari",serif; font-size:clamp(31px,4vw,50px); line-height:1.06; }
@@ -173,15 +174,26 @@ section { padding:62px 0; }
     .trust-card b { display:block; margin-bottom:6px; }
     .trust-card span { display:block; color:var(--muted); line-height:1.55; }
 
-
     .testimonials-shell { position:relative; padding:30px; overflow:hidden; }
     .testimonials-shell::before { content:""; position:absolute; inset:-120px -80px auto auto; width:280px; height:280px; border-radius:50%; background:radial-gradient(circle, color-mix(in srgb,var(--accent) 16%,transparent), transparent 68%); pointer-events:none; }
-    .testimonial-grid { position:relative; z-index:1; display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
-    .testimonial-card { display:grid; grid-template-columns:58px 1fr; gap:16px; padding:18px; border-radius:24px; background:linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.035)); border:1px solid var(--line); box-shadow:0 18px 42px rgba(0,0,0,.20); }
-    .quote-mark { width:58px; height:58px; border-radius:20px; display:grid; place-items:center; background:radial-gradient(circle, color-mix(in srgb,var(--accent) 30%,transparent), rgba(255,255,255,.045)); border:1px solid color-mix(in srgb,var(--accent) 28%,transparent); color:var(--accent); font-family:Cinzel, serif; font-size:42px; line-height:1; }
-    .testimonial-card strong { display:block; margin-bottom:6px; color:var(--text); font-size:17px; line-height:1.2; }
-    .testimonial-card strong span.city { color:var(--muted); font-weight:650; }
-    .testimonial-card p { margin:0; color:var(--muted); line-height:1.52; font-size:15.5px; }
+    #moreFeedbackGrid[hidden] { display:none !important; }
+    .testimonial-grid { position:relative; z-index:1; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:14px; }
+    .testimonial-card { display:block; padding:16px 18px; border-radius:22px; background:linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.035)); border:1px solid var(--line); box-shadow:0 14px 34px rgba(0,0,0,.18); }
+    .testimonial-head { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:6px; }
+    .testimonial-name { display:block; color:var(--text); font-size:16px; line-height:1.2; font-weight:800; }
+    .testimonial-name .city { color:var(--muted); font-weight:650; }
+    .stars { color:var(--accent); letter-spacing:1px; font-size:14px; font-weight:900; white-space:nowrap; }
+    .testimonial-body p { margin:0; color:var(--muted); line-height:1.5; font-size:14px; }
+    .recommend-line { margin-top:10px; font-size:13px; line-height:1.4; color:var(--text); display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+    .status-yes, .status-no { display:inline-flex; align-items:center; gap:5px; font-weight:800; }
+    .status-yes { color:#6dd38d; }
+    .status-no { color:#ff7a7a; }
+    .reply-details { margin-top:10px; }
+    .reply-details summary { list-style:none; cursor:pointer; color:var(--accent); font-size:13px; font-weight:800; }
+    .reply-details summary::-webkit-details-marker { display:none; }
+    .reply-box { margin-top:8px; padding:10px 12px; border-radius:14px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); color:var(--muted); font-size:13px; line-height:1.45; width:100%; box-sizing:border-box; }
+    .more-feedback-wrap { position:relative; z-index:1; display:flex; justify-content:center; margin-top:16px; }
+    .hidden-feedback { margin-top:14px; }
     .testimonial-cta { position:relative; z-index:1; margin-top:20px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 20px; border-radius:24px; background:linear-gradient(135deg, color-mix(in srgb,var(--accent) 16%,transparent), rgba(255,255,255,.035)); border:1px solid var(--line); }
     .testimonial-cta b { display:block; margin-bottom:4px; font-size:18px; }
     .testimonial-cta span { color:var(--muted); line-height:1.45; }
@@ -208,6 +220,18 @@ section { padding:62px 0; }
     .price-box .total .was-price { font-size:24px; vertical-align:middle; line-height:1; }
     .hero-stat b .was-price { font-size:14px; vertical-align:middle; }
     .form-price-display { width:100%; padding:14px 15px; border-radius:16px; border:1px solid var(--line); background:rgba(255,255,255,.05); color:var(--text); font:800 15px/1.4 Inter, system-ui, sans-serif; min-height:51px; display:flex; align-items:center; gap:8px; }
+    .bump-offer { margin:16px 0 18px; padding:14px; border-radius:22px; border:1px solid color-mix(in srgb,var(--accent) 30%, transparent); background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); box-shadow:0 16px 36px rgba(0,0,0,.22); }
+    .bump-head { display:grid; grid-template-columns:120px 1fr; gap:14px; align-items:center; }
+    .bump-thumb { width:100%; border-radius:16px; border:1px solid rgba(255,255,255,.08); display:block; }
+    .bump-copy strong { display:block; font:900 16px/1.3 Inter, system-ui, sans-serif; color:var(--text); margin-bottom:6px; }
+    .bump-copy p { margin:0; font-size:13px; line-height:1.45; color:var(--muted); }
+    .bump-check { margin-top:12px; display:flex; gap:10px; align-items:flex-start; padding:12px 14px; border-radius:16px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); cursor:pointer; }
+    .bump-check input { width:18px; height:18px; margin-top:3px; accent-color:var(--accent); }
+    .bump-check b { display:block; font:800 14px/1.35 Inter, system-ui, sans-serif; color:var(--text); margin-bottom:2px; }
+    .bump-check small { display:block; font-size:12px; line-height:1.45; color:var(--muted); }
+    .addon-summary { display:none; margin-top:10px; padding-top:10px; border-top:1px dashed rgba(255,255,255,.12); justify-content:space-between; gap:10px; font:700 13px/1.4 Inter, system-ui, sans-serif; color:var(--text); }
+    .addon-summary.show { display:flex; }
+    @media (max-width:780px) { .bump-head { grid-template-columns:1fr; } .bump-thumb { max-width:240px; } }
 
     .payment-status { display:none; margin-top:12px; padding:12px 14px; border-radius:16px; font-size:13px; line-height:1.45; }
     .payment-status.ok { display:block; background:#eef8f2; border:1px solid rgba(60,131,98,.18); color:#21553f; }
@@ -233,10 +257,8 @@ section { padding:62px 0; }
     @media (max-width:1080px) {
       .hero-grid, .grid-3, .grid-2, .offer-shell, .order-wrap { grid-template-columns:1fr; }
       .hero-stat { min-height:auto; }
-      .divine-stage { min-height:620px; }
-      .deity-orb { width:500px; height:500px; top:46%; }
-      .halo { width:500px; height:500px; top:46%; }
-      .deity-frame { max-width:450px; }
+      .divine-stage { padding:16px; }
+      .deity-orb { max-width:700px; }
       .pay-card { position:static; }
       .common-grid { grid-template-columns:repeat(4,1fr); }
       .trust-grid { grid-template-columns:1fr; }
@@ -263,8 +285,10 @@ section { padding:62px 0; }
       .hero-grid { display:flex; flex-direction:column; gap:20px; }
       .hero-grid > div:first-child { order:1; }
       .hero-grid > .divine-stage { display:none; }
-      .mobile-outline-hero { display:block; margin:16px 0 20px; border-radius:28px; overflow:hidden; border:1px solid var(--line); background:#0b0704; box-shadow:0 18px 48px rgba(0,0,0,.34); }
-      .mobile-outline-hero img { width:100%; height:auto; display:block; aspect-ratio:1/1; object-fit:cover; object-position:center; filter:brightness(1.08) contrast(1.03) saturate(1.03); }
+      .mobile-outline-hero { display:block; margin:16px 0 20px; padding:12px; border-radius:28px; overflow:hidden; border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(0,0,0,.18)); box-shadow:0 18px 48px rgba(0,0,0,.34); }
+      .mobile-outline-hero img { width:100%; height:auto; display:block; border-radius:22px; border:1px solid rgba(255,255,255,.08); filter:brightness(1.08) contrast(1.03) saturate(1.03); }
+      .mobile-outline-hero .stage-badges { grid-template-columns:repeat(2,1fr); gap:9px; margin-top:12px; }
+      .mobile-outline-hero .stage-badge { min-height:54px; padding:10px 8px; font-size:12px; border-radius:16px; }
       h1 { font-size:clamp(35px,12vw,54px); margin-bottom:18px; }
       .guide-glow { margin-top:18px; font-size:clamp(11px,3vw,13px); letter-spacing:.11em; }
       .subhead { font-size:15.5px; line-height:1.52; }
@@ -279,12 +303,6 @@ section { padding:62px 0; }
       .common-name { font-size:14px; }
       .common-note { font-size:14px; margin-top:14px; }
 
-      .divine-stage { min-height:430px; margin-top:0; }
-      .halo { width:350px; height:350px; top:43%; }
-      .deity-orb { width:350px; height:350px; top:43%; }
-      .deity-frame { width:90%; max-width:320px; bottom:16px; }
-      .stage-badge { min-width:102px; padding:10px 12px; font-size:12px; }
-      .sb1 { left:10px; top:10px; } .sb2 { right:10px; top:10px; } .sb3 { left:10px; bottom:52px; } .sb4 { right:10px; bottom:52px; }
 
       .flow-step { grid-template-columns:56px 1fr; padding:18px; gap:14px; }
       .flow-badge { width:56px; height:56px; border-radius:18px; font-size:22px; }
@@ -295,8 +313,11 @@ section { padding:62px 0; }
       .n1 { left:0; top:16px; } .n2 { right:0; top:130px; } .n3 { left:0; bottom:150px; } .n4 { right:0; bottom:20px; }
 
       .testimonial-grid { grid-template-columns:1fr; }
-      .testimonial-card { grid-template-columns:48px 1fr; padding:16px; }
-      .quote-mark { width:48px; height:48px; border-radius:17px; font-size:34px; }
+      .testimonial-card { padding:14px; border-radius:20px; }
+      .testimonial-head { gap:8px; }
+      .testimonial-name { font-size:15px; }
+      .stars { font-size:13px; }
+      .testimonial-body p { font-size:13.5px; }
       .testimonial-cta { flex-direction:column; align-items:flex-start; }
       .mobile-cta { display:block; }
       .footer { padding-bottom:110px; }
@@ -331,7 +352,7 @@ section { padding:62px 0; }
             <div>
               <div class="eyebrow"><span class="en">✨ Personalised Spiritual PDF • WhatsApp Delivery</span><span class="hi">✨ व्यक्तिगत आध्यात्मिक PDF • WhatsApp डिलीवरी</span></div>
               <h1><span class="en">Discover your<br><span class="gold">Isht Devta</span><br><span class="guide-glow">GET PERSONALISED GUIDE</span></span><span class="hi">अपने<br><span class="gold">इष्ट देवता</span><br><span class="guide-glow">व्यक्तिगत गाइड पाएं</span></span></h1>
-              <div class="mobile-outline-hero"><img src="assets/mobile-devta-outline.webp" alt="Sacred Devta outline artwork" loading="eager" decoding="async" fetchpriority="high"></div>
+              <div class="mobile-outline-hero"><img src="assets/mobile-devta-outline.webp" alt="Sacred artwork of Shiva, Shri Ram, Vishnu, Lakshmi, Hanuman and Ganesha" width="700" height="875" loading="eager" decoding="async" fetchpriority="high"><div class="stage-badges"><div class="stage-badge"><span class="en">Sacred<br>Guidance</span><span class="hi">पवित्र<br>मार्गदर्शन</span></div><div class="stage-badge"><span class="en">Hindi +<br>English</span><span class="hi">हिंदी +<br>अंग्रेज़ी</span></div><div class="stage-badge"><span class="en">21-Day<br>Sadhana</span><span class="hi">21-दिन<br>साधना</span></div><div class="stage-badge"><span class="en">24-48h<br>Delivery</span><span class="hi">24-48h<br>डिलीवरी</span></div></div></div>
               <p class="subhead"><span class="en">A manually prepared devotional report based on your birth details. Receive your likely Isht Devta / Devi direction, mantra, worship guidance and a simple 21-day sadhana path.</span><span class="hi">आपके जन्म विवरण के आधार पर मैनुअल रूप से तैयार devotional report। इसमें आपकी संभावित इष्ट देवता / देवी दिशा, मंत्र, पूजा मार्गदर्शन और सरल 21-दिन की साधना दिशा मिलती है।</span></p>
               <div class="hero-actions">
                 <a class="btn primary" href="#order"><span class="en">Get My Report for ₹201</span><span class="hi">₹201 में मेरी रिपोर्ट लें</span></a>
@@ -350,12 +371,13 @@ section { padding:62px 0; }
               </div>
             </div>
             <div class="divine-stage">
-              <div class="halo"></div>
-              <div class="stage-badge sb1"><span class="en">Sacred<br>Guidance</span><span class="hi">पवित्र<br>मार्गदर्शन</span></div>
-              <div class="stage-badge sb2"><span class="en">Hindi +<br>English</span><span class="hi">हिंदी +<br>अंग्रेज़ी</span></div>
-              <div class="stage-badge sb3"><span class="en">21-Day<br>Sadhana</span><span class="hi">21-दिन<br>साधना</span></div>
-              <div class="stage-badge sb4"><span class="en">24-48h<br>Delivery</span><span class="hi">24-48h<br>डिलीवरी</span></div>
-              <div class="deity-orb"><div class="deity-frame"><img src="assets/hero-devtas-outline.webp" alt="Sacred outline artwork of Shiva, Hanuman and Vishnu" width="768" height="764" loading="eager" fetchpriority="high" decoding="async"></div></div>
+              <div class="deity-orb"><div class="deity-frame"><img src="assets/hero-devtas-outline.webp" alt="Sacred artwork of Shiva, Shri Ram, Vishnu, Lakshmi, Hanuman and Ganesha" width="900" height="1125" loading="eager" fetchpriority="high" decoding="async"></div></div>
+              <div class="stage-badges">
+                <div class="stage-badge sb1"><span class="en">Sacred<br>Guidance</span><span class="hi">पवित्र<br>मार्गदर्शन</span></div>
+                <div class="stage-badge sb2"><span class="en">Hindi +<br>English</span><span class="hi">हिंदी +<br>अंग्रेज़ी</span></div>
+                <div class="stage-badge sb3"><span class="en">21-Day<br>Sadhana</span><span class="hi">21-दिन<br>साधना</span></div>
+                <div class="stage-badge sb4"><span class="en">24-48h<br>Delivery</span><span class="hi">24-48h<br>डिलीवरी</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -486,60 +508,93 @@ section { padding:62px 0; }
       <div class="wrap">
         <div class="section-head">
           <h2><span class="en">What people are saying</span><span class="hi">लोग क्या कह रहे हैं</span></h2>
-          <p><span class="en">Customer experiences from across India, placed here before checkout so visitors feel trust before ordering.</span><span class="hi">भारत के अलग-अलग शहरों से customer experiences, ताकि ऑर्डर से पहले भरोसा बने।</span></p>
+          <p><span class="en">Real buyer feedback shown close to checkout so visitors can build trust without leaving the page.</span><span class="hi">चेकआउट के पास real buyer feedback, ताकि visitors बिना पेज छोड़े भरोसा बना सकें।</span></p>
         </div>
         <div class="glass testimonials-shell">
           <div class="testimonial-grid">
             <article class="testimonial-card">
-              <div class="quote-mark">“</div>
-              <div>
-                <strong><span class="en">Rohit Sharma, <span class="city">Delhi</span></span><span class="hi">रोहित शर्मा, <span class="city">दिल्ली</span></span></strong>
-                <p><span class="en">The report felt personal and clear. It helped me understand which deity energy I should focus on.</span><span class="hi">रिपोर्ट व्यक्तिगत और स्पष्ट लगी। इससे मुझे समझ आया कि मुझे किस देव ऊर्जा पर ध्यान देना चाहिए।</span></p>
+              <div class="testimonial-body">
+                <div class="testimonial-head"><div class="testimonial-name">Sai Priya, <span class="city">Bangalore</span></div><div class="stars" aria-label="4 out of 5 stars">★★★★☆</div></div>
+                <p>I always had a pull towards certain deities. Seeing my report, I really understood the connection. Now I am able to take my sadhana forward to the next level.</p>
+                <div class="recommend-line">Do you recommend? <span class="status-yes">✔ Yes</span></div>
               </div>
-            </article><article class="testimonial-card">
-              <div class="quote-mark">“</div>
-              <div>
-                <strong><span class="en">Priya Nair, <span class="city">Bengaluru</span></span><span class="hi">प्रिया नायर, <span class="city">बेंगलुरु</span></span></strong>
-                <p><span class="en">Simple, detailed and easy to follow. The sadhana guidance was practical, not confusing.</span><span class="hi">सरल, विस्तृत और समझने में आसान। साधना मार्गदर्शन व्यावहारिक था, उलझाने वाला नहीं।</span></p>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-body">
+                <div class="testimonial-head"><div class="testimonial-name">Shailesh, <span class="city">Surat</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div>
+                <p>My long-term doubt is finally cleared and I found my Ishta Devi. The report gave me a clear devotional direction.</p>
+                <div class="recommend-line">Do you recommend? <span class="status-yes">✔ Yes</span></div>
               </div>
-            </article><article class="testimonial-card">
-              <div class="quote-mark">“</div>
-              <div>
-                <strong><span class="en">Amit Verma, <span class="city">Lucknow</span></span><span class="hi">अमित वर्मा, <span class="city">लखनऊ</span></span></strong>
-                <p><span class="en">I liked how the report explained the reason behind the Isht Devta selection. It gave me clarity.</span><span class="hi">रिपोर्ट में इष्ट देवता चयन के पीछे की वजह साफ बताई गई। इससे मुझे स्पष्टता मिली।</span></p>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-body">
+                <div class="testimonial-head"><div class="testimonial-name">Ankur Mishra, <span class="city">Delhi</span></div><div class="stars" aria-label="4 out of 5 stars">★★★★☆</div></div>
+                <p>Report was good. I already had a feeling Hanuman Ji is my Isht, so this report confirmed it. But I would not recommend it if you want a fast result, because I had to wait the full 24 hours.</p>
+                <div class="recommend-line">Do you recommend? <span class="status-no">✖ No</span></div>
+                <details class="reply-details">
+                  <summary>See reply</summary>
+                  <div class="reply-box">We apologize for not meeting your expectations. This is a manual report that requires multiple checks, so it cannot be delivered like instant computer-generated reports. We take pride in giving an accurate report rather than a rushed one. Thank you for your understanding. Namaste 🙏</div>
+                </details>
               </div>
-            </article><article class="testimonial-card">
-              <div class="quote-mark">“</div>
-              <div>
-                <strong><span class="en">Neha Kulkarni, <span class="city">Pune</span></span><span class="hi">नेहा कुलकर्णी, <span class="city">पुणे</span></span></strong>
-                <p><span class="en">The report connected well with my current spiritual direction. The daily practice steps were very useful.</span><span class="hi">रिपोर्ट मेरी वर्तमान आध्यात्मिक दिशा से अच्छी तरह जुड़ी। दैनिक अभ्यास के चरण बहुत उपयोगी थे।</span></p>
-              </div>
-            </article><article class="testimonial-card">
-              <div class="quote-mark">“</div>
-              <div>
-                <strong><span class="en">Sandeep Mehta, <span class="city">Jaipur</span></span><span class="hi">संदीप मेहता, <span class="city">जयपुर</span></span></strong>
-                <p><span class="en">Very neatly explained. I finally understood the difference between general remedies and my personal Isht direction.</span><span class="hi">बहुत साफ तरीके से समझाया गया। सामान्य उपायों और अपनी व्यक्तिगत इष्ट दिशा का अंतर समझ आया।</span></p>
-              </div>
-            </article><article class="testimonial-card">
-              <div class="quote-mark">“</div>
-              <div>
-                <strong><span class="en">Ananya Iyer, <span class="city">Chennai</span></span><span class="hi">अनन्या अय्यर, <span class="city">चेन्नई</span></span></strong>
-                <p><span class="en">The guide was peaceful and easy to follow. It gave me a proper starting point for daily worship.</span><span class="hi">गाइड शांत और आसान लगी। इसने दैनिक पूजा के लिए एक सही शुरुआती दिशा दी।</span></p>
-              </div>
-            </article><article class="testimonial-card">
-              <div class="quote-mark">“</div>
-              <div>
-                <strong><span class="en">Vikram Singh, <span class="city">Chandigarh</span></span><span class="hi">विक्रम सिंह, <span class="city">चंडीगढ़</span></span></strong>
-                <p><span class="en">The explanation felt genuine and specific. The mantra and routine were clearly given.</span><span class="hi">व्याख्या सच्ची और व्यक्तिगत लगी। मंत्र और routine साफ दिए गए थे।</span></p>
-              </div>
-            </article><article class="testimonial-card">
-              <div class="quote-mark">“</div>
-              <div>
-                <strong><span class="en">Meera Menon, <span class="city">Kochi</span></span><span class="hi">मीरा मेनन, <span class="city">कोच्चि</span></span></strong>
-                <p><span class="en">The report gave me direction and confidence in my spiritual practice. Very well structured and easy to understand.</span><span class="hi">रिपोर्ट ने मेरी साधना में दिशा और विश्वास दिया। संरचना अच्छी थी और समझना आसान था।</span></p>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-body">
+                <div class="testimonial-head"><div class="testimonial-name">Anjan Mandal, <span class="city">Kolkata</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div>
+                <p>They revealed my Isht Devta. I am happy with the result and can now direct my puja and meditation in the right direction.</p>
+                <div class="recommend-line">Do you recommend? <span class="status-yes">✔ Yes</span></div>
               </div>
             </article>
           </div>
+
+          <div class="more-feedback-wrap">
+            <button type="button" class="btn outline" id="moreFeedbackBtn">View more testimonials</button>
+          </div>
+
+          <div class="testimonial-grid hidden-feedback" id="moreFeedbackGrid" hidden>
+            <article class="testimonial-card">
+              <div class="testimonial-body">
+                <div class="testimonial-head"><div class="testimonial-name">Prabhu, <span class="city">Chennai</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div>
+                <p>It's helpful and I am getting good result in my upasana.</p>
+                <div class="recommend-line">Do you recommend? <span class="status-yes">✔ Yes</span></div>
+              </div>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-body">
+                <div class="testimonial-head"><div class="testimonial-name">Aarya Singh, <span class="city">Bokaro Steel City</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div>
+                <p>Nice and prompt service.</p>
+                <div class="recommend-line">Do you recommend? <span class="status-yes">✔ Yes</span></div>
+              </div>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-body">
+                <div class="testimonial-head"><div class="testimonial-name">Ashik Rai, <span class="city">Bengaluru</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div>
+                <p>I'm thankful and satisfied with the recommendation.</p>
+                <div class="recommend-line">Do you recommend? <span class="status-yes">✔ Yes</span></div>
+              </div>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-body">
+                <div class="testimonial-head"><div class="testimonial-name">Anonymous, <span class="city">Trivandrum, Kerala</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div>
+                <p>My family temple was of Durga Kali and Lord Muruga, but I have been devoted to Lord Krishna since childhood and felt confused about my Ishta Devata. Thank you very much for the guidance.</p>
+                <div class="recommend-line">Do you recommend? <span class="status-yes">✔ Yes</span></div>
+              </div>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-body">
+                <div class="testimonial-head"><div class="testimonial-name">Anonymous, <span class="city">Bangalore</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div>
+                <p>Good job.</p>
+                <div class="recommend-line">Do you recommend? <span class="status-yes">✔ Yes</span></div>
+              </div>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-body">
+                <div class="testimonial-head"><div class="testimonial-name">Anonymous, <span class="city">Kozhikode</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div>
+                <p>Very clear and precise report.</p>
+                <div class="recommend-line">Do you recommend? <span class="status-yes">✔ Yes</span></div>
+              </div>
+            </article>
+          </div>
+
           <div class="testimonial-cta">
             <div>
               <b><span class="en">Ready to discover your own Isht direction?</span><span class="hi">अपनी इष्ट दिशा जानने के लिए तैयार हैं?</span></b>
@@ -574,14 +629,30 @@ section { padding:62px 0; }
               <label class="field" data-field="pob"><span class="en">Place of Birth</span><span class="hi">जन्म स्थान</span><input id="pob" type="text" placeholder="City, State" data-ph-en="City, State" data-ph-hi="शहर, राज्य"/></label>
               <div class="inline-grid">
                 <label class="field"><span class="en">Preferred Report Language</span><span class="hi">रिपोर्ट की पसंदीदा भाषा</span><select id="reportLanguage"><option value="English" data-text-en="English" data-text-hi="अंग्रेज़ी">English</option><option value="Hindi" data-text-en="Hindi" data-text-hi="हिंदी">Hindi</option></select></label>
-                <label class="field"><span class="en">Offer Price</span><span class="hi">ऑफ़र मूल्य</span><div class="form-price-display">₹201 <span class="was-price">₹501</span></div></label>
+                <label class="field"><span class="en">Offer Price</span><span class="hi">ऑफ़र मूल्य</span><div class="form-price-display" id="formPriceDisplay">₹201 <span class="was-price">₹501</span></div></label>
               </div>
               <label class="field"><span class="en">Extra Notes (optional)</span><span class="hi">अतिरिक्त टिप्पणी (वैकल्पिक)</span><textarea id="notes" placeholder="Mention any important note here" data-ph-en="Mention any important note here" data-ph-hi="यहाँ कोई आवश्यक टिप्पणी लिखें"></textarea></label>
             </form>
           </div>
           <div class="glass panel pay-card">
             <h3><span class="en">Secure payment</span><span class="hi">सुरक्षित भुगतान</span></h3>
-            <div class="price-box"><div class="label"><span class="en">Selected offer</span><span class="hi">चुना गया ऑफ़र</span></div><div class="title"><span class="en">Isht Devta Discovery Report</span><span class="hi">इष्ट देवता डिस्कवरी रिपोर्ट</span></div><div class="total">₹201 <small class="was-price">₹501</small></div><p><span class="en">One-time payment. Report delivered on WhatsApp within 24-48 hours after successful payment.</span><span class="hi">एक बार का भुगतान। सफल भुगतान के बाद 24-48 घंटे के भीतर रिपोर्ट WhatsApp पर भेजी जाएगी।</span></p></div>
+            <div class="price-box"><div class="label"><span class="en">Selected offer</span><span class="hi">चुना गया ऑफ़र</span></div><div class="title"><span class="en">Isht Devta Discovery Report</span><span class="hi">इष्ट देवता डिस्कवरी रिपोर्ट</span></div><div class="total" id="payCardTotal">₹201 <small class="was-price">₹501</small></div><p><span class="en">One-time payment. Report delivered on WhatsApp within 24-48 hours after successful payment.</span><span class="hi">एक बार का भुगतान। सफल भुगतान के बाद 24-48 घंटे के भीतर रिपोर्ट WhatsApp पर भेजी जाएगी।</span></p><div class="addon-summary" id="addonSummary"><span class="en">Name + Mobile Check add-on</span><span class="hi">Name + Mobile Check ऐड-ऑन</span><b>+ ₹99</b></div></div>
+            <div class="bump-offer">
+              <div class="bump-head">
+                <img class="bump-thumb" src="assets/name-mobile-bump.webp" alt="Name and mobile compatibility add-on graphic" loading="lazy" decoding="async">
+                <div class="bump-copy">
+                  <strong><span class="en">Add Name + Mobile Check for just ₹99</span><span class="hi">सिर्फ ₹99 में Name + Mobile Check जोड़ें</span></strong>
+                  <p><span class="en">Get a short report checking whether your current name and mobile number are aligned with your birth date.</span><span class="hi">एक छोटी रिपोर्ट पाएँ जो यह जाँचे कि आपका वर्तमान नाम और मोबाइल नंबर आपकी जन्मतिथि के अनुसार aligned हैं या नहीं।</span></p>
+                </div>
+              </div>
+              <label class="bump-check" for="addOnCheck">
+                <input type="checkbox" id="addOnCheck">
+                <span>
+                  <b><span class="en">Yes, add this with my order</span><span class="hi">हाँ, इसे मेरे ऑर्डर में जोड़ें</span></b>
+                  <small><span class="en">If selected, your total payable becomes ₹300 (₹201 report + ₹99 add-on).</span><span class="hi">चुनने पर कुल देय राशि ₹300 हो जाएगी (₹201 रिपोर्ट + ₹99 add-on)।</span></small>
+                </span>
+              </label>
+            </div>
             <button class="btn blue full" id="payBtn" type="button"><span class="en">Pay ₹201 securely with Razorpay</span><span class="hi">Razorpay से सुरक्षित ₹201 भुगतान करें</span></button>
             <div class="pay-icons"><img src="assets/payment/gpay.svg" alt="Google Pay" /><img src="assets/payment/phonepe.svg" alt="PhonePe" /><img src="assets/payment/paytm.svg" alt="Paytm" /><img src="assets/payment/upi.svg" alt="UPI" /></div>
             <div class="secure-copy"><span class="en">UPI, cards and net banking supported through Razorpay checkout.</span><span class="hi">Razorpay checkout के माध्यम से UPI, कार्ड और नेट बैंकिंग समर्थित हैं।</span></div>
@@ -589,7 +660,7 @@ section { padding:62px 0; }
             <div class="mini-note"><span class="en">Details are collected on this page first. Paid order data is backed up through Netlify Forms after successful payment verification.</span><span class="hi">विवरण पहले इसी पेज पर लिया जाता है। सफल भुगतान सत्यापन के बाद paid order data Netlify Forms में बैकअप हो जाता है।</span></div>
           </div>
         </div>
-        <form name="isht-devta-paid-orders" netlify data-netlify="true" netlify-honeypot="bot-field" hidden><input type="hidden" name="form-name" value="isht-devta-paid-orders"><input name="bot-field"><input name="customer_name"><input name="customer_email"><input name="whatsapp_number"><input name="dob"><input name="birth_time"><input name="birth_place"><input name="report_language"><input name="amount"><input name="payment_id"><input name="order_id"><textarea name="notes"></textarea></form>
+        <form name="isht-devta-paid-orders" netlify data-netlify="true" netlify-honeypot="bot-field" hidden><input type="hidden" name="form-name" value="isht-devta-paid-orders"><input name="bot-field"><input name="customer_name"><input name="customer_email"><input name="whatsapp_number"><input name="dob"><input name="birth_time"><input name="birth_place"><input name="report_language"><input name="base_amount"><input name="add_on_selected"><input name="add_on_amount"><input name="amount"><input name="payment_id"><input name="order_id"><textarea name="notes"></textarea></form>
       </div>
     </section>
 
@@ -622,13 +693,28 @@ section { padding:62px 0; }
   <div class="mobile-cta"><div class="mobile-cta-grid"><a class="btn secondary" href="#process"><span class="en">See Process</span><span class="hi">प्रक्रिया देखें</span></a><a class="btn primary" href="#order"><span class="en">Get Report</span><span class="hi">रिपोर्ट लें</span></a></div></div>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
-    const price = 201;
+    const BASE_PRICE = 201;
+    const ADDON_PRICE = 99;
     const form = document.getElementById('orderForm');
     const payBtn = document.getElementById('payBtn');
     const statusBox = document.getElementById('paymentStatus');
     const formError = document.getElementById('formError');
+    const addOnCheck = document.getElementById('addOnCheck');
+    const formPriceDisplay = document.getElementById('formPriceDisplay');
+    const payCardTotal = document.getElementById('payCardTotal');
+    const addonSummary = document.getElementById('addonSummary');
 
     function trackMeta(name, payload = {}) { if (typeof fbq === 'function') fbq('track', name, payload); }
+    function getCurrentPrice() { return BASE_PRICE + ((addOnCheck && addOnCheck.checked) ? ADDON_PRICE : 0); }
+    function payButtonMarkup(amount) { return '<span class="en">Pay ₹' + amount + ' securely with Razorpay</span><span class="hi">Razorpay से सुरक्षित ₹' + amount + ' भुगतान करें</span>'; }
+    function updatePricingUI() {
+      const total = getCurrentPrice();
+      const withAddon = addOnCheck && addOnCheck.checked;
+      if (formPriceDisplay) formPriceDisplay.innerHTML = withAddon ? '₹' + total : '₹201 <span class="was-price">₹501</span>';
+      if (payCardTotal) payCardTotal.innerHTML = withAddon ? '₹' + total : '₹201 <small class="was-price">₹501</small>';
+      if (addonSummary) addonSummary.classList.toggle('show', !!withAddon);
+      if (payBtn) payBtn.innerHTML = payButtonMarkup(total);
+    }
     function updateText(lang) {
       document.querySelectorAll('[data-ph-en]').forEach(el => { el.placeholder = lang === 'hi' ? el.dataset.phHi : el.dataset.phEn; });
       document.querySelectorAll('#reportLanguage option[data-text-en]').forEach(option => { option.textContent = lang === 'hi' ? option.dataset.textHi : option.dataset.textEn; });
@@ -641,6 +727,7 @@ section { padding:62px 0; }
     }
     document.querySelectorAll('[data-lang]').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.lang)));
     setLanguage(localStorage.getItem('isht_lp_lang') || 'en');
+    updatePricingUI();
 
     function showStatus(type, msg) { statusBox.className = 'payment-status ' + type; statusBox.textContent = msg; }
     function clearErrors() { document.querySelectorAll('.field.missing').forEach(el => el.classList.remove('missing')); formError.classList.remove('show'); }
@@ -654,7 +741,11 @@ section { padding:62px 0; }
         tob: document.getElementById('tob').value.trim(),
         pob: document.getElementById('pob').value.trim(),
         reportLanguage: document.getElementById('reportLanguage').value,
-        notes: document.getElementById('notes').value.trim()
+        notes: document.getElementById('notes').value.trim(),
+        addOnSelected: !!(addOnCheck && addOnCheck.checked),
+        addOnAmount: (addOnCheck && addOnCheck.checked) ? ADDON_PRICE : 0,
+        baseAmount: BASE_PRICE,
+        totalAmount: getCurrentPrice()
       };
     }
     function isValidEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
@@ -686,7 +777,10 @@ section { padding:62px 0; }
       payload.append('birth_time', order.tob || '');
       payload.append('birth_place', order.pob || '');
       payload.append('report_language', order.reportLanguage || '');
-      payload.append('amount', order.amount || price || '');
+      payload.append('base_amount', order.baseAmount || BASE_PRICE || '');
+      payload.append('add_on_selected', order.addOnSelected ? 'yes' : 'no');
+      payload.append('add_on_amount', order.addOnAmount || 0);
+      payload.append('amount', order.amount || getCurrentPrice() || '');
       payload.append('payment_id', order.paymentId || '');
       payload.append('order_id', order.orderId || '');
       payload.append('notes', order.notes || '');
@@ -696,13 +790,14 @@ section { padding:62px 0; }
     function restoreButton() {
       payBtn.disabled = false;
       payBtn.style.opacity = '1';
-      payBtn.innerHTML = '<span class="en">Pay ₹201 securely with Razorpay</span><span class="hi">Razorpay से सुरक्षित ₹201 भुगतान करें</span>';
+      updatePricingUI();
     }
     async function startPayment() {
       if (!validate()) return;
       const d = getDetails();
-      const payload = { ...d, amount: price };
-      trackMeta('InitiateCheckout', { value: price, currency: 'INR', content_name: 'Isht Devta Discovery Report' });
+      const total = getCurrentPrice();
+      const payload = { ...d, amount: total };
+      trackMeta('InitiateCheckout', { value: total, currency: 'INR', content_name: d.addOnSelected ? 'Isht Devta Report + Name/Mobile Check' : 'Isht Devta Discovery Report' });
       payBtn.disabled = true;
       payBtn.style.opacity = '.75';
       payBtn.textContent = document.body.classList.contains('lang-hi') ? 'सुरक्षित भुगतान खोला जा रहा है...' : 'Opening secure payment...';
@@ -715,20 +810,20 @@ section { padding:62px 0; }
           amount: data.amount,
           currency: data.currency || 'INR',
           name: window.SITE_CONFIG.BRAND_NAME,
-          description: 'Isht Devta Discovery Report',
+          description: d.addOnSelected ? 'Isht Devta Report + Name/Mobile Check' : 'Isht Devta Discovery Report',
           order_id: data.order_id,
           prefill: { name: d.fullName, email: d.email, contact: d.phone },
-          notes: { customer_name: d.fullName, customer_email: d.email, whatsapp_number: d.phone, report_language: d.reportLanguage, birth_place: d.pob },
+          notes: { customer_name: d.fullName, customer_email: d.email, whatsapp_number: d.phone, report_language: d.reportLanguage, birth_place: d.pob, add_on_selected: d.addOnSelected ? 'yes' : 'no' },
           theme: { color: '#d4af37' },
           handler: async function (response) {
             showStatus('warn', document.body.classList.contains('lang-hi') ? 'भुगतान प्राप्त हुआ। सत्यापन हो रहा है...' : 'Payment received. Verifying...');
             const verifyRes = await fetch('/api/verify-payment', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(response) });
             const verifyData = await verifyRes.json().catch(() => ({}));
             if (!verifyRes.ok || !verifyData.success) throw new Error(verifyData.error || 'Payment verification failed');
-            const finalOrder = { ...d, orderId: response.razorpay_order_id, paymentId: response.razorpay_payment_id, amount: price, paidAt: new Date().toISOString() };
+            const finalOrder = { ...d, orderId: response.razorpay_order_id, paymentId: response.razorpay_payment_id, amount: total, paidAt: new Date().toISOString() };
             localStorage.setItem('ishtDevtaOrder', JSON.stringify(finalOrder));
             await submitNetlifyBackup(finalOrder);
-            trackMeta('Purchase', { value: price, currency: 'INR' });
+            trackMeta('Purchase', { value: total, currency: 'INR' });
             showStatus('ok', document.body.classList.contains('lang-hi') ? 'भुगतान सफल। अगले पेज पर जा रहे हैं...' : 'Payment successful. Opening next step...');
             window.location.href = 'thank-you.html';
           },
@@ -739,7 +834,24 @@ section { padding:62px 0; }
         rzp.open();
       } catch (e) { showStatus('error', e.message || 'Payment could not be started.'); restoreButton(); }
     }
+
+    const moreFeedbackBtn = document.getElementById('moreFeedbackBtn');
+    const moreFeedbackGrid = document.getElementById('moreFeedbackGrid');
+    if (moreFeedbackBtn && moreFeedbackGrid) {
+      moreFeedbackBtn.addEventListener('click', function () {
+        const isHidden = moreFeedbackGrid.hasAttribute('hidden');
+        if (isHidden) {
+          moreFeedbackGrid.removeAttribute('hidden');
+          moreFeedbackBtn.textContent = 'Show less testimonials';
+        } else {
+          moreFeedbackGrid.setAttribute('hidden', 'hidden');
+          moreFeedbackBtn.textContent = 'View more testimonials';
+          document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
     payBtn.addEventListener('click', startPayment);
+    if (addOnCheck) addOnCheck.addEventListener('change', updatePricingUI);
     ['fullName', 'email', 'phone', 'dob', 'tob', 'pob', 'reportLanguage', 'notes'].forEach(id => {
       const el = document.getElementById(id);
       if (el) { el.addEventListener('input', clearErrors); el.addEventListener('change', clearErrors); }
