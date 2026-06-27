@@ -35,6 +35,7 @@ exports.handler = async (event) => {
         dob: body.dob || '',
         birth_time: body.tob || '',
         birth_place: body.pob || '',
+        gender: body.gender || '',
         report_language: body.reportLanguage || '',
         notes: body.notes || ''
       }

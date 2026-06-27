@@ -220,13 +220,13 @@ section { padding:62px 0; }
     .price-box .total .was-price { font-size:24px; vertical-align:middle; line-height:1; }
     .hero-stat b .was-price { font-size:14px; vertical-align:middle; }
     .form-price-display { width:100%; padding:14px 15px; border-radius:16px; border:1px solid var(--line); background:rgba(255,255,255,.05); color:var(--text); font:800 15px/1.4 Inter, system-ui, sans-serif; min-height:51px; display:flex; align-items:center; gap:8px; }
-    .bump-offer { margin:16px 0 18px; padding:14px; border-radius:22px; border:1px solid color-mix(in srgb,var(--accent) 30%, transparent); background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); box-shadow:0 16px 36px rgba(0,0,0,.22); }
+    .bump-offer { margin:16px 0 18px; padding:14px; border-radius:22px; border:1px solid color-mix(in srgb,#4cb5ff 38%, var(--accent) 28%); background:linear-gradient(135deg, rgba(32,92,170,.34), rgba(116,35,88,.22) 58%, rgba(212,175,55,.10)); box-shadow:0 18px 40px rgba(17,76,164,.22), inset 0 0 0 1px rgba(255,255,255,.04); }
     .bump-head { display:grid; grid-template-columns:120px 1fr; gap:14px; align-items:center; }
     .bump-thumb { width:100%; border-radius:16px; border:1px solid rgba(255,255,255,.08); display:block; }
     .bump-copy strong { display:block; font:900 16px/1.3 Inter, system-ui, sans-serif; color:var(--text); margin-bottom:6px; }
     .bump-copy p { margin:0; font-size:13px; line-height:1.45; color:var(--muted); }
-    .bump-check { margin-top:12px; display:flex; gap:10px; align-items:flex-start; padding:12px 14px; border-radius:16px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); cursor:pointer; }
-    .bump-check input { width:18px; height:18px; margin-top:3px; accent-color:var(--accent); }
+    .bump-check { margin-top:12px; display:flex; gap:10px; align-items:flex-start; padding:12px 14px; border-radius:16px; background:rgba(4,18,44,.48); border:1px solid rgba(255,213,96,.22); cursor:pointer; }
+    .bump-check input { width:18px; height:18px; margin-top:3px; accent-color:#4cb5ff; }
     .bump-check b { display:block; font:800 14px/1.35 Inter, system-ui, sans-serif; color:var(--text); margin-bottom:2px; }
     .bump-check small { display:block; font-size:12px; line-height:1.45; color:var(--muted); }
     .addon-summary { display:none; margin-top:10px; padding-top:10px; border-top:1px dashed rgba(255,255,255,.12); justify-content:space-between; gap:10px; font:700 13px/1.4 Inter, system-ui, sans-serif; color:var(--text); }
@@ -248,6 +248,7 @@ section { padding:62px 0; }
 
     .footer { padding:36px 0 86px; border-top:1px solid var(--line); background:rgba(255,255,255,.03); }
     .footer-grid { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+    .copyright { margin-top:12px; color:var(--muted); font-size:13px; font-weight:700; }
     .fineprint { max-width:760px; color:var(--muted); font-size:13px; line-height:1.6; }
     .legal-links { display:flex; flex-wrap:wrap; gap:14px; margin-top:10px; color:var(--muted); font-size:13px; }
     .mobile-cta { display:none; position:fixed; left:12px; right:12px; bottom:12px; z-index:80; background:rgba(10,10,10,.78); border:1px solid var(--line); border-radius:22px; padding:12px; backdrop-filter:blur(14px); box-shadow:0 20px 50px rgba(0,0,0,.22); }
@@ -508,7 +509,6 @@ section { padding:62px 0; }
       <div class="wrap">
         <div class="section-head">
           <h2><span class="en">What people are saying</span><span class="hi">लोग क्या कह रहे हैं</span></h2>
-          <p><span class="en">Real buyer feedback shown close to checkout so visitors can build trust without leaving the page.</span><span class="hi">चेकआउट के पास real buyer feedback, ताकि visitors बिना पेज छोड़े भरोसा बना सकें।</span></p>
         </div>
         <div class="glass testimonials-shell">
           <div class="testimonial-grid">
@@ -628,9 +628,10 @@ section { padding:62px 0; }
               </div>
               <label class="field" data-field="pob"><span class="en">Place of Birth</span><span class="hi">जन्म स्थान</span><input id="pob" type="text" placeholder="City, State" data-ph-en="City, State" data-ph-hi="शहर, राज्य"/></label>
               <div class="inline-grid">
+                <label class="field" data-field="gender"><span class="en">Gender</span><span class="hi">लिंग</span><select id="gender"><option value="" data-text-en="Select gender" data-text-hi="लिंग चुनें">Select gender</option><option value="Male" data-text-en="Male" data-text-hi="पुरुष">Male</option><option value="Female" data-text-en="Female" data-text-hi="महिला">Female</option><option value="Other" data-text-en="Other" data-text-hi="अन्य">Other</option></select></label>
                 <label class="field"><span class="en">Preferred Report Language</span><span class="hi">रिपोर्ट की पसंदीदा भाषा</span><select id="reportLanguage"><option value="English" data-text-en="English" data-text-hi="अंग्रेज़ी">English</option><option value="Hindi" data-text-en="Hindi" data-text-hi="हिंदी">Hindi</option></select></label>
-                <label class="field"><span class="en">Offer Price</span><span class="hi">ऑफ़र मूल्य</span><div class="form-price-display" id="formPriceDisplay">₹201 <span class="was-price">₹501</span></div></label>
               </div>
+              <label class="field"><span class="en">Offer Price</span><span class="hi">ऑफ़र मूल्य</span><div class="form-price-display" id="formPriceDisplay">₹201 <span class="was-price">₹501</span></div></label>
               <label class="field"><span class="en">Extra Notes (optional)</span><span class="hi">अतिरिक्त टिप्पणी (वैकल्पिक)</span><textarea id="notes" placeholder="Mention any important note here" data-ph-en="Mention any important note here" data-ph-hi="यहाँ कोई आवश्यक टिप्पणी लिखें"></textarea></label>
             </form>
           </div>
@@ -657,10 +658,9 @@ section { padding:62px 0; }
             <div class="pay-icons"><img src="assets/payment/gpay.svg" alt="Google Pay" /><img src="assets/payment/phonepe.svg" alt="PhonePe" /><img src="assets/payment/paytm.svg" alt="Paytm" /><img src="assets/payment/upi.svg" alt="UPI" /></div>
             <div class="secure-copy"><span class="en">UPI, cards and net banking supported through Razorpay checkout.</span><span class="hi">Razorpay checkout के माध्यम से UPI, कार्ड और नेट बैंकिंग समर्थित हैं।</span></div>
             <div class="payment-status" id="paymentStatus"></div>
-            <div class="mini-note"><span class="en">Details are collected on this page first. Paid order data is backed up through Netlify Forms after successful payment verification.</span><span class="hi">विवरण पहले इसी पेज पर लिया जाता है। सफल भुगतान सत्यापन के बाद paid order data Netlify Forms में बैकअप हो जाता है।</span></div>
           </div>
         </div>
-        <form name="isht-devta-paid-orders" netlify data-netlify="true" netlify-honeypot="bot-field" hidden><input type="hidden" name="form-name" value="isht-devta-paid-orders"><input name="bot-field"><input name="customer_name"><input name="customer_email"><input name="whatsapp_number"><input name="dob"><input name="birth_time"><input name="birth_place"><input name="report_language"><input name="base_amount"><input name="add_on_selected"><input name="add_on_amount"><input name="amount"><input name="payment_id"><input name="order_id"><textarea name="notes"></textarea></form>
+        <form name="isht-devta-paid-orders" netlify data-netlify="true" netlify-honeypot="bot-field" hidden><input type="hidden" name="form-name" value="isht-devta-paid-orders"><input name="bot-field"><input name="customer_name"><input name="customer_email"><input name="whatsapp_number"><input name="dob"><input name="birth_time"><input name="birth_place"><input name="gender"><input name="report_language"><input name="base_amount"><input name="add_on_selected"><input name="add_on_amount"><input name="amount"><input name="payment_id"><input name="order_id"><textarea name="notes"></textarea></form>
       </div>
     </section>
 
@@ -685,6 +685,7 @@ section { padding:62px 0; }
       <div>
         <div class="brand"><span class="logo">ॐ</span><span class="brand-name"><span class="en">DivyaLok Bhakti</span><span class="hi">दिव्यलोक भक्ति</span></span></div>
         <div class="legal-links"><a href="terms.html"><span class="en">Terms</span><span class="hi">नियम</span></a><a href="privacy.html"><span class="en">Privacy</span><span class="hi">गोपनीयता</span></a><a href="refund-delivery.html"><span class="en">Refund & Delivery</span><span class="hi">रिफंड और डिलीवरी</span></a><a href="thank-you.html"><span class="en">Thank You</span><span class="hi">धन्यवाद</span></a></div>
+        <div class="copyright">© 2026 DivyaLok Bhakti</div>
       </div>
       <div class="fineprint"><span class="en">Disclaimer: This service is for spiritual clarity and devotional guidance only. It is not medical, legal, psychological or financial advice, and it does not guarantee any specific life result.</span><span class="hi">अस्वीकरण: यह सेवा केवल आध्यात्मिक स्पष्टता और भक्ति मार्गदर्शन के लिए है। यह चिकित्सकीय, कानूनी, मनोवैज्ञानिक या वित्तीय सलाह नहीं है, और किसी निश्चित जीवन परिणाम की गारंटी नहीं देती।</span></div>
     </div>
@@ -717,7 +718,7 @@ section { padding:62px 0; }
     }
     function updateText(lang) {
       document.querySelectorAll('[data-ph-en]').forEach(el => { el.placeholder = lang === 'hi' ? el.dataset.phHi : el.dataset.phEn; });
-      document.querySelectorAll('#reportLanguage option[data-text-en]').forEach(option => { option.textContent = lang === 'hi' ? option.dataset.textHi : option.dataset.textEn; });
+      document.querySelectorAll('select option[data-text-en]').forEach(option => { option.textContent = lang === 'hi' ? option.dataset.textHi : option.dataset.textEn; });
     }
     function setLanguage(lang) {
       document.body.classList.toggle('lang-hi', lang === 'hi');
@@ -740,6 +741,7 @@ section { padding:62px 0; }
         dob: document.getElementById('dob').value.trim(),
         tob: document.getElementById('tob').value.trim(),
         pob: document.getElementById('pob').value.trim(),
+        gender: document.getElementById('gender').value,
         reportLanguage: document.getElementById('reportLanguage').value,
         notes: document.getElementById('notes').value.trim(),
         addOnSelected: !!(addOnCheck && addOnCheck.checked),
@@ -759,6 +761,7 @@ section { padding:62px 0; }
       if (!d.dob) missing.push('dob');
       if (!d.tob) missing.push('tob');
       if (!d.pob) missing.push('pob');
+      if (!d.gender) missing.push('gender');
       if (missing.length) {
         missing.forEach(markMissing);
         formError.classList.add('show');
@@ -776,6 +779,7 @@ section { padding:62px 0; }
       payload.append('dob', order.dob || '');
       payload.append('birth_time', order.tob || '');
       payload.append('birth_place', order.pob || '');
+      payload.append('gender', order.gender || '');
       payload.append('report_language', order.reportLanguage || '');
       payload.append('base_amount', order.baseAmount || BASE_PRICE || '');
       payload.append('add_on_selected', order.addOnSelected ? 'yes' : 'no');
@@ -813,7 +817,7 @@ section { padding:62px 0; }
           description: d.addOnSelected ? 'Isht Devta Report + Name/Mobile Check' : 'Isht Devta Discovery Report',
           order_id: data.order_id,
           prefill: { name: d.fullName, email: d.email, contact: d.phone },
-          notes: { customer_name: d.fullName, customer_email: d.email, whatsapp_number: d.phone, report_language: d.reportLanguage, birth_place: d.pob, add_on_selected: d.addOnSelected ? 'yes' : 'no' },
+          notes: { customer_name: d.fullName, customer_email: d.email, whatsapp_number: d.phone, report_language: d.reportLanguage, birth_place: d.pob, gender: d.gender, add_on_selected: d.addOnSelected ? 'yes' : 'no' },
           theme: { color: '#d4af37' },
           handler: async function (response) {
             showStatus('warn', document.body.classList.contains('lang-hi') ? 'भुगतान प्राप्त हुआ। सत्यापन हो रहा है...' : 'Payment received. Verifying...');
@@ -852,7 +856,7 @@ section { padding:62px 0; }
     }
     payBtn.addEventListener('click', startPayment);
     if (addOnCheck) addOnCheck.addEventListener('change', updatePricingUI);
-    ['fullName', 'email', 'phone', 'dob', 'tob', 'pob', 'reportLanguage', 'notes'].forEach(id => {
+    ['fullName', 'email', 'phone', 'dob', 'tob', 'pob', 'gender', 'reportLanguage', 'notes'].forEach(id => {
       const el = document.getElementById(id);
       if (el) { el.addEventListener('input', clearErrors); el.addEventListener('change', clearErrors); }
     });
