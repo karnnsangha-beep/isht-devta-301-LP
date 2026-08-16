@@ -27,6 +27,7 @@ exports.handler = async (event) => {
       notes: {
         base_amount: String(baseAmount),
         add_on_selected: addOnSelected ? 'yes' : 'no',
+        add_on_name: addOnSelected ? 'Navagrah Remedies' : '',
         add_on_amount: String(addOnAmount),
         amount: String(totalAmount),
         customer_name: body.fullName || '',
@@ -36,8 +37,7 @@ exports.handler = async (event) => {
         birth_time: body.tob || '',
         birth_place: body.pob || '',
         gender: body.gender || '',
-        report_language: body.reportLanguage || '',
-        notes: body.notes || ''
+        report_language: body.reportLanguage || ''
       }
     });
 

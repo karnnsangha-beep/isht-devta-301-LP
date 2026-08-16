@@ -54,7 +54,7 @@ Report Language: ${clean(order.reportLanguage)}
 Payment ID: ${clean(order.paymentId)}
 Order ID: ${clean(order.orderId)}
 Amount: ₹${clean(order.amount)}
-Notes: ${clean(order.notes)}
+Navagrah Remedies Add-on: ${order.addOnSelected ? 'Yes (+₹99)' : 'No'}
 
 Please prepare my report.`;
     const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;

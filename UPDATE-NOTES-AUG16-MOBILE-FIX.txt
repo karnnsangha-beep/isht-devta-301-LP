@@ -1,0 +1,7 @@
+Aug 16 mobile fix:
+- Floating double-chevron shortcut moved to bottom-right.
+- Chevron remains visible from hero until details/payment is reached, then stays hidden below that point.
+- Navagrah Remedies add-on image set to eager-load and render fully with object-fit: contain.
+- Mobile checkout alignment tightened for <=420px screens.
+- Payment method logos remain a compact 4-across row on mobile.
+- Existing LP content/URL/payment flow otherwise preserved.

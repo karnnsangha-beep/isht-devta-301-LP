@@ -221,17 +221,25 @@ section { padding:62px 0; }
     .hero-stat b .was-price { font-size:14px; vertical-align:middle; }
     .form-price-display { width:100%; padding:14px 15px; border-radius:16px; border:1px solid var(--line); background:rgba(255,255,255,.05); color:var(--text); font:800 15px/1.4 Inter, system-ui, sans-serif; min-height:51px; display:flex; align-items:center; gap:8px; }
     .bump-offer { margin:16px 0 18px; padding:14px; border-radius:22px; border:1px solid color-mix(in srgb,#4cb5ff 38%, var(--accent) 28%); background:linear-gradient(135deg, rgba(32,92,170,.34), rgba(116,35,88,.22) 58%, rgba(212,175,55,.10)); box-shadow:0 18px 40px rgba(17,76,164,.22), inset 0 0 0 1px rgba(255,255,255,.04); }
-    .bump-head { display:grid; grid-template-columns:120px 1fr; gap:14px; align-items:center; }
-    .bump-thumb { width:100%; border-radius:16px; border:1px solid rgba(255,255,255,.08); display:block; }
+    .bump-head { display:grid; grid-template-columns:minmax(220px,42%) 1fr; gap:16px; align-items:center; }
+    .bump-thumb { width:100%; height:auto; aspect-ratio:auto; object-fit:contain; object-position:center; border-radius:16px; border:1px solid rgba(255,255,255,.08); background:#071426; display:block; }
     .bump-copy strong { display:block; font:900 16px/1.3 Inter, system-ui, sans-serif; color:var(--text); margin-bottom:6px; }
     .bump-copy p { margin:0; font-size:13px; line-height:1.45; color:var(--muted); }
+    .bump-was { display:inline-block; margin-left:7px; color:var(--muted); text-decoration:line-through; font-weight:800; opacity:.9; }
     .bump-check { margin-top:12px; display:flex; gap:10px; align-items:flex-start; padding:12px 14px; border-radius:16px; background:rgba(4,18,44,.48); border:1px solid rgba(255,213,96,.22); cursor:pointer; }
     .bump-check input { width:18px; height:18px; margin-top:3px; accent-color:#4cb5ff; }
     .bump-check b { display:block; font:800 14px/1.35 Inter, system-ui, sans-serif; color:var(--text); margin-bottom:2px; }
     .bump-check small { display:block; font-size:12px; line-height:1.45; color:var(--muted); }
     .addon-summary { display:none; margin-top:10px; padding-top:10px; border-top:1px dashed rgba(255,255,255,.12); justify-content:space-between; gap:10px; font:700 13px/1.4 Inter, system-ui, sans-serif; color:var(--text); }
     .addon-summary.show { display:flex; }
-    @media (max-width:780px) { .bump-head { grid-template-columns:1fr; } .bump-thumb { max-width:240px; } }
+    @media (max-width:780px) {
+      .bump-offer { padding:12px; border-radius:20px; }
+      .bump-head { grid-template-columns:1fr; gap:12px; }
+      .bump-thumb { max-width:none; width:100%; border-radius:14px; }
+      .bump-copy strong { font-size:15.5px; }
+      .bump-copy p { font-size:12.5px; }
+      .bump-check { padding:12px; }
+    }
 
     .payment-status { display:none; margin-top:12px; padding:12px 14px; border-radius:16px; font-size:13px; line-height:1.45; }
     .payment-status.ok { display:block; background:#eef8f2; border:1px solid rgba(60,131,98,.18); color:#21553f; }
@@ -251,6 +259,12 @@ section { padding:62px 0; }
     .copyright { margin-top:12px; color:var(--muted); font-size:13px; font-weight:700; }
     .fineprint { max-width:760px; color:var(--muted); font-size:13px; line-height:1.6; }
     .legal-links { display:flex; flex-wrap:wrap; gap:14px; margin-top:10px; color:var(--muted); font-size:13px; }
+    .quick-order-jump { padding:24px 0 8px; }
+    .quick-order-jump .btn { width:min(560px,100%); margin:0 auto; display:flex; }
+    .scroll-chevrons { display:none; position:fixed; right:14px; bottom:calc(104px + env(safe-area-inset-bottom, 0px)); z-index:86; width:54px; height:54px; padding:0; border:0; border-radius:50%; background:transparent; cursor:pointer; opacity:.62; transition:opacity .22s ease, transform .22s ease, visibility .22s ease; filter:drop-shadow(0 5px 12px rgba(0,0,0,.22)); -webkit-tap-highlight-color:transparent; touch-action:manipulation; }
+    .scroll-chevrons img { width:100%; height:100%; display:block; }
+    .scroll-chevrons:hover, .scroll-chevrons:focus-visible { opacity:.88; transform:translateY(-2px); }
+    .scroll-chevrons.is-hidden { opacity:0; visibility:hidden; pointer-events:none; transform:translateY(8px); }
     .mobile-cta { display:none; position:fixed; left:12px; right:12px; bottom:12px; z-index:80; background:rgba(10,10,10,.78); border:1px solid var(--line); border-radius:22px; padding:12px; backdrop-filter:blur(14px); box-shadow:0 20px 50px rgba(0,0,0,.22); }
     .mobile-cta-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
     .mobile-cta .btn.secondary { background:linear-gradient(135deg, color-mix(in srgb,var(--accent) 38%, #151515), color-mix(in srgb,var(--accent2) 28%, #111)); color:var(--text); border-color:color-mix(in srgb,var(--accent) 52%, transparent); }
@@ -294,7 +308,9 @@ section { padding:62px 0; }
       .guide-glow { margin-top:18px; font-size:clamp(11px,3vw,13px); letter-spacing:.11em; }
       .subhead { font-size:15.5px; line-height:1.52; }
       .hero-actions .btn, .mobile-cta .btn { width:100%; }
-      .hero-stats, .grid-3, .inline-grid, .pay-icons { grid-template-columns:1fr; }
+      .hero-stats, .grid-3, .inline-grid { grid-template-columns:1fr; }
+      .pay-icons { grid-template-columns:repeat(4,minmax(0,1fr)); gap:7px; }
+      .pay-icons img { height:36px; padding:7px 5px; border-radius:18px; }
       .common-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
       .common-card { min-height:auto; padding:16px 12px 16px; border-radius:24px; }
       .common-card::before { width:88px; height:88px; border-radius:22px; }
@@ -321,7 +337,20 @@ section { padding:62px 0; }
       .testimonial-body p { font-size:13.5px; }
       .testimonial-cta { flex-direction:column; align-items:flex-start; }
       .mobile-cta { display:block; }
+      .scroll-chevrons { display:block; width:52px; height:52px; right:12px; left:auto; bottom:calc(104px + env(safe-area-inset-bottom, 0px)); }
+      .quick-order-jump { padding:18px 0 4px; }
+      .quick-order-jump .btn { min-height:54px; font-size:15px; }
       .footer { padding-bottom:110px; }
+    }
+
+    @media (max-width:420px) {
+      .wrap { width:calc(100% - 18px); }
+      .offer-main, .offer-note, .panel { padding:20px; }
+      .bump-offer { padding:10px; }
+      .bump-head { gap:10px; }
+      .bump-copy strong { font-size:15px; }
+      .bump-copy p { font-size:12px; }
+      .scroll-chevrons { width:50px; height:50px; right:10px; left:auto; }
     }
   </style>
 
@@ -426,26 +455,9 @@ section { padding:62px 0; }
       </div>
     </section>
 
-    <section>
-      <div class="wrap offer-shell">
-        <div class="glass offer-main">
-          <span class="badge"><span class="en">Launch Offer</span><span class="hi">लॉन्च ऑफर</span></span>
-          <h2><span class="en">Personalised Isht Devta Discovery Report</span><span class="hi">व्यक्तिगत इष्ट देवता डिस्कवरी रिपोर्ट</span></h2>
-          <div class="price"><strong>₹201</strong><small>₹501</small></div>
-          <div class="save"><span class="en">Traditional shagun value. Limited launch pricing.</span><span class="hi">शगुन राशि। सीमित अवधि का लॉन्च मूल्य।</span></div>
-          <ul class="list">
-            <li><span class="en">Prepared from your name, date of birth, birth time and place of birth</span><span class="hi">आपके नाम, जन्म तिथि, जन्म समय और जन्म स्थान के आधार पर तैयार</span></li>
-            <li><span class="en">Available in Hindi or English</span><span class="hi">हिंदी या अंग्रेज़ी में उपलब्ध</span></li>
-            <li><span class="en">WhatsApp PDF delivery in 24-48 hours after successful payment</span><span class="hi">सफल भुगतान के बाद 24-48 घंटे में WhatsApp पर PDF डिलीवरी</span></li>
-            <li><span class="en">Carefully prepared manual work, not rushed instant output</span><span class="hi">सावधानी से तैयार मैनुअल कार्य, जल्दबाज़ी वाला आउटपुट नहीं</span></li>
-          </ul>
-          <a class="btn primary full" href="#order"><span class="en">Continue to Details & Payment</span><span class="hi">विवरण और भुगतान पर जाएँ</span></a>
-        </div>
-        <div class="glass offer-note">
-          <h3><span class="en">Please allow careful manual work</span><span class="hi">कृपया सावधानी से मैनुअल कार्य के लिए समय दें</span></h3>
-          <p><span class="en">This report is prepared manually. We do not hurry spiritual work under pressure, because rushed checking can create mistakes. After payment, please allow 24-48 hours so the report can be prepared calmly and properly.</span><span class="hi">यह रिपोर्ट मैनुअल रूप से तैयार की जाती है। दबाव में आध्यात्मिक कार्य को जल्दबाज़ी में नहीं किया जाता, क्योंकि जल्दी में जाँच करने से गलतियाँ हो सकती हैं। भुगतान के बाद कृपया 24-48 घंटे का समय दें, ताकि रिपोर्ट शांति और सावधानी से तैयार की जा सके।</span></p>
-          <div class="note-box"><span class="en">This is a spiritual guidance service. It does not promise money, marriage, health cure, job, foreign settlement or guaranteed results.</span><span class="hi">यह एक आध्यात्मिक मार्गदर्शन सेवा है। यह धन, विवाह, स्वास्थ्य लाभ, नौकरी, विदेश बसने या निश्चित परिणाम का वादा नहीं करती।</span></div>
-        </div>
+    <section class="quick-order-jump" aria-label="Continue to order">
+      <div class="wrap">
+        <a class="btn primary full" href="#order"><span class="en">Continue to Details & Payment</span><span class="hi">विवरण और भुगतान पर जाएँ</span></a>
       </div>
     </section>
 
@@ -632,24 +644,23 @@ section { padding:62px 0; }
                 <label class="field"><span class="en">Preferred Report Language</span><span class="hi">रिपोर्ट की पसंदीदा भाषा</span><select id="reportLanguage"><option value="English" data-text-en="English" data-text-hi="अंग्रेज़ी">English</option><option value="Hindi" data-text-en="Hindi" data-text-hi="हिंदी">Hindi</option></select></label>
               </div>
               <label class="field"><span class="en">Offer Price</span><span class="hi">ऑफ़र मूल्य</span><div class="form-price-display" id="formPriceDisplay">₹201 <span class="was-price">₹501</span></div></label>
-              <label class="field"><span class="en">Extra Notes (optional)</span><span class="hi">अतिरिक्त टिप्पणी (वैकल्पिक)</span><textarea id="notes" placeholder="Mention any important note here" data-ph-en="Mention any important note here" data-ph-hi="यहाँ कोई आवश्यक टिप्पणी लिखें"></textarea></label>
             </form>
           </div>
           <div class="glass panel pay-card">
             <h3><span class="en">Secure payment</span><span class="hi">सुरक्षित भुगतान</span></h3>
-            <div class="price-box"><div class="label"><span class="en">Selected offer</span><span class="hi">चुना गया ऑफ़र</span></div><div class="title"><span class="en">Isht Devta Discovery Report</span><span class="hi">इष्ट देवता डिस्कवरी रिपोर्ट</span></div><div class="total" id="payCardTotal">₹201 <small class="was-price">₹501</small></div><p><span class="en">One-time payment. Report delivered on WhatsApp within 24-48 hours after successful payment.</span><span class="hi">एक बार का भुगतान। सफल भुगतान के बाद 24-48 घंटे के भीतर रिपोर्ट WhatsApp पर भेजी जाएगी।</span></p><div class="addon-summary" id="addonSummary"><span class="en">Name + Mobile Check add-on</span><span class="hi">Name + Mobile Check ऐड-ऑन</span><b>+ ₹99</b></div></div>
+            <div class="price-box"><div class="label"><span class="en">Selected offer</span><span class="hi">चुना गया ऑफ़र</span></div><div class="title"><span class="en">Isht Devta Discovery Report</span><span class="hi">इष्ट देवता डिस्कवरी रिपोर्ट</span></div><div class="total" id="payCardTotal">₹201 <small class="was-price">₹501</small></div><p><span class="en">One-time payment. Report delivered on WhatsApp within 24-48 hours after successful payment.</span><span class="hi">एक बार का भुगतान। सफल भुगतान के बाद 24-48 घंटे के भीतर रिपोर्ट WhatsApp पर भेजी जाएगी।</span></p><div class="addon-summary" id="addonSummary"><span class="en">Navagrah Remedies add-on</span><span class="hi">Navagrah Remedies ऐड-ऑन</span><b>+ ₹99</b></div></div>
             <div class="bump-offer">
               <div class="bump-head">
-                <img class="bump-thumb" src="assets/name-mobile-bump.webp" alt="Name and mobile compatibility add-on graphic" loading="lazy" decoding="async">
+                <img class="bump-thumb" src="assets/navagrah-remedies-addon.webp" alt="Navagrah Remedies add-on for all 9 Grahas" loading="eager" decoding="async" fetchpriority="high" width="1200" height="675">
                 <div class="bump-copy">
-                  <strong><span class="en">Add Name + Mobile Check for just ₹99</span><span class="hi">सिर्फ ₹99 में Name + Mobile Check जोड़ें</span></strong>
-                  <p><span class="en">Get a short report checking whether your current name and mobile number are aligned with your birth date.</span><span class="hi">एक छोटी रिपोर्ट पाएँ जो यह जाँचे कि आपका वर्तमान नाम और मोबाइल नंबर आपकी जन्मतिथि के अनुसार aligned हैं या नहीं।</span></p>
+                  <strong><span class="en">Add Navagrah Remedies for ₹99 <span class="bump-was">₹299</span></span><span class="hi">₹99 में Navagrah Remedies जोड़ें <span class="bump-was">₹299</span></span></strong>
+                  <p><span class="en">Traditional remedies for all 9 Grahas with day-wise guidance, simple offerings and practical devotional steps.</span><span class="hi">सभी 9 ग्रहों के लिए पारंपरिक उपाय, सही दिन, सरल अर्पण और उपयोगी भक्ति मार्गदर्शन।</span></p>
                 </div>
               </div>
               <label class="bump-check" for="addOnCheck">
                 <input type="checkbox" id="addOnCheck">
                 <span>
-                  <b><span class="en">Yes, add this with my order</span><span class="hi">हाँ, इसे मेरे ऑर्डर में जोड़ें</span></b>
+                  <b><span class="en">Yes, add Navagrah Remedies to my order</span><span class="hi">हाँ, मेरे ऑर्डर में Navagrah Remedies जोड़ें</span></b>
                   <small><span class="en">If selected, your total payable becomes ₹300 (₹201 report + ₹99 add-on).</span><span class="hi">चुनने पर कुल देय राशि ₹300 हो जाएगी (₹201 रिपोर्ट + ₹99 add-on)।</span></small>
                 </span>
               </label>
@@ -660,7 +671,7 @@ section { padding:62px 0; }
             <div class="payment-status" id="paymentStatus"></div>
           </div>
         </div>
-        <form name="isht-devta-paid-orders" netlify data-netlify="true" netlify-honeypot="bot-field" hidden><input type="hidden" name="form-name" value="isht-devta-paid-orders"><input name="bot-field"><input name="customer_name"><input name="customer_email"><input name="whatsapp_number"><input name="dob"><input name="birth_time"><input name="birth_place"><input name="gender"><input name="report_language"><input name="base_amount"><input name="add_on_selected"><input name="add_on_amount"><input name="amount"><input name="payment_id"><input name="order_id"><textarea name="notes"></textarea></form>
+        <form name="isht-devta-paid-orders" netlify data-netlify="true" netlify-honeypot="bot-field" hidden><input type="hidden" name="form-name" value="isht-devta-paid-orders"><input name="bot-field"><input name="customer_name"><input name="customer_email"><input name="whatsapp_number"><input name="dob"><input name="birth_time"><input name="birth_place"><input name="gender"><input name="report_language"><input name="base_amount"><input name="add_on_selected"><input name="add_on_name"><input name="add_on_amount"><input name="amount"><input name="payment_id"><input name="order_id"></form>
       </div>
     </section>
 
@@ -691,6 +702,7 @@ section { padding:62px 0; }
     </div>
   </footer>
 
+  <button class="scroll-chevrons" id="scrollChevrons" type="button" aria-label="Jump to details and payment"><img src="assets/scroll-chevrons.png" alt="" aria-hidden="true"></button>
   <div class="mobile-cta"><div class="mobile-cta-grid"><a class="btn secondary" href="#process"><span class="en">See Process</span><span class="hi">प्रक्रिया देखें</span></a><a class="btn primary" href="#order"><span class="en">Get Report</span><span class="hi">रिपोर्ट लें</span></a></div></div>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
@@ -704,6 +716,8 @@ section { padding:62px 0; }
     const formPriceDisplay = document.getElementById('formPriceDisplay');
     const payCardTotal = document.getElementById('payCardTotal');
     const addonSummary = document.getElementById('addonSummary');
+    const scrollChevrons = document.getElementById('scrollChevrons');
+    const orderSection = document.getElementById('order');
 
     function trackMeta(name, payload = {}) { if (typeof fbq === 'function') fbq('track', name, payload); }
     function getCurrentPrice() { return BASE_PRICE + ((addOnCheck && addOnCheck.checked) ? ADDON_PRICE : 0); }
@@ -743,7 +757,6 @@ section { padding:62px 0; }
         pob: document.getElementById('pob').value.trim(),
         gender: document.getElementById('gender').value,
         reportLanguage: document.getElementById('reportLanguage').value,
-        notes: document.getElementById('notes').value.trim(),
         addOnSelected: !!(addOnCheck && addOnCheck.checked),
         addOnAmount: (addOnCheck && addOnCheck.checked) ? ADDON_PRICE : 0,
         baseAmount: BASE_PRICE,
@@ -783,11 +796,11 @@ section { padding:62px 0; }
       payload.append('report_language', order.reportLanguage || '');
       payload.append('base_amount', order.baseAmount || BASE_PRICE || '');
       payload.append('add_on_selected', order.addOnSelected ? 'yes' : 'no');
+      payload.append('add_on_name', order.addOnSelected ? 'Navagrah Remedies' : '');
       payload.append('add_on_amount', order.addOnAmount || 0);
       payload.append('amount', order.amount || getCurrentPrice() || '');
       payload.append('payment_id', order.paymentId || '');
       payload.append('order_id', order.orderId || '');
-      payload.append('notes', order.notes || '');
       try { return await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: payload.toString() }); }
       catch (e) { console.warn('Netlify backup failed', e); }
     }
@@ -801,7 +814,7 @@ section { padding:62px 0; }
       const d = getDetails();
       const total = getCurrentPrice();
       const payload = { ...d, amount: total };
-      trackMeta('InitiateCheckout', { value: total, currency: 'INR', content_name: d.addOnSelected ? 'Isht Devta Report + Name/Mobile Check' : 'Isht Devta Discovery Report' });
+      trackMeta('InitiateCheckout', { value: total, currency: 'INR', content_name: d.addOnSelected ? 'Isht Devta Report + Navagrah Remedies' : 'Isht Devta Discovery Report' });
       payBtn.disabled = true;
       payBtn.style.opacity = '.75';
       payBtn.textContent = document.body.classList.contains('lang-hi') ? 'सुरक्षित भुगतान खोला जा रहा है...' : 'Opening secure payment...';
@@ -814,10 +827,10 @@ section { padding:62px 0; }
           amount: data.amount,
           currency: data.currency || 'INR',
           name: window.SITE_CONFIG.BRAND_NAME,
-          description: d.addOnSelected ? 'Isht Devta Report + Name/Mobile Check' : 'Isht Devta Discovery Report',
+          description: d.addOnSelected ? 'Isht Devta Report + Navagrah Remedies' : 'Isht Devta Discovery Report',
           order_id: data.order_id,
           prefill: { name: d.fullName, email: d.email, contact: d.phone },
-          notes: { customer_name: d.fullName, customer_email: d.email, whatsapp_number: d.phone, report_language: d.reportLanguage, birth_place: d.pob, gender: d.gender, add_on_selected: d.addOnSelected ? 'yes' : 'no' },
+          notes: { customer_name: d.fullName, customer_email: d.email, whatsapp_number: d.phone, report_language: d.reportLanguage, birth_place: d.pob, gender: d.gender, add_on_selected: d.addOnSelected ? 'yes' : 'no', add_on_name: d.addOnSelected ? 'Navagrah Remedies' : '' },
           theme: { color: '#d4af37' },
           handler: async function (response) {
             showStatus('warn', document.body.classList.contains('lang-hi') ? 'भुगतान प्राप्त हुआ। सत्यापन हो रहा है...' : 'Payment received. Verifying...');
@@ -839,6 +852,28 @@ section { padding:62px 0; }
       } catch (e) { showStatus('error', e.message || 'Payment could not be started.'); restoreButton(); }
     }
 
+    if (scrollChevrons && orderSection) {
+      scrollChevrons.addEventListener('click', function () {
+        orderSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      if ('IntersectionObserver' in window) {
+        const orderObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            const reachedOrPassedOrder = entry.isIntersecting || entry.boundingClientRect.top <= 0;
+            scrollChevrons.classList.toggle('is-hidden', reachedOrPassedOrder);
+          });
+        }, { threshold: 0.01 });
+        orderObserver.observe(orderSection);
+      } else {
+        const toggleChevron = function () {
+          const rect = orderSection.getBoundingClientRect();
+          scrollChevrons.classList.toggle('is-hidden', rect.top <= window.innerHeight);
+        };
+        window.addEventListener('scroll', toggleChevron, { passive: true });
+        toggleChevron();
+      }
+    }
+
     const moreFeedbackBtn = document.getElementById('moreFeedbackBtn');
     const moreFeedbackGrid = document.getElementById('moreFeedbackGrid');
     if (moreFeedbackBtn && moreFeedbackGrid) {
@@ -856,7 +891,7 @@ section { padding:62px 0; }
     }
     payBtn.addEventListener('click', startPayment);
     if (addOnCheck) addOnCheck.addEventListener('change', updatePricingUI);
-    ['fullName', 'email', 'phone', 'dob', 'tob', 'pob', 'gender', 'reportLanguage', 'notes'].forEach(id => {
+    ['fullName', 'email', 'phone', 'dob', 'tob', 'pob', 'gender', 'reportLanguage'].forEach(id => {
       const el = document.getElementById(id);
       if (el) { el.addEventListener('input', clearErrors); el.addEventListener('change', clearErrors); }
     });
