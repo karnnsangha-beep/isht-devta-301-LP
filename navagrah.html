@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="A customer-only Navagrah Remedies offer from DivyaLok Bhakti." />
+  <title>Customer Offer | Navagrah Remedies | DivyaLok Bhakti</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#050817;--bg2:#10183a;--panel:rgba(15,24,58,.78);--text:#f7f9ff;--muted:#b8c1d8;
+      --accent:#f0c96f;--accent2:#9d7dff;--blue:#69b8ff;--green:#79e3b1;--line:rgba(150,166,221,.22);
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:
+      radial-gradient(circle at 12% -4%,rgba(157,125,255,.18),transparent 30%),
+      radial-gradient(circle at 90% 8%,rgba(105,184,255,.13),transparent 26%),
+      linear-gradient(150deg,var(--bg),var(--bg2));color:var(--text);min-height:100vh;overflow-x:hidden}
+    .wrap{width:min(920px,calc(100% - 30px));margin:0 auto}
+    .top{padding:13px 0;border-bottom:1px solid var(--line);background:rgba(4,7,19,.82);backdrop-filter:blur(16px);position:sticky;top:0;z-index:20}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#f6f8ff;font-weight:900}
+    .logo{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(145deg,#f6d887,#d8ae4b);color:#171006;font-size:20px;box-shadow:0 8px 24px rgba(216,174,75,.18)}
+    .hero{padding:40px 0 14px;text-align:center}
+    .kicker{display:inline-flex;padding:7px 11px;border-radius:999px;background:rgba(121,227,177,.08);border:1px solid rgba(121,227,177,.25);font-size:10.5px;letter-spacing:.14em;font-weight:900;color:#a6f3cf}
+    h1{font-family:Cinzel,serif;font-size:clamp(32px,7vw,54px);line-height:1.06;margin:12px auto 0;max-width:810px;letter-spacing:-.02em}
+    .hero h1 span{color:#f4d47d}
+    .hero p{max-width:710px;margin:14px auto 0;color:var(--muted);line-height:1.65;font-size:16px}
+    .customer-note{max-width:720px;margin:17px auto 0;padding:13px 15px;border:1px solid rgba(121,227,177,.25);background:linear-gradient(135deg,rgba(121,227,177,.08),rgba(105,184,255,.05));border-radius:17px;color:#effff7;line-height:1.5}
+    .customer-note b{color:#fff}
+    .card{background:linear-gradient(145deg,var(--panel),rgba(7,13,35,.86));border:1px solid var(--line);border-radius:25px;box-shadow:0 30px 85px rgba(0,0,0,.34);padding:24px;margin:18px 0;backdrop-filter:blur(10px)}
+    .offer-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:26px;align-items:center}
+    .creative-wrap{width:100%;min-width:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:20px;padding:8px;overflow:hidden}
+    .creative{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;object-position:center;border-radius:14px;background:#050609;max-width:100%;margin:0 auto}
+    .offer{min-width:0}
+    .offer h2{font-family:Cinzel,serif;margin:0 0 7px;font-size:27px;line-height:1.15}
+    .price{display:flex;align-items:baseline;gap:10px;margin:9px 0 14px;flex-wrap:wrap}
+    .now{font-size:43px;font-weight:900;color:#f4d47d;letter-spacing:-.03em}.was{font-size:18px;color:#858ea6;text-decoration:line-through}
+    .offer ul{list-style:none;padding:0;margin:14px 0}
+    .offer li{padding:7px 0 7px 28px;position:relative;color:#edf1ff;line-height:1.42;font-size:14px}
+    .offer li:before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:900}
+    .offer .small{font-size:12px;color:var(--muted);line-height:1.58}
+    .fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:17px}
+    .field{display:flex;flex-direction:column;gap:7px;min-width:0}.field label{font-size:12px;color:#e4eaff;font-weight:800}
+    .field input{width:100%;min-width:0;border:1px solid var(--line);border-radius:14px;background:rgba(3,8,27,.44);color:white;padding:12px 13px;font:600 15px Inter,sans-serif;outline:none}
+    .field input::placeholder{color:#747f9c}.field input:focus{border-color:rgba(105,184,255,.7);box-shadow:0 0 0 3px rgba(105,184,255,.08)}
+    .btn{width:100%;margin-top:14px;border:0;border-radius:999px;padding:15px 18px;background:linear-gradient(100deg,#f5d77f,#efc45f);color:#171006;font-weight:900;font-size:15px;cursor:pointer;box-shadow:0 13px 34px rgba(216,174,75,.18);min-height:50px}
+    .btn:disabled{opacity:.55;cursor:not-allowed}
+    .status{display:none;margin-top:12px;padding:12px 14px;border-radius:14px;font-size:13px;line-height:1.45}.status.show{display:block}.status.ok{background:rgba(121,227,177,.10);border:1px solid rgba(121,227,177,.3);color:#e7ffef}.status.warn{background:rgba(105,184,255,.09);border:1px solid rgba(105,184,255,.22);color:#e9f5ff}.status.error{background:rgba(255,120,120,.08);border:1px solid rgba(255,120,120,.3);color:#ffdede}
+    .trust{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 34px}
+    .trust div{border:1px solid var(--line);background:rgba(255,255,255,.028);border-radius:17px;padding:13px;text-align:center;font-size:12px;color:var(--muted);line-height:1.45}.trust b{display:block;color:white;margin-bottom:3px}
+    .footer{text-align:center;padding:18px 0 32px;color:#8590aa;font-size:12px}.honeypot{position:absolute;overflow:hidden;clip:rect(0 0 0 0);height:1px;width:1px;margin:-1px}
+    @media(max-width:700px){
+      .wrap{width:min(100% - 22px,920px)}.top{padding:10px 0}.logo{width:36px;height:36px;border-radius:12px}.brand{font-size:14px}
+      .hero{padding:29px 0 11px}.kicker{font-size:9px;letter-spacing:.11em;padding:6px 9px}.hero h1{font-size:clamp(29px,9.5vw,40px);line-height:1.09;margin-top:10px}.hero p{font-size:14px;line-height:1.62;margin-top:11px}.customer-note{font-size:12.5px;padding:12px 13px;margin-top:13px}
+      .card{padding:14px;border-radius:21px;margin-top:14px}.offer-grid{grid-template-columns:1fr;gap:18px;align-items:stretch}.creative-wrap{padding:6px;border-radius:17px;width:100%;margin:0 auto}.creative{width:100%;max-width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;object-position:50% 50%;border-radius:12px}
+      .offer{text-align:left;width:100%;overflow-wrap:anywhere}.offer h2{text-align:center;font-size:23px;margin-top:0}.price{justify-content:center;margin:8px 0 12px}.now{font-size:38px}.was{font-size:16px}.offer ul{margin:12px 0}.offer li{font-size:13.5px;padding:6px 0 6px 27px}.offer .small{text-align:center;font-size:11.5px;margin:12px auto 0;max-width:94%}
+      .fields{grid-template-columns:1fr;gap:10px;margin-top:16px}.field input{font-size:16px;min-height:48px}.btn{font-size:14px;padding:13px 14px;margin-top:12px;white-space:normal;line-height:1.35}
+      .trust{grid-template-columns:1fr;gap:8px;margin-top:13px}.trust div{padding:12px}.footer{padding-bottom:26px}
+    }
+    @media(max-width:380px){.hero h1{font-size:28px}.card{padding:11px}.offer h2{font-size:21px}.now{font-size:35px}.offer li{font-size:13px}.btn{font-size:13.5px}}
+  </style>
+</head>
+<body>
+  <header class="top"><div class="wrap"><a class="brand" href="index.html"><span class="logo">ॐ</span><span>DivyaLok Bhakti</span></a></div></header>
+  <main>
+    <section class="hero"><div class="wrap">
+      <div class="kicker">A THANK-YOU OFFER FOR OUR CUSTOMERS</div>
+      <h1>Continue Your Journey with <span style="color:var(--accent)">Navagrah Remedies</span></h1>
+      <p>You have already experienced our work. As a valued customer, you can now get our Navagrah Remedies guide at a special customer price.</p>
+      <div class="customer-note"><b>Normally ₹299 • Your customer price ₹99</b><br>This offer appears only after your Isht Devta Dakshina payment.</div>
+    </div></section>
+
+    <section><div class="wrap">
+      <div class="card offer-grid">
+        <div class="creative-wrap"><img class="creative" src="assets/navagrah-remedies-addon.webp" alt="Navagrah Remedies guide" width="1200" height="675" loading="eager" decoding="async"></div>
+        <div class="offer">
+          <h2>Navagrah Remedies</h2>
+          <div class="price"><span class="now">₹99</span><span class="was">₹299</span></div>
+          <ul>
+            <li>Traditional remedies for all 9 Grahas</li>
+            <li>Day-wise guidance</li>
+            <li>Simple offerings and devotional steps</li>
+            <li>Easy-to-follow digital guide</li>
+          </ul>
+          <p class="small">One-time payment. After successful payment, your order is recorded privately and the guide will be sent to you on WhatsApp.</p>
+
+          <form id="navForm" name="navagrah-remedies-orders" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="navagrah-remedies-orders">
+            <p class="honeypot"><label>Do not fill this out: <input name="bot-field"></label></p>
+            <input type="hidden" id="paymentStatus" name="payment_status" value="">
+            <input type="hidden" id="paymentId" name="payment_id" value="">
+            <input type="hidden" id="orderId" name="order_id" value="">
+            <input type="hidden" id="submittedAt" name="submitted_at" value="">
+            <div class="fields">
+              <div class="field"><label for="name">Your Name</label><input id="name" name="customer_name" type="text" placeholder="Full name" required></div>
+              <div class="field"><label for="phone">WhatsApp Number</label><input id="phone" name="whatsapp_number" type="tel" placeholder="WhatsApp number" required></div>
+            </div>
+            <button class="btn" id="buyBtn" type="button">Get Navagrah Remedies for ₹99</button>
+            <div class="status" id="statusBox" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+
+      <div class="trust">
+        <div><b>₹99 customer price</b>Normally offered at ₹299.</div>
+        <div><b>Secure Razorpay payment</b>Your payment opens in Razorpay.</div>
+        <div><b>WhatsApp delivery</b>Your details are used to send the guide.</div>
+      </div>
+    </div></section>
+  </main>
+  <footer class="footer"><div class="wrap">© 2026 DivyaLok Bhakti • Spiritual guidance only</div></footer>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    const form=document.getElementById('navForm');
+    const buyBtn=document.getElementById('buyBtn');
+    const statusBox=document.getElementById('statusBox');
+    const nameEl=document.getElementById('name');
+    const phoneEl=document.getElementById('phone');
+    function showStatus(type,text){statusBox.className='status show '+type;statusBox.textContent=text;}
+    try{
+      const saved=JSON.parse(sessionStorage.getItem('ishtDakshinaCustomer')||'{}');
+      if(saved.name) nameEl.value=saved.name;
+      if(saved.phone) phoneEl.value=saved.phone;
+    }catch(e){}
+
+    async function saveOrder(paymentId,orderId){
+      document.getElementById('paymentStatus').value='paid';
+      document.getElementById('paymentId').value=paymentId;
+      document.getElementById('orderId').value=orderId;
+      document.getElementById('submittedAt').value=new Date().toISOString();
+      const data=new FormData(form);
+      const res=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(data).toString()});
+      if(!res.ok) throw new Error('Could not save order');
+    }
+
+    async function startPayment(){
+      const name=nameEl.value.trim(), phone=phoneEl.value.trim();
+      if(!name || !phone){showStatus('warn','Please enter your name and WhatsApp number so we can deliver your guide.');return;}
+      buyBtn.disabled=true;buyBtn.textContent='Opening secure payment...';
+      try{
+        const res=await fetch('/api/create-navagrah-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,phone})});
+        const data=await res.json().catch(()=>({}));
+        if(!res.ok || !data.order_id) throw new Error(data.error||'Could not create order');
+        const rzp=new Razorpay({
+          key:data.key_id,amount:data.amount,currency:data.currency||'INR',name:'DivyaLok Bhakti',description:'Navagrah Remedies • Customer Offer',order_id:data.order_id,
+          prefill:{name,contact:phone},
+          notes:{payment_type:'Navagrah Remedies',customer_offer:'₹99 after Isht Devta Dakshina'},
+          theme:{color:'#7f6cff'},
+          handler:async function(response){
+            showStatus('warn','Payment received. Verifying your order...');
+            const vr=await fetch('/api/verify-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(response)});
+            const vd=await vr.json().catch(()=>({}));
+            if(!vr.ok || !vd.success){showStatus('error',vd.error||'Payment verification failed. Please contact us with your payment ID.');buyBtn.disabled=false;buyBtn.textContent='Get Navagrah Remedies for ₹99';return;}
+            try{await saveOrder(response.razorpay_payment_id,response.razorpay_order_id);}catch(e){}
+            showStatus('ok','Payment confirmed. Thank you 🙏 Your Navagrah Remedies order has been recorded for WhatsApp delivery.');
+            buyBtn.textContent='Order Confirmed ✓';
+          },
+          modal:{ondismiss:function(){showStatus('warn','Payment window closed. Nothing was charged.');buyBtn.disabled=false;buyBtn.textContent='Get Navagrah Remedies for ₹99';}}
+        });
+        rzp.on('payment.failed',function(){showStatus('error','Payment did not complete. You can try again.');buyBtn.disabled=false;buyBtn.textContent='Get Navagrah Remedies for ₹99';});
+        rzp.open();
+      }catch(e){showStatus('error',e.message||'Could not start payment.');buyBtn.disabled=false;buyBtn.textContent='Get Navagrah Remedies for ₹99';}
+    }
+    buyBtn.addEventListener('click',startPayment);
+  </script>
+</body>
+</html>

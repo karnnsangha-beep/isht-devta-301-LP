@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Isht Devta Discovery Report | DivyaLok Bhakti</title>
-  <meta name="description" content="Discover your Isht Devta direction and receive a personalised devotional PDF guide prepared manually from your birth details. Available in Hindi and English. WhatsApp delivery in 24-48 hours." />
+  <title>Book Isht Devta Discovery for ₹51 | DivyaLok Bhakti</title>
+  <meta name="description" content="Book your Isht Devta Discovery with a ₹51 Shagun. Receive your guidance in 24-48 hours, then decide Dakshina only if you are satisfied." />
   <meta name="theme-color" content="#09111d" />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="apple-touch-icon" href="assets/favicon-180.png" />
@@ -13,24 +13,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/hero-devtas-outline.webp" type="image/webp" fetchpriority="high">
   <script>
-    window.SITE_CONFIG = { META_PIXEL_ID: "871049705466459", WHATSAPP_NUMBER: "918375010369", OFFER_PRICE: 201, BRAND_NAME: "DivyaLok Bhakti", POST_SALE_WHATSAPP_URL: "https://tinyurl.com/e466s5sw" };
+    window.SITE_CONFIG = { META_PIXEL_ID: "871049705466459", OFFER_PRICE: 51, BRAND_NAME: "DivyaLok Bhakti" };
     (function(){ var id = window.SITE_CONFIG.META_PIXEL_ID; if(!id) return; !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js'); fbq('init', id); fbq('track', 'PageView'); })();
   </script>
   <style>
     :root {
-      --bg:#09111d; --bg2:#102035; --bg3:#1a2d47; --panel:rgba(9,20,35,.76); --panel-soft:rgba(255,255,255,.05);
-      --text:#eef7ff; --muted:#c1cfdd; --accent:#d4af37; --accent2:#f6d77a; --line:rgba(212,175,55,.28);
-      --button-text:#050505; --card-bg:rgba(0,0,0,.34); --badge-bg:rgba(18,29,38,.88); --max:1180px;
-      --shadow:0 28px 90px rgba(0,0,0,.38);
+      /* V5 color-only update: exact palette used by navagrah.html */
+      --bg:#050817; --bg2:#10183a; --panel:rgba(15,24,58,.78); --text:#f7f9ff; --muted:#b8c1d8;
+      --accent:#f0c96f; --accent2:#9d7dff; --blue:#69b8ff; --green:#79e3b1; --line:rgba(150,166,221,.22);
+      --button-text:#171006; --panel-soft:rgba(15,24,58,.50); --card-bg:rgba(7,13,35,.86); --badge-bg:rgba(7,13,35,.86); --max:1180px;
+      --shadow:0 30px 85px rgba(0,0,0,.34);
     }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
     body {
       margin:0; color:var(--text); font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
       background:
-        radial-gradient(circle at 12% 3%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 24%),
-        radial-gradient(circle at 88% 6%, color-mix(in srgb, var(--accent2) 8%, transparent), transparent 26%),
-        linear-gradient(180deg, color-mix(in srgb, var(--bg) 92%, #000) 0%, var(--bg) 18%, var(--bg2) 58%, var(--bg3) 100%);
+        radial-gradient(circle at 12% -4%,rgba(157,125,255,.18),transparent 30%),
+        radial-gradient(circle at 90% 8%,rgba(105,184,255,.13),transparent 26%),
+        linear-gradient(150deg,var(--bg),var(--bg2));
       overflow-x:hidden;
     }
     body::before {
@@ -50,22 +51,22 @@
     @keyframes deityFloat { 0%,100% { transform:translateY(0) scale(1); } 50% { transform:translateY(-10px) scale(1.025); } }
     @keyframes haloPulse { 0%,100% { transform:translate(-50%,-50%) scale(1); opacity:.92; } 50% { transform:translate(-50%,-50%) scale(1.03); opacity:1; } }
 
-    .topbar { position:sticky; top:0; z-index:90; backdrop-filter:blur(14px); background:rgba(6,6,6,.34); border-bottom:1px solid var(--line); }
+    .topbar { position:sticky; top:0; z-index:90; backdrop-filter:blur(14px); background:rgba(4,7,19,.82); border-bottom:1px solid var(--line); }
     .nav { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 0; }
     .brand { display:flex; align-items:center; gap:12px; font-weight:900; }
-    .logo { width:42px; height:42px; border-radius:15px; display:grid; place-items:center; color:var(--button-text); background:linear-gradient(135deg,var(--accent),var(--accent2)); box-shadow:0 14px 30px color-mix(in srgb, var(--accent) 22%, transparent); font-size:22px; }
+    .logo { width:42px; height:42px; border-radius:15px; display:grid; place-items:center; color:var(--button-text); background:linear-gradient(145deg,#f6d887,#d8ae4b); box-shadow:0 14px 30px rgba(216,174,75,.18); font-size:22px; }
     .brand-name { font-size:18px; }
     .navlinks { display:flex; gap:18px; color:var(--muted); font-size:14px; font-weight:800; }
     .navlinks a:hover { color:var(--accent); }
     .right-nav { display:flex; align-items:center; gap:10px; }
     .lang-toggle { display:flex; gap:4px; padding:4px; border-radius:999px; background:rgba(255,255,255,.07); border:1px solid var(--line); }
     .lang-toggle button { border:0; background:transparent; color:var(--muted); padding:8px 12px; border-radius:999px; cursor:pointer; font-weight:800; }
-    body:not(.lang-hi) .lang-toggle [data-lang="en"], body.lang-hi .lang-toggle [data-lang="hi"] { background:linear-gradient(135deg,var(--accent),var(--accent2)); color:var(--button-text); }
+    body:not(.lang-hi) .lang-toggle [data-lang="en"], body.lang-hi .lang-toggle [data-lang="hi"] { background:linear-gradient(100deg,#f5d77f,#efc45f); color:var(--button-text); }
 
     .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:13px 20px; border-radius:999px; border:0; cursor:pointer; font-weight:900; font-size:15px; transition:.18s ease; }
     .btn:hover { transform:translateY(-2px); }
-    .btn.primary { background:linear-gradient(135deg,var(--accent),var(--accent2)); color:var(--button-text); box-shadow:0 18px 42px color-mix(in srgb,var(--accent) 20%,transparent); }
-    .btn.secondary { background:linear-gradient(135deg, color-mix(in srgb,var(--accent) 28%, transparent), color-mix(in srgb,var(--accent2) 18%, transparent)); color:var(--accent); border:1px solid color-mix(in srgb,var(--accent) 46%, transparent); box-shadow:0 14px 34px color-mix(in srgb,var(--accent) 10%, transparent); }
+    .btn.primary { background:linear-gradient(100deg,#f5d77f,#efc45f); color:var(--button-text); box-shadow:0 18px 42px color-mix(in srgb,var(--accent) 20%,transparent); }
+    .btn.secondary { background:linear-gradient(135deg,rgba(157,125,255,.14),rgba(105,184,255,.10)); color:#f4d47d; border:1px solid rgba(150,166,221,.28); box-shadow:0 14px 34px rgba(105,184,255,.08); }
     .btn.blue { background:linear-gradient(135deg,#2f7dff,#1457da); color:#fff; box-shadow:0 18px 42px rgba(47,125,255,.2); }
     .btn.small { min-height:40px; padding:10px 15px; font-size:13px; }
     .btn.full { width:100%; }
@@ -78,7 +79,7 @@
     .eyebrow { display:inline-flex; align-items:center; gap:8px; padding:8px 13px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid var(--line); color:var(--accent); font-size:13px; font-weight:900; margin-bottom:18px; }
     h1 { margin:0 0 20px; font-family:Cinzel,"Noto Sans Devanagari",serif; font-size:clamp(38px,5.5vw,68px); line-height:.98; letter-spacing:-.04em; text-wrap:balance; }
     .gold { background:linear-gradient(135deg,var(--accent),#fff6cc 45%,var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
-    .guide-glow { display:block; margin-top:20px; font-family:Inter, Arial, sans-serif; font-size:clamp(13px,1.8vw,17px); line-height:1.05; color:#00A884; font-weight:950; text-transform:uppercase; white-space:nowrap; letter-spacing:.12em; text-shadow:none; }
+    .guide-glow { display:block; margin-top:20px; font-family:Inter, Arial, sans-serif; font-size:clamp(13px,1.8vw,17px); line-height:1.05; color:#79e3b1; font-weight:950; text-transform:uppercase; white-space:nowrap; letter-spacing:.12em; text-shadow:none; }
     .subhead { font-size:clamp(15px,1.55vw,17px); line-height:1.55; color:var(--muted); margin:0 0 22px; max-width:620px; }
     .hero-actions { display:flex; flex-wrap:wrap; gap:12px; margin:22px 0 18px; }
     .micro-list { display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; }
@@ -91,7 +92,7 @@
     .divine-stage { position:relative; border-radius:38px; overflow:hidden; padding:16px; background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(0,0,0,.18)); border:1px solid var(--line); box-shadow:inset 0 0 0 1px rgba(255,255,255,.02), 0 24px 70px rgba(0,0,0,.34); }
     .divine-stage::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,.025), transparent 22%, transparent); pointer-events:none; }
     .halo { display:none; }
-    .deity-orb { position:relative; width:100%; max-width:900px; margin:0 auto; border-radius:28px; overflow:hidden; z-index:2; background:#0b0704; border:1px solid rgba(255,255,255,.08); }
+    .deity-orb { position:relative; width:100%; max-width:900px; margin:0 auto; border-radius:28px; overflow:hidden; z-index:2; background:#050817; border:1px solid rgba(255,255,255,.08); }
     .deity-frame { position:relative; width:100%; max-width:none; z-index:2; display:block; }
     .deity-frame img { width:100%; max-width:none; height:auto; display:block; opacity:1; visibility:visible; filter:brightness(1.08) contrast(1.03) saturate(1.03); animation:none; }
     .stage-badges { position:relative; z-index:3; display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px; }
@@ -352,7 +353,158 @@ section { padding:62px 0; }
       .bump-copy p { font-size:12px; }
       .scroll-chevrons { width:50px; height:50px; right:10px; left:auto; }
     }
-  </style>
+
+    .payment-model{padding-top:8px}
+    .payment-model-card{padding:28px;border-color:rgba(212,175,55,.36);background:linear-gradient(145deg,rgba(212,175,55,.10),rgba(255,255,255,.045));}
+    .payment-model-kicker{font-size:12px;font-weight:900;letter-spacing:.16em;color:var(--accent);margin-bottom:8px}
+    .payment-model-card h2{margin:0 0 20px;font-size:clamp(25px,3.3vw,40px);line-height:1.1;max-width:880px}
+    .payment-model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .payment-model-step{padding:17px;border:1px solid var(--line);border-radius:18px;background:rgba(0,0,0,.18);position:relative}
+    .payment-model-step .pm-num{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#171006;font-weight:900;margin-bottom:10px}
+    .payment-model-step b{display:block;font-size:16px;margin-bottom:5px}
+    .payment-model-step p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+    .no-pressure-note{margin-top:14px;display:flex;gap:12px;align-items:flex-start;padding:15px 16px;border-radius:18px;background:rgba(58,196,118,.09);border:1px solid rgba(90,220,145,.24)}
+    .no-pressure-note>span{font-size:24px}.no-pressure-note b{display:block}.no-pressure-note p{margin:3px 0 0;color:var(--muted);line-height:1.5;font-size:14px}
+    .choice-note{display:flex;gap:9px;align-items:flex-start;margin-top:13px;padding:11px 12px;border-radius:14px;background:rgba(58,196,118,.09);border:1px solid rgba(90,220,145,.22);font-size:13px;line-height:1.45;color:var(--text)}
+    @media(max-width:760px){.payment-model-card{padding:20px}.payment-model-grid{grid-template-columns:1fr}.payment-model-card h2{font-size:27px}.payment-model-step{padding:14px}.no-pressure-note{padding:13px}.hero-stat b{font-size:18px}}
+  
+
+    /* V5 EXACT NAVAGRAH COLOR MATCH — COLOR/SURFACE PROPERTIES ONLY */
+    .hero-shell,
+    .glass,
+    .flow-step,
+    .testimonial-card,
+    .payment-model-card {
+      background:linear-gradient(145deg,var(--panel),rgba(7,13,35,.86));
+      border-color:var(--line);
+      box-shadow:0 30px 85px rgba(0,0,0,.34);
+    }
+    .divine-stage,
+    .mobile-outline-hero {
+      background:linear-gradient(145deg,rgba(15,24,58,.78),rgba(7,13,35,.86));
+      border-color:var(--line);
+      box-shadow:0 30px 85px rgba(0,0,0,.34);
+    }
+    .stage-badge,
+    .common-card,
+    .trust-card,
+    .step,
+    .map-node,
+    .note-box,
+    .mini-note,
+    .price-box,
+    .form-price-display,
+    details {
+      background:rgba(255,255,255,.028);
+      border-color:var(--line);
+    }
+    .micro-pill,
+    .hero-stat,
+    .icon,
+    .map-node .emoji {
+      background:rgba(255,255,255,.028);
+      border-color:var(--line);
+    }
+    .eyebrow {
+      background:rgba(121,227,177,.08);
+      border-color:rgba(121,227,177,.25);
+      color:#a6f3cf;
+    }
+    .gold {
+      background:linear-gradient(135deg,#f0c96f,#fff6cc 52%,#f4d47d);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .guide-glow { color:var(--green); }
+    .btn.primary,
+    body:not(.lang-hi) .lang-toggle [data-lang="en"],
+    body.lang-hi .lang-toggle [data-lang="hi"] {
+      background:linear-gradient(100deg,#f5d77f,#efc45f);
+      color:#171006;
+    }
+    .btn.primary { box-shadow:0 13px 34px rgba(216,174,75,.18); }
+    .btn.secondary {
+      background:linear-gradient(135deg,rgba(157,125,255,.14),rgba(105,184,255,.10));
+      color:#f4d47d;
+      border-color:rgba(150,166,221,.28);
+      box-shadow:0 14px 34px rgba(105,184,255,.08);
+    }
+    .btn.blue {
+      background:linear-gradient(135deg,var(--blue),var(--accent2));
+      color:#fff;
+      box-shadow:0 14px 34px rgba(105,184,255,.12);
+    }
+    .step-num,
+    .flow-badge {
+      background:linear-gradient(100deg,#f5d77f,#efc45f);
+      color:#171006;
+      box-shadow:0 13px 34px rgba(216,174,75,.18);
+    }
+    .common-card::before {
+      background:radial-gradient(circle,rgba(240,201,111,.20),transparent 58%),rgba(3,8,27,.44);
+      border-color:rgba(240,201,111,.28);
+      box-shadow:0 0 26px rgba(240,201,111,.12);
+    }
+    .common-card::after { background:radial-gradient(circle,rgba(157,125,255,.10),transparent 64%); }
+    .common-img { filter:drop-shadow(0 0 10px rgba(240,201,111,.16)); }
+    .glyph { color:var(--accent); text-shadow:0 0 20px rgba(240,201,111,.20); }
+    .icon-books span { background:linear-gradient(90deg,#f0c96f,#fff3c5); box-shadow:0 0 10px rgba(240,201,111,.16); }
+    .icon-mace .head { background:radial-gradient(circle at 35% 35%,#fff4ca 0%,#f0c96f 46%,#9d7dff 100%); box-shadow:0 0 14px rgba(240,201,111,.16); }
+    .icon-mace .stick { background:linear-gradient(180deg,#fff1bc,#9d7dff); }
+    .badge { background:rgba(255,255,255,.028); border-color:var(--line); color:var(--accent); }
+    .list li::before,
+    .stars,
+    .reply-details summary,
+    .flow-arrow,
+    .price strong,
+    .price-box .total { color:var(--accent); }
+    .testimonial-cta {
+      background:linear-gradient(135deg,rgba(157,125,255,.10),rgba(105,184,255,.05));
+      border-color:var(--line);
+    }
+    input,select,textarea {
+      background:rgba(3,8,27,.44);
+      border-color:var(--line);
+      color:#fff;
+    }
+    input:focus,select:focus,textarea:focus {
+      border-color:rgba(105,184,255,.70);
+      box-shadow:0 0 0 3px rgba(105,184,255,.08);
+    }
+    .no-pressure-note,
+    .choice-note {
+      background:rgba(121,227,177,.08);
+      border-color:rgba(121,227,177,.25);
+    }
+    .payment-status.ok {
+      background:rgba(121,227,177,.10);
+      border-color:rgba(121,227,177,.30);
+      color:#e7ffef;
+    }
+    .payment-status.warn {
+      background:rgba(105,184,255,.09);
+      border-color:rgba(105,184,255,.22);
+      color:#e9f5ff;
+    }
+    .payment-status.error,
+    .form-error {
+      background:rgba(255,120,120,.08);
+      border-color:rgba(255,120,120,.30);
+      color:#ffdede;
+    }
+    .footer { background:rgba(255,255,255,.028); border-color:var(--line); }
+    .mobile-cta {
+      background:rgba(4,7,19,.82);
+      border-color:var(--line);
+      box-shadow:0 20px 50px rgba(0,0,0,.22);
+    }
+    .mobile-cta .btn.secondary {
+      background:linear-gradient(135deg,rgba(157,125,255,.14),rgba(105,184,255,.10));
+      color:#f4d47d;
+      border-color:rgba(150,166,221,.28);
+    }
+</style>
 
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=871049705466459&ev=PageView&noscript=1" alt="" /></noscript>
 </head>
@@ -364,12 +516,12 @@ section { padding:62px 0; }
         <a href="#inside"><span class="en">What You Get</span><span class="hi">क्या मिलेगा</span></a>
         <a href="#common-isht"><span class="en">Popular Ishts</span><span class="hi">सामान्य इष्ट</span></a>
         <a href="#process"><span class="en">How It Works</span><span class="hi">प्रक्रिया</span></a>
-        <a href="#order"><span class="en">Order</span><span class="hi">ऑर्डर</span></a>
+        <a href="#order"><span class="en">Book</span><span class="hi">बुक करें</span></a>
         <a href="#faq"><span class="en">FAQ</span><span class="hi">प्रश्न</span></a>
       </nav>
       <div class="right-nav">
         <div class="lang-toggle"><button type="button" data-lang="en">English</button><button type="button" data-lang="hi">हिंदी</button></div>
-        <a class="btn primary small" href="#order"><span class="en">Get Report</span><span class="hi">रिपोर्ट लें</span></a>
+        <a class="btn primary small" href="#order"><span class="en">Book ₹51</span><span class="hi">₹51 में बुक करें</span></a>
       </div>
     </div>
   </header>
@@ -383,21 +535,21 @@ section { padding:62px 0; }
               <div class="eyebrow"><span class="en">✨ Personalised Spiritual PDF • WhatsApp Delivery</span><span class="hi">✨ व्यक्तिगत आध्यात्मिक PDF • WhatsApp डिलीवरी</span></div>
               <h1><span class="en">Discover your<br><span class="gold">Isht Devta</span><br><span class="guide-glow">GET PERSONALISED GUIDE</span></span><span class="hi">अपने<br><span class="gold">इष्ट देवता</span><br><span class="guide-glow">व्यक्तिगत गाइड पाएं</span></span></h1>
               <div class="mobile-outline-hero"><img src="assets/mobile-devta-outline.webp" alt="Sacred artwork of Shiva, Shri Ram, Vishnu, Lakshmi, Hanuman and Ganesha" width="700" height="875" loading="eager" decoding="async" fetchpriority="high"><div class="stage-badges"><div class="stage-badge"><span class="en">Sacred<br>Guidance</span><span class="hi">पवित्र<br>मार्गदर्शन</span></div><div class="stage-badge"><span class="en">Hindi +<br>English</span><span class="hi">हिंदी +<br>अंग्रेज़ी</span></div><div class="stage-badge"><span class="en">21-Day<br>Sadhana</span><span class="hi">21-दिन<br>साधना</span></div><div class="stage-badge"><span class="en">24-48h<br>Delivery</span><span class="hi">24-48h<br>डिलीवरी</span></div></div></div>
-              <p class="subhead"><span class="en">A manually prepared devotional report based on your birth details. Receive your likely Isht Devta / Devi direction, mantra, worship guidance and a simple 21-day sadhana path.</span><span class="hi">आपके जन्म विवरण के आधार पर मैनुअल रूप से तैयार devotional report। इसमें आपकी संभावित इष्ट देवता / देवी दिशा, मंत्र, पूजा मार्गदर्शन और सरल 21-दिन की साधना दिशा मिलती है।</span></p>
+              <p class="subhead"><span class="en">Book your Isht Devta Discovery with a ₹51 Shagun. Receive your guidance first, then decide your Dakshina only after you have seen the report.</span><span class="hi">₹51 बुकिंग शगुन देकर अपनी इष्ट देवता डिस्कवरी बुक करें। पहले अपनी रिपोर्ट प्राप्त करें, फिर रिपोर्ट देखने के बाद ही अपनी इच्छा से दक्षिणा तय करें।</span></p>
               <div class="hero-actions">
-                <a class="btn primary" href="#order"><span class="en">Get My Report for ₹201</span><span class="hi">₹201 में मेरी रिपोर्ट लें</span></a>
+                <a class="btn primary" href="#order"><span class="en">Book My Report for ₹51</span><span class="hi">₹51 शगुन में रिपोर्ट बुक करें</span></a>
                 <a class="btn secondary" href="#process"><span class="en">See How It Works</span><span class="hi">प्रक्रिया देखें</span></a>
               </div>
               <div class="micro-list">
                 <span class="micro-pill"><span class="en">Hindi & English available</span><span class="hi">हिंदी और अंग्रेज़ी उपलब्ध</span></span>
-                <span class="micro-pill"><span class="en">Manual work, not instant output</span><span class="hi">मैनुअल कार्य, तुरंत आउटपुट नहीं</span></span>
+                <span class="micro-pill"><span class="en">Dakshina only after you receive the report</span><span class="hi">रिपोर्ट मिलने के बाद ही दक्षिणा</span></span>
                 <span class="micro-pill"><span class="en">24-48 hour delivery</span><span class="hi">24-48 घंटे में डिलीवरी</span></span>
               </div>
               <div class="hero-stats">
-                <div class="hero-stat"><b>₹201 <small class="was-price">₹501</small></b><span class="en">discount launch price</span><span class="hi">शगुन लॉन्च मूल्य</span></div>
-                <div class="hero-stat"><b>24-48h</b><span class="en">careful manual preparation</span><span class="hi">सावधानी से तैयारी</span></div>
-                <div class="hero-stat"><b>Manual</b><span class="en">prepared from your details</span><span class="hi">आपके विवरण से तैयार</span></div>
-                <div class="hero-stat"><b>PDF</b><span class="en">delivered on WhatsApp</span><span class="hi">WhatsApp पर डिलीवरी</span></div>
+                <div class="hero-stat"><b>₹51</b><span class="en">booking shagun</span><span class="hi">बुकिंग शगुन</span></div>
+                <div class="hero-stat"><b>24-48h</b><span class="en">WhatsApp delivery</span><span class="hi">WhatsApp डिलीवरी</span></div>
+                <div class="hero-stat"><b>Your Choice</b><span class="en">Dakshina after delivery</span><span class="hi">डिलीवरी के बाद दक्षिणा</span></div>
+                <div class="hero-stat"><b>No Pressure</b><span class="en">no Dakshina if not satisfied</span><span class="hi">संतुष्ट न हों तो दक्षिणा नहीं</span></div>
               </div>
             </div>
             <div class="divine-stage">
@@ -410,6 +562,21 @@ section { padding:62px 0; }
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="payment-model" id="payment-model">
+      <div class="wrap">
+        <div class="glass payment-model-card">
+          <div class="payment-model-kicker"><span class="en">A SIMPLE, TRUST-BASED OFFER</span><span class="hi">सरल और भरोसे पर आधारित ऑफ़र</span></div>
+          <h2><span class="en">₹51 to book. See the report first. Decide Dakshina later.</span><span class="hi">₹51 में बुक करें। पहले रिपोर्ट देखें। दक्षिणा बाद में तय करें।</span></h2>
+          <div class="payment-model-grid">
+            <div class="payment-model-step"><span class="pm-num">1</span><b><span class="en">Book with ₹51 Shagun</span><span class="hi">₹51 शगुन से बुक करें</span></b><p><span class="en">This reserves your Isht Devta Discovery and starts your order.</span><span class="hi">इससे आपकी इष्ट देवता डिस्कवरी बुक हो जाती है।</span></p></div>
+            <div class="payment-model-step"><span class="pm-num">2</span><b><span class="en">Receive your report</span><span class="hi">अपनी रिपोर्ट प्राप्त करें</span></b><p><span class="en">Your guidance is delivered on WhatsApp within 24-48 hours.</span><span class="hi">आपकी रिपोर्ट 24-48 घंटे में WhatsApp पर भेजी जाती है।</span></p></div>
+            <div class="payment-model-step"><span class="pm-num">3</span><b><span class="en">You decide the Dakshina</span><span class="hi">दक्षिणा आप तय करें</span></b><p><span class="en">Happy with the guidance? Offer Dakshina according to your wish.</span><span class="hi">रिपोर्ट अच्छी लगे तो अपनी इच्छा अनुसार दक्षिणा दें।</span></p></div>
+          </div>
+          <div class="no-pressure-note"><span>🙏</span><div><b><span class="en">Not satisfied? No Dakshina is required.</span><span class="hi">संतुष्ट नहीं हैं? दक्षिणा देना आवश्यक नहीं है।</span></b><p><span class="en">There is no compulsory balance payment after ₹51. We let the quality of the report speak for itself.</span><span class="hi">₹51 के बाद कोई अनिवार्य बाकी भुगतान नहीं है। पहले रिपोर्ट देखें, फिर आप स्वयं तय करें।</span></p></div></div>
         </div>
       </div>
     </section>
@@ -471,32 +638,32 @@ section { padding:62px 0; }
           <div class="flow-step">
             <div class="flow-badge">📝</div>
             <div>
-              <h3><span class="en">1. Fill birth details</span><span class="hi">1. जन्म विवरण भरें</span></h3>
-              <p><span class="en">Submit your name, date of birth, birth time, place of birth, WhatsApp number and preferred language.</span><span class="hi">अपना नाम, जन्म तिथि, जन्म समय, जन्म स्थान, WhatsApp नंबर और पसंदीदा भाषा भरें।</span></p>
+              <h3><span class="en">1. Fill your birth details</span><span class="hi">1. जन्म विवरण भरें</span></h3>
+              <p><span class="en">Submit the details needed to prepare your Isht Devta guidance.</span><span class="hi">अपनी इष्ट देवता रिपोर्ट के लिए आवश्यक जन्म विवरण भरें।</span></p>
             </div>
           </div>
           <div class="flow-arrow">↓</div>
           <div class="flow-step">
-            <div class="flow-badge">💳</div>
+            <div class="flow-badge">₹</div>
             <div>
-              <h3><span class="en">2. Pay securely</span><span class="hi">2. सुरक्षित भुगतान करें</span></h3>
-              <p><span class="en">Pay ₹201 securely on the same page through Razorpay checkout.</span><span class="hi">इसी पेज पर Razorpay checkout के माध्यम से ₹201 का सुरक्षित भुगतान करें।</span></p>
-            </div>
-          </div>
-          <div class="flow-arrow">↓</div>
-          <div class="flow-step">
-            <div class="flow-badge">🪔</div>
-            <div>
-              <h3><span class="en">3. Manual preparation</span><span class="hi">3. मैनुअल तैयारी</span></h3>
-              <p><span class="en">Your details are reviewed carefully and the report is prepared with proper attention.</span><span class="hi">आपके विवरण की सावधानी से समीक्षा करके रिपोर्ट ध्यानपूर्वक तैयार की जाती है।</span></p>
+              <h3><span class="en">2. Pay ₹51 Booking Shagun</span><span class="hi">2. ₹51 बुकिंग शगुन दें</span></h3>
+              <p><span class="en">Only ₹51 is collected now. There is no compulsory balance payment later.</span><span class="hi">अभी केवल ₹51 लिया जाता है। बाद में कोई अनिवार्य बाकी भुगतान नहीं है।</span></p>
             </div>
           </div>
           <div class="flow-arrow">↓</div>
           <div class="flow-step">
             <div class="flow-badge">📲</div>
             <div>
-              <h3><span class="en">4. PDF delivery</span><span class="hi">4. PDF डिलीवरी</span></h3>
-              <p><span class="en">Your final report is delivered on WhatsApp within 24–48 hours.</span><span class="hi">आपकी अंतिम रिपोर्ट 24–48 घंटे के भीतर WhatsApp पर भेज दी जाती है।</span></p>
+              <h3><span class="en">3. Receive your report</span><span class="hi">3. रिपोर्ट प्राप्त करें</span></h3>
+              <p><span class="en">Your Isht Devta guidance is delivered on WhatsApp within 24–48 hours.</span><span class="hi">आपकी इष्ट देवता रिपोर्ट 24–48 घंटे में WhatsApp पर भेजी जाती है।</span></p>
+            </div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">
+            <div class="flow-badge">🙏</div>
+            <div>
+              <h3><span class="en">4. Dakshina is your choice</span><span class="hi">4. दक्षिणा आपकी इच्छा</span></h3>
+              <p><span class="en">If you are happy with the report, offer Dakshina according to your wish. If not, no Dakshina is required.</span><span class="hi">रिपोर्ट से संतुष्ट हों तो अपनी इच्छा अनुसार दक्षिणा दें। संतुष्ट न हों तो दक्षिणा आवश्यक नहीं है।</span></p>
             </div>
           </div>
         </div>
@@ -506,12 +673,12 @@ section { padding:62px 0; }
     <section>
       <div class="wrap">
         <div class="section-head">
-          <h2><span class="en">Why buyers trust this offer</span><span class="hi">लोग इस सेवा पर भरोसा क्यों करते हैं</span></h2>
-          <p><span class="en">The goal is clarity, not confusion, and a devotional path, not generic copy-paste advice.</span><span class="hi">उद्देश्य स्पष्टता देना है, भ्रम नहीं; और एक साधना मार्ग देना है, न कि सामान्य कॉपी-पेस्ट सलाह।</span></p>
+          <h2><span class="en">Why this offer feels different</span><span class="hi">यह ऑफ़र अलग क्यों है</span></h2>
+          <p><span class="en">You see the guidance first. The meaningful payment decision stays with you.</span><span class="hi">पहले मार्गदर्शन देखें। उसके बाद दक्षिणा का निर्णय आपके हाथ में रहता है।</span></p>
         </div>
         <div class="trust-grid">
-          <div class="trust-card"><b><span class="en">Manual spiritual work</span><span class="hi">मैनुअल आध्यात्मिक कार्य</span></b><span><span class="en">Prepared using your birth details, not an instant auto-generated output.</span><span class="hi">आपके जन्म विवरण के आधार पर तैयार, तुरंत बने ऑटो आउटपुट की तरह नहीं।</span></span></div>
-          <div class="trust-card"><b><span class="en">Single clear direction</span><span class="hi">एक स्पष्ट दिशा</span></b><span><span class="en">You receive a main Isht Devta / Devi direction instead of confusing mixed possibilities.</span><span class="hi">आपको उलझन वाले मिश्रित विकल्पों की जगह एक मुख्य इष्ट दिशा मिलती है।</span></span></div>
+          <div class="trust-card"><b><span class="en">Value before Dakshina</span><span class="hi">पहले मूल्य, फिर दक्षिणा</span></b><span><span class="en">Receive the report first. Decide Dakshina only after you have seen the work.</span><span class="hi">पहले रिपोर्ट प्राप्त करें। काम देखने के बाद ही दक्षिणा तय करें।</span></span></div>
+          <div class="trust-card"><b><span class="en">No compulsory balance</span><span class="hi">कोई अनिवार्य बाकी भुगतान नहीं</span></b><span><span class="en">₹51 is the booking shagun. Dakshina after delivery is voluntary.</span><span class="hi">₹51 बुकिंग शगुन है। डिलीवरी के बाद दक्षिणा स्वैच्छिक है।</span></span></div>
           <div class="trust-card"><b><span class="en">Usable devotional guidance</span><span class="hi">उपयोगी साधना मार्गदर्शन</span></b><span><span class="en">The report includes mantra, offerings, routine and devotional discipline.</span><span class="hi">रिपोर्ट में मंत्र, अर्पण, दिनचर्या और साधना अनुशासन शामिल है।</span></span></div>
         </div>
       </div>
@@ -610,9 +777,9 @@ section { padding:62px 0; }
           <div class="testimonial-cta">
             <div>
               <b><span class="en">Ready to discover your own Isht direction?</span><span class="hi">अपनी इष्ट दिशा जानने के लिए तैयार हैं?</span></b>
-              <span><span class="en">Fill your details and complete the secure ₹201 payment below.</span><span class="hi">नीचे अपना विवरण भरें और ₹201 का सुरक्षित भुगतान पूरा करें।</span></span>
+              <span><span class="en">Fill your details and book your report with a ₹51 Shagun below.</span><span class="hi">नीचे अपना विवरण भरें और ₹51 बुकिंग शगुन से रिपोर्ट बुक करें।</span></span>
             </div>
-            <a class="btn primary" href="#order"><span class="en">Get My Report</span><span class="hi">मेरी रिपोर्ट लें</span></a>
+            <a class="btn primary" href="#order"><span class="en">Book for ₹51</span><span class="hi">₹51 में बुक करें</span></a>
           </div>
         </div>
       </div>
@@ -621,8 +788,8 @@ section { padding:62px 0; }
     <section id="order">
       <div class="wrap">
         <div class="section-head">
-          <h2><span class="en">Enter details and pay securely</span><span class="hi">विवरण भरें और सुरक्षित भुगतान करें</span></h2>
-          <p><span class="en">Details are collected on the LP. Razorpay opens as a secure checkout popup on the same page.</span><span class="hi">विवरण LP पर लिया जाता है। Razorpay इसी पेज पर सुरक्षित checkout popup के रूप में खुलता है।</span></p>
+          <h2><span class="en">Enter details & book for ₹51</span><span class="hi">विवरण भरें और ₹51 में बुक करें</span></h2>
+          <p><span class="en">₹51 is your booking shagun. Your report comes first. Dakshina is optional after delivery.</span><span class="hi">₹51 आपका बुकिंग शगुन है। पहले रिपोर्ट मिलेगी। डिलीवरी के बाद दक्षिणा आपकी इच्छा है।</span></p>
         </div>
         <div class="order-wrap">
           <div class="glass panel">
@@ -643,35 +810,25 @@ section { padding:62px 0; }
                 <label class="field" data-field="gender"><span class="en">Gender</span><span class="hi">लिंग</span><select id="gender"><option value="" data-text-en="Select gender" data-text-hi="लिंग चुनें">Select gender</option><option value="Male" data-text-en="Male" data-text-hi="पुरुष">Male</option><option value="Female" data-text-en="Female" data-text-hi="महिला">Female</option><option value="Other" data-text-en="Other" data-text-hi="अन्य">Other</option></select></label>
                 <label class="field"><span class="en">Preferred Report Language</span><span class="hi">रिपोर्ट की पसंदीदा भाषा</span><select id="reportLanguage"><option value="English" data-text-en="English" data-text-hi="अंग्रेज़ी">English</option><option value="Hindi" data-text-en="Hindi" data-text-hi="हिंदी">Hindi</option></select></label>
               </div>
-              <label class="field"><span class="en">Offer Price</span><span class="hi">ऑफ़र मूल्य</span><div class="form-price-display" id="formPriceDisplay">₹201 <span class="was-price">₹501</span></div></label>
+              <label class="field"><span class="en">Booking Shagun</span><span class="hi">बुकिंग शगुन</span><div class="form-price-display" id="formPriceDisplay">₹51</div></label>
             </form>
           </div>
           <div class="glass panel pay-card">
             <h3><span class="en">Secure payment</span><span class="hi">सुरक्षित भुगतान</span></h3>
-            <div class="price-box"><div class="label"><span class="en">Selected offer</span><span class="hi">चुना गया ऑफ़र</span></div><div class="title"><span class="en">Isht Devta Discovery Report</span><span class="hi">इष्ट देवता डिस्कवरी रिपोर्ट</span></div><div class="total" id="payCardTotal">₹201 <small class="was-price">₹501</small></div><p><span class="en">One-time payment. Report delivered on WhatsApp within 24-48 hours after successful payment.</span><span class="hi">एक बार का भुगतान। सफल भुगतान के बाद 24-48 घंटे के भीतर रिपोर्ट WhatsApp पर भेजी जाएगी।</span></p><div class="addon-summary" id="addonSummary"><span class="en">Navagrah Remedies add-on</span><span class="hi">Navagrah Remedies ऐड-ऑन</span><b>+ ₹99</b></div></div>
-            <div class="bump-offer">
-              <div class="bump-head">
-                <img class="bump-thumb" src="assets/navagrah-remedies-addon.webp" alt="Navagrah Remedies add-on for all 9 Grahas" loading="eager" decoding="async" fetchpriority="high" width="1200" height="675">
-                <div class="bump-copy">
-                  <strong><span class="en">Add Navagrah Remedies for ₹99 <span class="bump-was">₹299</span></span><span class="hi">₹99 में Navagrah Remedies जोड़ें <span class="bump-was">₹299</span></span></strong>
-                  <p><span class="en">Traditional remedies for all 9 Grahas with day-wise guidance, simple offerings and practical devotional steps.</span><span class="hi">सभी 9 ग्रहों के लिए पारंपरिक उपाय, सही दिन, सरल अर्पण और उपयोगी भक्ति मार्गदर्शन।</span></p>
-                </div>
-              </div>
-              <label class="bump-check" for="addOnCheck">
-                <input type="checkbox" id="addOnCheck">
-                <span>
-                  <b><span class="en">Yes, add Navagrah Remedies to my order</span><span class="hi">हाँ, मेरे ऑर्डर में Navagrah Remedies जोड़ें</span></b>
-                  <small><span class="en">If selected, your total payable becomes ₹300 (₹201 report + ₹99 add-on).</span><span class="hi">चुनने पर कुल देय राशि ₹300 हो जाएगी (₹201 रिपोर्ट + ₹99 add-on)।</span></small>
-                </span>
-              </label>
+            <div class="price-box">
+              <div class="label"><span class="en">Booking today</span><span class="hi">आज की बुकिंग</span></div>
+              <div class="title"><span class="en">Isht Devta Discovery Report</span><span class="hi">इष्ट देवता डिस्कवरी रिपोर्ट</span></div>
+              <div class="total" id="payCardTotal">₹51</div>
+              <p><span class="en"><b>₹51 Booking Shagun only.</b> Report delivered on WhatsApp within 24-48 hours. After you receive it, Dakshina is entirely your choice.</span><span class="hi"><b>केवल ₹51 बुकिंग शगुन।</b> रिपोर्ट 24-48 घंटे में WhatsApp पर मिलेगी। उसके बाद दक्षिणा पूरी तरह आपकी इच्छा है।</span></p>
+              <div class="choice-note"><span>🙏</span><span><span class="en">If you are not satisfied with the report, you do not need to pay any Dakshina.</span><span class="hi">यदि आप रिपोर्ट से संतुष्ट नहीं हैं, तो आपको कोई दक्षिणा देने की आवश्यकता नहीं है।</span></span></div>
             </div>
-            <button class="btn blue full" id="payBtn" type="button"><span class="en">Pay ₹201 securely with Razorpay</span><span class="hi">Razorpay से सुरक्षित ₹201 भुगतान करें</span></button>
+            <button class="btn blue full" id="payBtn" type="button"><span class="en">Pay ₹51 Booking Shagun</span><span class="hi">₹51 बुकिंग शगुन दें</span></button>
             <div class="pay-icons"><img src="assets/payment/gpay.svg" alt="Google Pay" /><img src="assets/payment/phonepe.svg" alt="PhonePe" /><img src="assets/payment/paytm.svg" alt="Paytm" /><img src="assets/payment/upi.svg" alt="UPI" /></div>
             <div class="secure-copy"><span class="en">UPI, cards and net banking supported through Razorpay checkout.</span><span class="hi">Razorpay checkout के माध्यम से UPI, कार्ड और नेट बैंकिंग समर्थित हैं।</span></div>
             <div class="payment-status" id="paymentStatus"></div>
           </div>
         </div>
-        <form name="isht-devta-paid-orders" netlify data-netlify="true" netlify-honeypot="bot-field" hidden><input type="hidden" name="form-name" value="isht-devta-paid-orders"><input name="bot-field"><input name="customer_name"><input name="customer_email"><input name="whatsapp_number"><input name="dob"><input name="birth_time"><input name="birth_place"><input name="gender"><input name="report_language"><input name="base_amount"><input name="add_on_selected"><input name="add_on_name"><input name="add_on_amount"><input name="amount"><input name="payment_id"><input name="order_id"></form>
+        <form name="isht-devta-paid-orders" netlify data-netlify="true" netlify-honeypot="bot-field" hidden><input type="hidden" name="form-name" value="isht-devta-paid-orders"><input name="bot-field"><input name="customer_name"><input name="customer_email"><input name="whatsapp_number"><input name="dob"><input name="birth_time"><input name="birth_place"><input name="gender"><input name="report_language"><input name="payment_type"><input name="base_amount"><input name="amount"><input name="payment_id"><input name="order_id"></form>
       </div>
     </section>
 
@@ -682,7 +839,9 @@ section { padding:62px 0; }
           <p><span class="en">Clear answers before you place your order.</span><span class="hi">ऑर्डर करने से पहले साफ उत्तर।</span></p>
         </div>
         <div class="faq">
-          <details open><summary><span class="en">Is this report instant?</span><span class="hi">क्या यह रिपोर्ट तुरंत मिलती है?</span></summary><p><span class="en">No. This is manual work. Please allow 24-48 hours after successful payment so the report can be checked properly and prepared carefully.</span><span class="hi">नहीं। यह मैनुअल कार्य है। सफल भुगतान के बाद कृपया 24-48 घंटे दें, ताकि रिपोर्ट को सही तरह जाँचा और सावधानी से तैयार किया जा सके।</span></p></details>
+          <details open><summary><span class="en">What exactly is the ₹51 payment?</span><span class="hi">₹51 का भुगतान किस लिए है?</span></summary><p><span class="en">₹51 is the booking shagun for your Isht Devta Discovery. It is the only amount collected before the report. There is no compulsory balance payment.</span><span class="hi">₹51 आपकी इष्ट देवता डिस्कवरी का बुकिंग शगुन है। रिपोर्ट से पहले केवल यही राशि ली जाती है। कोई अनिवार्य बाकी भुगतान नहीं है।</span></p></details>
+          <details><summary><span class="en">Do I have to pay Dakshina after the report?</span><span class="hi">क्या रिपोर्ट के बाद दक्षिणा देना जरूरी है?</span></summary><p><span class="en">No. After receiving the report, if you are happy with the guidance you may offer Dakshina according to your wish. If you are not satisfied, no Dakshina is required and there is no pressure to pay.</span><span class="hi">नहीं। रिपोर्ट मिलने के बाद यदि आप मार्गदर्शन से संतुष्ट हों तो अपनी इच्छा अनुसार दक्षिणा दे सकते हैं। संतुष्ट न हों तो दक्षिणा आवश्यक नहीं है और भुगतान का कोई दबाव नहीं है।</span></p></details>
+          <details><summary><span class="en">Is this report instant?</span><span class="hi">क्या यह रिपोर्ट तुरंत मिलती है?</span></summary><p><span class="en">No. This is manual work. Please allow 24-48 hours after your ₹51 booking is confirmed so the report can be checked and prepared carefully.</span><span class="hi">नहीं। यह मैनुअल कार्य है। ₹51 बुकिंग की पुष्टि के बाद कृपया 24-48 घंटे दें, ताकि रिपोर्ट को सही तरह जाँचा और सावधानी से तैयार किया जा सके।</span></p></details>
           <details><summary><span class="en">Will I receive the report in Hindi or English?</span><span class="hi">रिपोर्ट हिंदी में मिलेगी या अंग्रेज़ी में?</span></summary><p><span class="en">You can choose your preferred language in the details form. Reports are available in both Hindi and English.</span><span class="hi">आप फ़ॉर्म में अपनी पसंदीदा भाषा चुन सकते हैं। रिपोर्ट हिंदी और अंग्रेज़ी दोनों में उपलब्ध है।</span></p></details>
           <details><summary><span class="en">How will I receive my report?</span><span class="hi">रिपोर्ट मुझे कैसे मिलेगी?</span></summary><p><span class="en">The final PDF report is sent to your WhatsApp number after the manual review is completed.</span><span class="hi">मैनुअल समीक्षा पूरी होने के बाद अंतिम PDF रिपोर्ट आपके WhatsApp नंबर पर भेजी जाती है।</span></p></details>
           <details><summary><span class="en">Does this guarantee money, marriage, job or health results?</span><span class="hi">क्या इससे धन, विवाह, नौकरी या स्वास्थ्य का निश्चित परिणाम मिलता है?</span></summary><p><span class="en">No. This is spiritual guidance only. It is not a guarantee of money, marriage, job, health cure or any fixed life outcome.</span><span class="hi">नहीं। यह केवल आध्यात्मिक मार्गदर्शन है। यह धन, विवाह, नौकरी, स्वास्थ्य लाभ या जीवन के किसी निश्चित परिणाम की गारंटी नहीं है।</span></p></details>
@@ -703,32 +862,25 @@ section { padding:62px 0; }
   </footer>
 
   <button class="scroll-chevrons" id="scrollChevrons" type="button" aria-label="Jump to details and payment"><img src="assets/scroll-chevrons.png" alt="" aria-hidden="true"></button>
-  <div class="mobile-cta"><div class="mobile-cta-grid"><a class="btn secondary" href="#process"><span class="en">See Process</span><span class="hi">प्रक्रिया देखें</span></a><a class="btn primary" href="#order"><span class="en">Get Report</span><span class="hi">रिपोर्ट लें</span></a></div></div>
+  <div class="mobile-cta"><div class="mobile-cta-grid"><a class="btn secondary" href="#process"><span class="en">See Process</span><span class="hi">प्रक्रिया देखें</span></a><a class="btn primary" href="#order"><span class="en">Book ₹51</span><span class="hi">₹51 में बुक करें</span></a></div></div>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
-    const BASE_PRICE = 201;
-    const ADDON_PRICE = 99;
+    const BASE_PRICE = 51;
     const form = document.getElementById('orderForm');
     const payBtn = document.getElementById('payBtn');
     const statusBox = document.getElementById('paymentStatus');
     const formError = document.getElementById('formError');
-    const addOnCheck = document.getElementById('addOnCheck');
     const formPriceDisplay = document.getElementById('formPriceDisplay');
     const payCardTotal = document.getElementById('payCardTotal');
-    const addonSummary = document.getElementById('addonSummary');
     const scrollChevrons = document.getElementById('scrollChevrons');
     const orderSection = document.getElementById('order');
 
     function trackMeta(name, payload = {}) { if (typeof fbq === 'function') fbq('track', name, payload); }
-    function getCurrentPrice() { return BASE_PRICE + ((addOnCheck && addOnCheck.checked) ? ADDON_PRICE : 0); }
-    function payButtonMarkup(amount) { return '<span class="en">Pay ₹' + amount + ' securely with Razorpay</span><span class="hi">Razorpay से सुरक्षित ₹' + amount + ' भुगतान करें</span>'; }
+    function payButtonMarkup() { return '<span class="en">Pay ₹51 Booking Shagun</span><span class="hi">₹51 बुकिंग शगुन दें</span>'; }
     function updatePricingUI() {
-      const total = getCurrentPrice();
-      const withAddon = addOnCheck && addOnCheck.checked;
-      if (formPriceDisplay) formPriceDisplay.innerHTML = withAddon ? '₹' + total : '₹201 <span class="was-price">₹501</span>';
-      if (payCardTotal) payCardTotal.innerHTML = withAddon ? '₹' + total : '₹201 <small class="was-price">₹501</small>';
-      if (addonSummary) addonSummary.classList.toggle('show', !!withAddon);
-      if (payBtn) payBtn.innerHTML = payButtonMarkup(total);
+      if (formPriceDisplay) formPriceDisplay.textContent = '₹51';
+      if (payCardTotal) payCardTotal.textContent = '₹51';
+      if (payBtn) payBtn.innerHTML = payButtonMarkup();
     }
     function updateText(lang) {
       document.querySelectorAll('[data-ph-en]').forEach(el => { el.placeholder = lang === 'hi' ? el.dataset.phHi : el.dataset.phEn; });
@@ -757,10 +909,9 @@ section { padding:62px 0; }
         pob: document.getElementById('pob').value.trim(),
         gender: document.getElementById('gender').value,
         reportLanguage: document.getElementById('reportLanguage').value,
-        addOnSelected: !!(addOnCheck && addOnCheck.checked),
-        addOnAmount: (addOnCheck && addOnCheck.checked) ? ADDON_PRICE : 0,
         baseAmount: BASE_PRICE,
-        totalAmount: getCurrentPrice()
+        totalAmount: BASE_PRICE,
+        paymentType: '₹51 Booking Shagun'
       };
     }
     function isValidEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
@@ -786,6 +937,7 @@ section { padding:62px 0; }
     async function submitNetlifyBackup(order) {
       const payload = new URLSearchParams();
       payload.append('form-name', 'isht-devta-paid-orders');
+      payload.append('bot-field', '');
       payload.append('customer_name', order.fullName || '');
       payload.append('customer_email', order.email || '');
       payload.append('whatsapp_number', order.phone || '');
@@ -794,11 +946,9 @@ section { padding:62px 0; }
       payload.append('birth_place', order.pob || '');
       payload.append('gender', order.gender || '');
       payload.append('report_language', order.reportLanguage || '');
-      payload.append('base_amount', order.baseAmount || BASE_PRICE || '');
-      payload.append('add_on_selected', order.addOnSelected ? 'yes' : 'no');
-      payload.append('add_on_name', order.addOnSelected ? 'Navagrah Remedies' : '');
-      payload.append('add_on_amount', order.addOnAmount || 0);
-      payload.append('amount', order.amount || getCurrentPrice() || '');
+      payload.append('payment_type', order.paymentType || '₹51 Booking Shagun');
+      payload.append('base_amount', order.baseAmount || BASE_PRICE);
+      payload.append('amount', order.amount || BASE_PRICE);
       payload.append('payment_id', order.paymentId || '');
       payload.append('order_id', order.orderId || '');
       try { return await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: payload.toString() }); }
@@ -812,9 +962,8 @@ section { padding:62px 0; }
     async function startPayment() {
       if (!validate()) return;
       const d = getDetails();
-      const total = getCurrentPrice();
-      const payload = { ...d, amount: total };
-      trackMeta('InitiateCheckout', { value: total, currency: 'INR', content_name: d.addOnSelected ? 'Isht Devta Report + Navagrah Remedies' : 'Isht Devta Discovery Report' });
+      const payload = { ...d, amount: BASE_PRICE };
+      trackMeta('InitiateCheckout', { value: BASE_PRICE, currency: 'INR', content_name: 'Isht Devta ₹51 Booking Shagun' });
       payBtn.disabled = true;
       payBtn.style.opacity = '.75';
       payBtn.textContent = document.body.classList.contains('lang-hi') ? 'सुरक्षित भुगतान खोला जा रहा है...' : 'Opening secure payment...';
@@ -827,24 +976,24 @@ section { padding:62px 0; }
           amount: data.amount,
           currency: data.currency || 'INR',
           name: window.SITE_CONFIG.BRAND_NAME,
-          description: d.addOnSelected ? 'Isht Devta Report + Navagrah Remedies' : 'Isht Devta Discovery Report',
+          description: 'Isht Devta Discovery - ₹51 Booking Shagun',
           order_id: data.order_id,
           prefill: { name: d.fullName, email: d.email, contact: d.phone },
-          notes: { customer_name: d.fullName, customer_email: d.email, whatsapp_number: d.phone, report_language: d.reportLanguage, birth_place: d.pob, gender: d.gender, add_on_selected: d.addOnSelected ? 'yes' : 'no', add_on_name: d.addOnSelected ? 'Navagrah Remedies' : '' },
+          notes: { customer_name: d.fullName, customer_email: d.email, whatsapp_number: d.phone, report_language: d.reportLanguage, birth_place: d.pob, gender: d.gender, payment_type: '₹51 Booking Shagun' },
           theme: { color: '#d4af37' },
           handler: async function (response) {
-            showStatus('warn', document.body.classList.contains('lang-hi') ? 'भुगतान प्राप्त हुआ। सत्यापन हो रहा है...' : 'Payment received. Verifying...');
+            showStatus('warn', document.body.classList.contains('lang-hi') ? 'बुकिंग शगुन प्राप्त हुआ। सत्यापन हो रहा है...' : 'Booking Shagun received. Verifying...');
             const verifyRes = await fetch('/api/verify-payment', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(response) });
             const verifyData = await verifyRes.json().catch(() => ({}));
             if (!verifyRes.ok || !verifyData.success) throw new Error(verifyData.error || 'Payment verification failed');
-            const finalOrder = { ...d, orderId: response.razorpay_order_id, paymentId: response.razorpay_payment_id, amount: total, paidAt: new Date().toISOString() };
+            const finalOrder = { ...d, orderId: response.razorpay_order_id, paymentId: response.razorpay_payment_id, amount: BASE_PRICE, paidAt: new Date().toISOString() };
             localStorage.setItem('ishtDevtaOrder', JSON.stringify(finalOrder));
             await submitNetlifyBackup(finalOrder);
-            trackMeta('Purchase', { value: total, currency: 'INR' });
-            showStatus('ok', document.body.classList.contains('lang-hi') ? 'भुगतान सफल। अगले पेज पर जा रहे हैं...' : 'Payment successful. Opening next step...');
+            trackMeta('Purchase', { value: BASE_PRICE, currency: 'INR', content_name: 'Isht Devta ₹51 Booking Shagun' });
+            showStatus('ok', document.body.classList.contains('lang-hi') ? 'बुकिंग सफल। अगले पेज पर जा रहे हैं...' : 'Booking successful. Opening next step...');
             window.location.href = 'thank-you.html';
           },
-          modal: { ondismiss: function () { showStatus('warn', document.body.classList.contains('lang-hi') ? 'भुगतान विंडो बंद हो गई।' : 'Payment window closed. No payment completed.'); restoreButton(); } }
+          modal: { ondismiss: function () { showStatus('warn', document.body.classList.contains('lang-hi') ? 'भुगतान विंडो बंद हो गई।' : 'Payment window closed. No booking payment completed.'); restoreButton(); } }
         };
         const rzp = new Razorpay(options);
         rzp.on('payment.failed', function () { window.location.href = 'payment-failed.html'; });
@@ -853,9 +1002,7 @@ section { padding:62px 0; }
     }
 
     if (scrollChevrons && orderSection) {
-      scrollChevrons.addEventListener('click', function () {
-        orderSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
+      scrollChevrons.addEventListener('click', function () { orderSection.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
       if ('IntersectionObserver' in window) {
         const orderObserver = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
@@ -890,7 +1037,6 @@ section { padding:62px 0; }
       });
     }
     payBtn.addEventListener('click', startPayment);
-    if (addOnCheck) addOnCheck.addEventListener('change', updatePricingUI);
     ['fullName', 'email', 'phone', 'dob', 'tob', 'pob', 'gender', 'reportLanguage'].forEach(id => {
       const el = document.getElementById(id);
       if (el) { el.addEventListener('input', clearErrors); el.addEventListener('change', clearErrors); }

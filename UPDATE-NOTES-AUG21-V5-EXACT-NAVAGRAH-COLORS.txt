@@ -1,0 +1,3 @@
+V5 COLOR-ONLY UPDATE
+- index.html color palette/surfaces matched to navagrah.html exact midnight navy, indigo, soft blue, green and warm-gold palette.
+- No copy, sections, pricing, layout, images, forms, JavaScript, Razorpay logic, Netlify logic, redirects, functions, or backend files changed.

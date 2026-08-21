@@ -1,0 +1,11 @@
+V3 MOBILE PROFESSIONAL UPDATE — AUG 21, 2026
+
+- Dakshina page redesigned in a modern midnight navy / teal / indigo palette; removed dull brown-yellow visual treatment.
+- Added professional 10% profit charitable-giving note below Dakshina choices.
+- Added Terms clarification that charitable giving is made by DivyaLok Bhakti from profits and customer payments are not represented as tax-deductible donations.
+- Razorpay Dakshina checkout theme updated to match new teal palette.
+- Navagrah customer-offer page rebuilt for mobile alignment and readability.
+- Navagrah 16:9 WebP creative is centered inside a responsive container with object-fit: contain.
+- Navagrah typography, price row, bullets, form fields, CTA and trust cards receive dedicated mobile layouts.
+- Razorpay Navagrah checkout theme updated to match the refreshed page.
+- Existing ₹51 booking → optional Dakshina → paid-Dakshina Navagrah redirect flow preserved.

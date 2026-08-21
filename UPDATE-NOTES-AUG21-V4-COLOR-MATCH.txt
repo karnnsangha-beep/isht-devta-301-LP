@@ -1,0 +1,6 @@
+V4 COLOR-MATCH UPDATE — AUG 21, 2026
+
+Requested change only:
+- Applied the Navagrah Remedies page's premium midnight navy / indigo / soft blue / warm gold palette to index.html.
+- Preserved all index.html content, sections, pricing, funnel logic, forms, JavaScript, mobile layout, imagery, spacing and functionality.
+- No changes made to dakshina.html, navagrah.html, thank-you.html, payment functions, or other funnel files.

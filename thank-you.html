@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Payment Successful | DivyaLok Bhakti</title>
-  <meta name="description" content="Your Isht Devta Discovery Report order has been received. Send your payment details on WhatsApp for smooth delivery." />
+  <meta name="description" content="Your ₹51 Booking Shagun has been received and your Isht Devta Discovery is booked. Send your payment details on WhatsApp for smooth delivery." />
   <meta name="theme-color" content="#09111d" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,11 +20,11 @@
     <section class="card">
       <div class="success">✓ Payment Successful</div>
       <h1>Thank You</h1>
-      <p class="lead">Your Isht Devta Discovery Report order has been received. To make delivery smooth, tap the WhatsApp button below and send your order details to us.</p>
+      <p class="lead">Your ₹51 Booking Shagun has been received and your Isht Devta Discovery is booked. To make delivery smooth, tap the WhatsApp button below and send your order details to us.</p>
       <div class="steps">
         <div class="step"><b>1. Send details on WhatsApp</b>Tap the button below. Your message will be prefilled. Just press send inside WhatsApp.</div>
         <div class="step"><b>2. If WhatsApp does not open</b>Use the copy button, open WhatsApp manually, and paste the message to DivyaLok Bhakti.</div>
-        <div class="step"><b>3. Delivery time</b>Your report will be manually prepared and delivered on WhatsApp within 24–48 hours.</div>
+        <div class="step"><b>3. Delivery time</b>Your report will be prepared and delivered on WhatsApp within 24–48 hours.</div><div class="step"><b>4. Dakshina comes later</b>Nothing more is due now. After receiving your report, if you are happy with the guidance, you may offer Dakshina according to your wish. If not satisfied, no Dakshina is required.</div>
       </div>
       <div class="actions">
         <a class="btn whatsapp" id="whatsappBtn" href="#" target="_blank" rel="noopener">Open WhatsApp & Send Details</a>
@@ -33,7 +33,7 @@
       </div>
       <div class="copy-status" id="copyStatus">Message copied. Open WhatsApp and paste it in our chat.</div>
       <div class="order-box" id="orderBox">Loading your order details...</div>
-      <p class="fine">Note: Payment is already received only when you reach this page after successful Razorpay verification. The WhatsApp message is for faster order matching and delivery.</p>
+      <p class="fine">Note: Your ₹51 Booking Shagun is already received when you reach this page after successful Razorpay verification. No further payment is required now.</p>
     </section>
   </main>
   <script>
@@ -42,7 +42,7 @@
     function clean(v){ return (v || '').toString().trim() || '-'; }
     const message = `Namaste DivyaLok Bhakti,
 
-I have completed payment for Isht Devta Discovery Report.
+I have paid the ₹51 Booking Shagun for my Isht Devta Discovery Report.
 
 Name: ${clean(order.fullName)}
 Email: ${clean(order.email)}
@@ -54,9 +54,8 @@ Report Language: ${clean(order.reportLanguage)}
 Payment ID: ${clean(order.paymentId)}
 Order ID: ${clean(order.orderId)}
 Amount: ₹${clean(order.amount)}
-Navagrah Remedies Add-on: ${order.addOnSelected ? 'Yes (+₹99)' : 'No'}
 
-Please prepare my report.`;
+Please prepare my report. I understand that Dakshina, if I choose to offer it, is only after I receive the report.`;
     const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     document.getElementById('whatsappBtn').href = waUrl;
     document.getElementById('orderBox').textContent = message;

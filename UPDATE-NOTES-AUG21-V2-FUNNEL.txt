@@ -1,0 +1,20 @@
+ISHT DEVTA ₹51 BOOKING SHAGUN + OPTIONAL DAKSHINA UPDATE
+
+- LP repositioned around ₹51 Booking Shagun.
+- Clear promise: report first, Dakshina later only if satisfied.
+- Explicit: no compulsory balance payment and no Dakshina required if not satisfied.
+- Removed Navagrah add-on from this experiment to keep the offer simple.
+- Razorpay booking order fixed server-side at ₹51.
+- Meta Purchase value updated to ₹51.
+- Added dakshina.html with 1-5 star rating, private feedback, ₹121 / ₹201 (Most Common) / custom ₹121+ choices, and feedback-only/no-payment path.
+- Netlify Forms stores private feedback and payment metadata.
+- Razorpay order notes include rating and feedback preview for paid Dakshina.
+- Mobile layout preserved and new sections are responsive.
+
+V2 POST-DAKSHINA FUNNEL
+- Main LP remains clean: no Navagrah bump before Isht Devta delivery.
+- Successful verified Dakshina payments redirect to navagrah.html.
+- Added customer-only Navagrah Remedies page at ₹99 (₹299 regular price shown struck out).
+- Added secure fixed-price create-navagrah-order Netlify function and Razorpay verification.
+- Navagrah order details are stored privately through Netlify Forms for fulfilment.
+- Feedback-only/no-Dakshina users stay on the Dakshina page and are not redirected to the offer.
