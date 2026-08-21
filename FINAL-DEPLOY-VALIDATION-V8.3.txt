@@ -1,0 +1,58 @@
+POST-DEPLOY VALIDATION - DO NOT SEND PAID TRAFFIC UNTIL THESE PASS
+
+1) Payment health
+Open: /api/funnel-health
+Expected:
+- ok: true
+- version: isht-funnel-v6
+- booking_rupees: 51
+- dakshina_min_rupees: 121
+- navagrah_rupees: 99
+
+2) Review health
+Open: /api/review-health
+Expected:
+- ok: true
+- runtime: lambda-connected
+- blobs: true
+- seedCount: 10
+- adminSecretConfigured: true
+reviewCount should be at least 10.
+
+3) Landing page
+Expected immediately:
+- 10 original reviews visible in the continuously moving strip.
+- No “temporarily unavailable” blank state if the review API has a temporary problem.
+
+4) Admin dashboard
+Open: /review-admin.html
+Use the REVIEW_ADMIN_SECRET value already stored in Netlify.
+Expected:
+- dashboard opens
+- original reviews visible under Approved
+
+5) Private review test
+On dakshina.html submit a test rating/feedback WITHOUT ticking public display permission.
+Expected:
+- success message
+- review appears under Private in admin
+- review does NOT appear publicly
+
+6) Pending/public test
+Submit another test WITH public permission, name, city and feedback.
+Expected:
+- review appears under Pending
+- review does NOT appear on LP before approval
+
+7) Approve + Reply
+Approve the Pending test and add a reply.
+Expected:
+- approved review joins LP strip after refresh/cache interval
+- “Reply from DivyaLok Bhakti” can be expanded on the card
+
+8) Reject/Unpublish
+Reject or unpublish the test.
+Expected:
+- it disappears from the public strip after refresh/cache interval
+
+Payment functions were not modified by this release. A real Razorpay transaction is only necessary if you want to re-test payments; the server-side payment code is identical to the known V6 backend-fixed build.

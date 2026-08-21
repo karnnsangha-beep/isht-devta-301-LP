@@ -4,58 +4,24 @@ const STORE_NAME = 'isht-devta-reviews';
 const REVIEW_PREFIX = 'review/';
 
 const SEED_REVIEWS = [
-  {
-    id: 'seed-01-sai-priya', displayName: 'Sai Priya', fullName: 'Sai Priya', city: 'Bangalore', stars: 4,
-    feedback: 'I always had a pull towards certain deities. Seeing my report, I really understood the connection. Now I am able to take my sadhana forward to the next level.',
-    reply: '', sortOrder: 1
-  },
-  {
-    id: 'seed-02-shailesh', displayName: 'Shailesh', fullName: 'Shailesh', city: 'Surat', stars: 5,
-    feedback: 'My long-term doubt is finally cleared and I found my Ishta Devi. The report gave me a clear devotional direction.',
-    reply: '', sortOrder: 2
-  },
-  {
-    id: 'seed-03-ankur-mishra', displayName: 'Ankur Mishra', fullName: 'Ankur Mishra', city: 'Delhi', stars: 4,
-    feedback: 'Report was good. I already had a feeling Hanuman Ji is my Isht, so this report confirmed it. But I would not recommend it if you want a fast result, because I had to wait the full 24 hours.',
-    reply: 'We apologize for not meeting your expectations. This is a manual report that requires multiple checks, so it cannot be delivered like instant computer-generated reports. We take pride in giving an accurate report rather than a rushed one. Thank you for your understanding. Namaste 🙏',
-    sortOrder: 3
-  },
-  {
-    id: 'seed-04-anjan-mandal', displayName: 'Anjan Mandal', fullName: 'Anjan Mandal', city: 'Kolkata', stars: 5,
-    feedback: 'They revealed my Isht Devta. I am happy with the result and can now direct my puja and meditation in the right direction.',
-    reply: '', sortOrder: 4
-  },
-  {
-    id: 'seed-05-prabhu', displayName: 'Prabhu', fullName: 'Prabhu', city: 'Chennai', stars: 5,
-    feedback: "It's helpful and I am getting good result in my upasana.",
-    reply: '', sortOrder: 5
-  },
-  {
-    id: 'seed-06-aarya-singh', displayName: 'Aarya Singh', fullName: 'Aarya Singh', city: 'Bokaro Steel City', stars: 5,
-    feedback: 'Nice and prompt service.', reply: '', sortOrder: 6
-  },
-  {
-    id: 'seed-07-ashik-rai', displayName: 'Ashik Rai', fullName: 'Ashik Rai', city: 'Bengaluru', stars: 5,
-    feedback: "I'm thankful and satisfied with the recommendation.", reply: '', sortOrder: 7
-  },
-  {
-    id: 'seed-08-anonymous-trivandrum', displayName: 'Anonymous', fullName: 'Anonymous', city: 'Trivandrum, Kerala', stars: 5,
-    feedback: 'My family temple was of Durga Kali and Lord Muruga, but I have been devoted to Lord Krishna since childhood and felt confused about my Ishta Devata. Thank you very much for the guidance.',
-    reply: '', sortOrder: 8
-  },
-  {
-    id: 'seed-09-anonymous-bangalore', displayName: 'Anonymous', fullName: 'Anonymous', city: 'Bangalore', stars: 5,
-    feedback: 'Good job.', reply: '', sortOrder: 9
-  },
-  {
-    id: 'seed-10-anonymous-kozhikode', displayName: 'Anonymous', fullName: 'Anonymous', city: 'Kozhikode', stars: 5,
-    feedback: 'Very clear and precise report.', reply: '', sortOrder: 10
-  }
+  { id:'seed-01-sai-priya', displayName:'Sai Priya', fullName:'Sai Priya', city:'Bangalore', stars:4, feedback:'I always had a pull towards certain deities. Seeing my report, I really understood the connection. Now I am able to take my sadhana forward to the next level.', reply:'', sortOrder:1 },
+  { id:'seed-02-shailesh', displayName:'Shailesh', fullName:'Shailesh', city:'Surat', stars:5, feedback:'My long-term doubt is finally cleared and I found my Ishta Devi. The report gave me a clear devotional direction.', reply:'', sortOrder:2 },
+  { id:'seed-03-ankur-mishra', displayName:'Ankur Mishra', fullName:'Ankur Mishra', city:'Delhi', stars:4, feedback:'Report was good. I already had a feeling Hanuman Ji is my Isht, so this report confirmed it. But I would not recommend it if you want a fast result, because I had to wait the full 24 hours.', reply:'We apologize for not meeting your expectations. This is a manual report that requires multiple checks, so it cannot be delivered like instant computer-generated reports. We take pride in giving an accurate report rather than a rushed one. Thank you for your understanding. Namaste 🙏', sortOrder:3 },
+  { id:'seed-04-anjan-mandal', displayName:'Anjan Mandal', fullName:'Anjan Mandal', city:'Kolkata', stars:5, feedback:'They revealed my Isht Devta. I am happy with the result and can now direct my puja and meditation in the right direction.', reply:'', sortOrder:4 },
+  { id:'seed-05-prabhu', displayName:'Prabhu', fullName:'Prabhu', city:'Chennai', stars:5, feedback:"It's helpful and I am getting good result in my upasana.", reply:'', sortOrder:5 },
+  { id:'seed-06-aarya-singh', displayName:'Aarya Singh', fullName:'Aarya Singh', city:'Bokaro Steel City', stars:5, feedback:'Nice and prompt service.', reply:'', sortOrder:6 },
+  { id:'seed-07-ashik-rai', displayName:'Ashik Rai', fullName:'Ashik Rai', city:'Bengaluru', stars:5, feedback:"I'm thankful and satisfied with the recommendation.", reply:'', sortOrder:7 },
+  { id:'seed-08-anonymous-trivandrum', displayName:'Anonymous', fullName:'Anonymous', city:'Trivandrum, Kerala', stars:5, feedback:'My family temple was of Durga Kali and Lord Muruga, but I have been devoted to Lord Krishna since childhood and felt confused about my Ishta Devata. Thank you very much for the guidance.', reply:'', sortOrder:8 },
+  { id:'seed-09-anonymous-bangalore', displayName:'Anonymous', fullName:'Anonymous', city:'Bangalore', stars:5, feedback:'Good job.', reply:'', sortOrder:9 },
+  { id:'seed-10-anonymous-kozhikode', displayName:'Anonymous', fullName:'Anonymous', city:'Kozhikode', stars:5, feedback:'Very clear and precise report.', reply:'', sortOrder:10 }
 ];
 
-async function getReviewStore() {
-  const { getStore } = await import('@netlify/blobs');
-  return getStore(STORE_NAME);
+async function getReviewStore(event) {
+  // This site's existing backend uses Netlify's Lambda-compatible .js function format.
+  // @netlify/blobs requires connectLambda(event) before getStore() in this format.
+  const { connectLambda, getStore } = await import('@netlify/blobs');
+  connectLambda(event);
+  return getStore({ name: STORE_NAME, consistency: 'strong' });
 }
 
 function clean(value, max = 5000) {
@@ -68,10 +34,9 @@ function normalizeStars(value) {
 }
 
 function firstNameOnly(name) {
-  const cleaned = clean(name, 100);
-  if (!cleaned) return 'Anonymous';
-  if (/^anonymous$/i.test(cleaned)) return 'Anonymous';
-  return cleaned.split(/\s+/)[0];
+  const c = clean(name, 100);
+  if (!c || /^anonymous$/i.test(c)) return 'Anonymous';
+  return c.split(/\s+/)[0];
 }
 
 function reviewKey(id) {
@@ -82,70 +47,72 @@ function createId() {
   return crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${crypto.randomBytes(8).toString('hex')}`;
 }
 
-async function ensureSeedReviews() {
-  const store = await getReviewStore();
+function seedValue(seed) {
   const createdAt = '2026-08-21T00:00:00.000Z';
-  await Promise.all(SEED_REVIEWS.map(async (seed) => {
-    const value = {
-      ...seed,
-      publicConsent: true,
-      status: 'approved',
-      verifiedCustomer: true,
-      featured: seed.sortOrder <= 4,
-      source: 'existing-site-testimonial',
-      createdAt,
-      approvedAt: createdAt,
-      updatedAt: createdAt,
-      phone: '',
-      dakshinaAmount: '',
-      paymentStatus: 'legacy-existing-review',
-      paymentId: '',
-      orderId: ''
-    };
-    try {
-      await store.setJSON(reviewKey(seed.id), value, { onlyIfNew: true });
-    } catch (error) {
-      // If the entry already exists or the platform returns an onlyIfNew conflict,
-      // leave the current moderated version untouched.
-      const msg = String(error && error.message || error || '');
-      if (!/exist|condition|precondition|etag|409|412/i.test(msg)) throw error;
+  return {
+    ...seed,
+    publicConsent: true,
+    status: 'approved',
+    verifiedCustomer: true,
+    featured: seed.sortOrder <= 4,
+    source: 'existing-site-testimonial',
+    createdAt,
+    approvedAt: createdAt,
+    updatedAt: createdAt,
+    phone: '',
+    dakshinaAmount: '',
+    paymentStatus: 'legacy-existing-review',
+    paymentId: '',
+    orderId: ''
+  };
+}
+
+async function ensureSeedReviews(event) {
+  const store = await getReviewStore(event);
+  // Use only documented Blobs operations. Never overwrite a seed that you have moderated.
+  for (const seed of SEED_REVIEWS) {
+    const key = reviewKey(seed.id);
+    const existing = await store.getMetadata(key);
+    if (existing === null) {
+      await store.setJSON(key, seedValue(seed));
     }
-  }));
+  }
   return store;
 }
 
-async function listAllReviews() {
-  const store = await ensureSeedReviews();
+async function listAllReviews(event) {
+  const store = await ensureSeedReviews(event);
   const { blobs } = await store.list({ prefix: REVIEW_PREFIX });
-  const rows = await Promise.all(blobs.map(async ({ key }) => {
+  const rows = [];
+  for (const { key } of blobs) {
     try {
-      const value = await store.get(key, { type: 'json', consistency: 'strong' });
-      return value && typeof value === 'object' ? value : null;
+      const value = await store.get(key, { type: 'json' });
+      if (value && typeof value === 'object') rows.push(value);
     } catch (_) {
-      return null;
+      // One bad record must not make the whole testimonial strip fail.
     }
-  }));
-  return rows.filter(Boolean);
+  }
+  return rows;
 }
 
-async function getReview(id) {
-  const store = await ensureSeedReviews();
-  return store.get(reviewKey(id), { type: 'json', consistency: 'strong' });
+async function getReview(event, id) {
+  const store = await ensureSeedReviews(event);
+  return store.get(reviewKey(id), { type: 'json' });
 }
 
-async function saveReview(review) {
-  const store = await getReviewStore();
+async function saveReview(event, review) {
+  const store = await getReviewStore(event);
   await store.setJSON(reviewKey(review.id), review);
   return review;
 }
 
-async function createReview(input) {
-  const store = await ensureSeedReviews();
+async function createReview(event, input) {
+  const store = await ensureSeedReviews(event);
   const fullName = clean(input.fullName || input.name, 100);
   const city = clean(input.city, 100);
   const feedback = clean(input.feedback, 2400);
   const stars = normalizeStars(input.stars || input.rating);
-  const publicConsent = input.publicConsent === true || input.publicConsent === 'true' || input.publicConsent === 'yes' || input.publicConsent === 'on';
+  const publicConsent = [true, 'true', 'yes', 'on'].includes(input.publicConsent);
 
   if (!stars && !feedback) {
     const error = new Error('Please add a star rating or feedback.');
@@ -183,13 +150,13 @@ async function createReview(input) {
     paymentId: clean(input.paymentId, 160),
     orderId: clean(input.orderId, 160)
   };
-  await store.setJSON(reviewKey(id), review, { onlyIfNew: true });
+  await store.setJSON(reviewKey(id), review);
   return review;
 }
 
 function publicReviewShape(review) {
   return {
-    id: review.id,
+    id: clean(review.id, 160),
     displayName: clean(review.displayName || firstNameOnly(review.fullName), 80),
     city: clean(review.city, 100),
     stars: normalizeStars(review.stars) || 5,
@@ -213,7 +180,8 @@ function requireAdmin(event) {
     error.statusCode = 503;
     throw error;
   }
-  const header = event.headers && (event.headers.authorization || event.headers.Authorization) || '';
+  const headers = event.headers || {};
+  const header = headers.authorization || headers.Authorization || '';
   const token = String(header).replace(/^Bearer\s+/i, '');
   if (!safeEqualSecret(token, expected)) {
     const error = new Error('Unauthorized');
@@ -223,10 +191,9 @@ function requireAdmin(event) {
 }
 
 module.exports = {
-  REVIEW_PREFIX,
+  SEED_REVIEWS,
   clean,
   normalizeStars,
-  ensureSeedReviews,
   listAllReviews,
   getReview,
   saveReview,

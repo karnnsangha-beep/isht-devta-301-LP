@@ -2,10 +2,12 @@ const { createReview } = require('../lib/reviews-store');
 
 exports.handler = async (event) => {
   const headers = { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' };
-  if (event.httpMethod !== 'POST') return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
+  }
   try {
     const body = JSON.parse(event.body || '{}');
-    const review = await createReview(body);
+    const review = await createReview(event, body);
     return {
       statusCode: 201,
       headers,

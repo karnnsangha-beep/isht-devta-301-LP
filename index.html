@@ -1091,6 +1091,18 @@ section { padding:62px 0; }
       const marquee=document.getElementById('reviewMarquee');
       const track=document.getElementById('reviewTrack');
       if(!marquee||!track) return;
+      const OG_REVIEWS=[
+        {id:'seed-01-sai-priya',displayName:'Sai Priya',city:'Bangalore',stars:4,feedback:'I always had a pull towards certain deities. Seeing my report, I really understood the connection. Now I am able to take my sadhana forward to the next level.',verifiedCustomer:true,featured:true,reply:''},
+        {id:'seed-02-shailesh',displayName:'Shailesh',city:'Surat',stars:5,feedback:'My long-term doubt is finally cleared and I found my Ishta Devi. The report gave me a clear devotional direction.',verifiedCustomer:true,featured:true,reply:''},
+        {id:'seed-03-ankur-mishra',displayName:'Ankur Mishra',city:'Delhi',stars:4,feedback:'Report was good. I already had a feeling Hanuman Ji is my Isht, so this report confirmed it. But I would not recommend it if you want a fast result, because I had to wait the full 24 hours.',verifiedCustomer:true,featured:true,reply:'We apologize for not meeting your expectations. This is a manual report that requires multiple checks, so it cannot be delivered like instant computer-generated reports. We take pride in giving an accurate report rather than a rushed one. Thank you for your understanding. Namaste 🙏'},
+        {id:'seed-04-anjan-mandal',displayName:'Anjan Mandal',city:'Kolkata',stars:5,feedback:'They revealed my Isht Devta. I am happy with the result and can now direct my puja and meditation in the right direction.',verifiedCustomer:true,featured:true,reply:''},
+        {id:'seed-05-prabhu',displayName:'Prabhu',city:'Chennai',stars:5,feedback:"It's helpful and I am getting good result in my upasana.",verifiedCustomer:true,featured:false,reply:''},
+        {id:'seed-06-aarya-singh',displayName:'Aarya Singh',city:'Bokaro Steel City',stars:5,feedback:'Nice and prompt service.',verifiedCustomer:true,featured:false,reply:''},
+        {id:'seed-07-ashik-rai',displayName:'Ashik Rai',city:'Bengaluru',stars:5,feedback:"I'm thankful and satisfied with the recommendation.",verifiedCustomer:true,featured:false,reply:''},
+        {id:'seed-08-anonymous-trivandrum',displayName:'Anonymous',city:'Trivandrum, Kerala',stars:5,feedback:'My family temple was of Durga Kali and Lord Muruga, but I have been devoted to Lord Krishna since childhood and felt confused about my Ishta Devata. Thank you very much for the guidance.',verifiedCustomer:true,featured:false,reply:''},
+        {id:'seed-09-anonymous-bangalore',displayName:'Anonymous',city:'Bangalore',stars:5,feedback:'Good job.',verifiedCustomer:true,featured:false,reply:''},
+        {id:'seed-10-anonymous-kozhikode',displayName:'Anonymous',city:'Kozhikode',stars:5,feedback:'Very clear and precise report.',verifiedCustomer:true,featured:false,reply:''}
+      ];
       let copyWidth=0;
       let interacting=false;
       let resumeTimer=null;
@@ -1137,13 +1149,15 @@ section { padding:62px 0; }
       }
       async function load(){
         try{
-          const res=await fetch('/api/public-reviews',{headers:{'Accept':'application/json'}});
+          const res=await fetch('/api/public-reviews',{headers:{'Accept':'application/json'},cache:'no-store'});
           const data=await res.json().catch(()=>({}));
           if(!res.ok||!Array.isArray(data.reviews)) throw new Error(data.error||'Could not load reviews');
-          const signature=JSON.stringify(data.reviews.map(r=>[r.id,r.feedback,r.reply,r.verifiedCustomer,r.stars]));
+          const signature=JSON.stringify(data.reviews.map(r=>[r.id,r.feedback,r.reply,r.verifiedCustomer,r.stars,r.featured]));
           if(signature!==lastSignature){lastSignature=signature;render(data.reviews);}
         }catch(e){
-          const msg=text(document.createElement('div'),'Customer feedback is temporarily unavailable. Please refresh shortly.');msg.className='review-loading';track.replaceChildren(msg);
+          // Deliberately keep the original 10 reviews visible if the live review API is unavailable.
+          // The landing page must never lose its existing social proof because of a storage/API outage.
+          console.warn('Live review API unavailable; keeping original reviews on screen.',e);
         }
       }
       function pauseForInteraction(ms=1400){
@@ -1164,7 +1178,7 @@ section { padding:62px 0; }
         if(!interacting&&copyWidth) marquee.scrollLeft+=(speed*dt/1000);
         requestAnimationFrame(animate);
       }
-      load();setInterval(load,60000);requestAnimationFrame(animate);
+      render(OG_REVIEWS);lastSignature='fallback-og';load();setInterval(load,60000);requestAnimationFrame(animate);
     })();
 
     payBtn.addEventListener('click', startPayment);

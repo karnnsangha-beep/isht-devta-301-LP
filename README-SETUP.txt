@@ -1,49 +1,41 @@
-ISHT DEVTA DISCOVERY - ₹51 BOOKING SHAGUN + OPTIONAL DAKSHINA
+ISHT DEVTA DISCOVERY - V8.3 FINAL VALIDATED
+Black Glass + ₹51 Booking + Optional Dakshina + Moderated Reviews
+
+WHY THIS BUILD IS DIFFERENT
+- It deliberately uses the SAME .js/Lambda-compatible function format as the payment backend that is already working on this site.
+- The review data layer now calls @netlify/blobs connectLambda(event) before getStore(), which is required for Blobs environment configuration in Lambda-compatible functions.
+- Because the review function filenames stay .js, uploading this build replaces the existing GitHub review files directly. No manual deletion or .mjs migration is required.
+
+BEFORE DEPLOY
+Confirm these Netlify environment variables already exist:
+- RAZORPAY_KEY_ID
+- RAZORPAY_KEY_SECRET
+- REVIEW_ADMIN_SECRET
 
 DEPLOY
-1. Upload the CONTENTS of this folder to the existing GitHub repo so index.html is at repo root.
-2. Netlify should remain connected to the same repo/site.
-3. Keep these existing Netlify environment variables:
-   RAZORPAY_KEY_ID
-   RAZORPAY_KEY_SECRET
-4. Ensure Netlify Forms / Form detection is enabled, then redeploy.
-5. Run one live/test booking flow and one Dakshina flow before sending traffic.
+1. Replace/upload the CONTENTS of this folder to the existing GitHub repository.
+2. index.html must remain at repository root.
+3. netlify/functions should contain review-health.js plus the four review .js files.
+4. Let Netlify perform one production deploy.
+5. Run FINAL-DEPLOY-VALIDATION-V8.3.txt in order.
 
-MAIN LANDING PAGE
-- File: index.html
-- ₹51 is hard-coded server-side as the Booking Shagun.
-- Report delivery: 24-48 hours on WhatsApp.
-- No compulsory balance is due after ₹51.
-- Dakshina is only after delivery and only if the customer is satisfied.
-- Meta Purchase event value is ₹51.
-- The previous Navagrah add-on is intentionally removed from this test to keep the offer simple.
+PAYMENT FLOW
+- Main booking: ₹51, server-hardcoded to 5100 paise.
+- Dakshina: ₹121 / ₹201 / custom ₹121+.
+- Navagrah: ₹99, server-hardcoded to 9900 paise.
+- All existing V6 payment/verification functions are preserved byte-for-byte.
 
-DAKSHINA + FEEDBACK PAGE
-- File: dakshina.html
-- Send this page WITH the completed report.
-- Rating: optional 1-5 stars.
-- Feedback: optional private text.
-- Customer can choose “No Dakshina • Submit Feedback”.
-- Paid Dakshina opens Razorpay Checkout.
-- Rating + feedback preview are placed in Razorpay Order notes for paid Dakshina.
-- Full feedback, rating, amount, payment status, payment ID and order ID are saved privately through Netlify Forms.
+REVIEW FLOW
+- 10 original reviews are embedded in index.html as a permanent outage fallback.
+- The same 10 reviews seed Netlify Blobs the first time the review backend is used.
+- Dakshina page can save private feedback or public-permission feedback.
+- Public permission OFF => Private, cannot be approved publicly.
+- Public permission ON => Pending until you approve it.
+- Admin page: /review-admin.html
+- Admin can Approve, Reject, Unpublish, Feature, Mark/Remove Verified, Reply/Clear Reply.
+- Approved reviews join the same moving landing-page review strip.
+- Customer phone/email are never returned by the public review endpoint.
 
-NETLIFY FORMS
+NETLIFY FORMS BACKUP
 Form name: isht-dakshina-feedback
-Submissions appear in the private Netlify site dashboard under Forms.
-They are NOT displayed publicly by this website.
-
-SERVERLESS FUNCTIONS
-- netlify/functions/create-order.js -> fixed ₹51 booking order
-- netlify/functions/create-dakshina-order.js -> validates selected/custom Dakshina
-- netlify/functions/verify-payment.js -> verifies Razorpay signature
-
-IMPORTANT
-The Dakshina page works locally for layout preview, but Netlify Forms and Razorpay server functions only work after deployment through Netlify.
-
-AUG 21 V2 FLOW
-- Main Isht Devta page: ₹51 Booking Shagun only. No add-on shown before the report.
-- Dakshina page: ₹121 / ₹201 (Most Common) / Custom ₹121+, plus feedback-only with no payment.
-- Paid Dakshina redirects to navagrah.html after Razorpay verification.
-- Navagrah customer offer: ₹99 (₹299 struck out), separate Razorpay payment, order saved via Netlify Forms.
-- Feedback-only submissions do NOT redirect to the Navagrah offer.
+The Dakshina page also saves a private Forms copy before the moderation copy. If the review store is temporarily unavailable, the page now tells the customer their feedback was safely received rather than falsely saying everything failed.

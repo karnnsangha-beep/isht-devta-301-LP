@@ -2,14 +2,17 @@ const { getReview, saveReview, clean, requireAdmin } = require('../lib/reviews-s
 
 exports.handler = async (event) => {
   const headers = { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' };
-  if (event.httpMethod !== 'POST') return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
+  }
   try {
     requireAdmin(event);
     const body = JSON.parse(event.body || '{}');
     const id = clean(body.id, 160);
     const action = clean(body.action, 40);
     if (!id) return { statusCode: 400, headers, body: JSON.stringify({ error: 'Review ID is required.' }) };
-    const review = await getReview(id);
+
+    const review = await getReview(event, id);
     if (!review) return { statusCode: 404, headers, body: JSON.stringify({ error: 'Review not found.' }) };
 
     const now = new Date().toISOString();
@@ -17,7 +20,7 @@ exports.handler = async (event) => {
       if (!review.publicConsent) return { statusCode: 400, headers, body: JSON.stringify({ error: 'This customer did not give public display permission.' }) };
       review.status = 'approved';
       review.approvedAt = review.approvedAt || now;
-      review.verifiedCustomer = body.verifiedCustomer !== false;
+      if (typeof body.verifiedCustomer === 'boolean') review.verifiedCustomer = body.verifiedCustomer;
     } else if (action === 'reject') {
       review.status = 'rejected';
       review.featured = false;
@@ -40,7 +43,7 @@ exports.handler = async (event) => {
     }
 
     review.updatedAt = now;
-    await saveReview(review);
+    await saveReview(event, review);
     return { statusCode: 200, headers, body: JSON.stringify({ ok: true, review }) };
   } catch (error) {
     return { statusCode: error.statusCode || 500, headers, body: JSON.stringify({ error: error.message || 'Could not update review' }) };

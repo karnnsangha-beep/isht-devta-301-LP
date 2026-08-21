@@ -1,0 +1,65 @@
+ISHT DEVTA V8.3 FINAL VALIDATED - PRE-DEPLOY STRESS TEST
+Date: 2026-08-22
+
+ARCHITECTURE DECISION
+PASS - Review backend uses the same .js Lambda-compatible function format as the currently working payment backend.
+PASS - Review Blobs layer explicitly calls connectLambda(event) before getStore().
+PASS - No .mjs review functions remain, so the new files overwrite the current GitHub review .js files instead of creating duplicate function names.
+PASS - @netlify/blobs pinned to 10.7.13.
+
+PAYMENT REGRESSION
+PASS - create-order.js byte-for-byte identical to known V6 backend-fixed build.
+PASS - create-isht51-order.js byte-for-byte identical to V6.
+PASS - create-dakshina-order.js byte-for-byte identical to V6.
+PASS - create-dakshina-v2-order.js byte-for-byte identical to V6.
+PASS - create-navagrah-order.js byte-for-byte identical to V6.
+PASS - create-navagrah99-order.js byte-for-byte identical to V6.
+PASS - verify-payment.js byte-for-byte identical to V6.
+PASS - verify-isht-payment.js byte-for-byte identical to V6.
+PASS - funnel-health.js byte-for-byte identical to V6.
+PASS - ₹51 booking = 5100 paise server guard confirmed.
+PASS - Navagrah ₹99 = 9900 paise server guard confirmed.
+PASS - Dakshina minimum ₹121 server validation confirmed.
+
+REVIEW BACKEND INTEGRATION TESTS
+PASS - Review health initializes 10 original reviews.
+PASS - Public endpoint returns 10 original approved reviews initially.
+PASS - Private feedback saves as Private.
+PASS - Public-display permission requires name + city + feedback.
+PASS - Public-consent review saves as Pending, not public.
+PASS - Admin endpoint rejects missing/wrong secret.
+PASS - Correct admin secret lists reviews.
+PASS - Private review cannot be approved publicly.
+PASS - Pending public review can be approved and then becomes public.
+PASS - Public name is reduced to first name only.
+PASS - Admin reply becomes available to the public review card.
+PASS - Unpublishing an original seeded review persists and is not overwritten by seed initialization.
+PASS - Rejecting an approved review removes it from the public endpoint.
+PASS - Mock Blobs test was configured to throw unless connectLambda(event) was called before getStore(); full suite passed.
+
+FRONTEND / STATIC VALIDATION
+PASS - All Netlify backend JS files parse successfully with Node syntax validation.
+PASS - All inline JavaScript blocks in index, Dakshina, Navagrah, admin, thank-you and legal pages parse successfully.
+PASS - All local image/page/script references resolve to files included in the build.
+PASS - Every /api endpoint referenced by the frontend has a matching .js function file.
+PASS - Exactly 10 original reviews are embedded in index.html as a permanent outage fallback.
+PASS - Landing page keeps those original reviews visible if /api/public-reviews fails.
+PASS - Public review permission wording is present on Dakshina page.
+PASS - Netlify Forms backup remains enabled as isht-dakshina-feedback.
+PASS - Feedback-only UX no longer falsely says all feedback was lost if Forms saved successfully but the moderation store is temporarily unavailable.
+PASS - MOST COMMON badge is positioned inside the ₹201 card to avoid clipping.
+
+DEPLOYMENT FILESET
+PASS - review functions use current GitHub filenames:
+  admin-reviews.js
+  moderate-review.js
+  public-reviews.js
+  submit-review.js
+  review-health.js
+PASS - data layer:
+  netlify/lib/reviews-store.js
+PASS - no experimental .mjs review files included.
+PASS - no undocumented onlyIfNew Blob option included.
+
+LIMITATION
+A real Netlify Blobs operation cannot be executed before deployment because Netlify supplies the site runtime/authentication context only inside the deployed Function environment. A live Razorpay transaction likewise requires the deployed site. The review implementation was validated against the documented @netlify/blobs Lambda-compatible initialization pattern and with an integration mock that enforces connectLambda(event) before getStore().

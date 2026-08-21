@@ -1,6 +1,6 @@
 {
   "dependencies": {
     "razorpay": "latest",
-    "@netlify/blobs": "latest"
+    "@netlify/blobs": "10.7.13"
   }
 }

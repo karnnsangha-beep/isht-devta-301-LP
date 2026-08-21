@@ -353,8 +353,12 @@
       feedbackOnlyBtn.disabled=true; payBtn.disabled=true;
       try{
         await submitNetlify({paymentStatus:'feedback_only_no_dakshina',amount:'0'});
-        const reviewResult=await submitReviewBlob({paymentStatus:'feedback_only_no_dakshina',amount:'0'});
-        showStatus('ok',reviewResult&&reviewResult.publicConsent?'Thank you. Your feedback is saved and waiting for manual approval before it can appear on our website. No Dakshina was charged. 🙏':'Thank you. Your feedback has been saved privately. No Dakshina was charged. 🙏');
+        try{
+          const reviewResult=await submitReviewBlob({paymentStatus:'feedback_only_no_dakshina',amount:'0'});
+          showStatus('ok',reviewResult&&reviewResult.publicConsent?'Thank you. Your feedback is saved and waiting for manual approval before it can appear on our website. No Dakshina was charged. 🙏':'Thank you. Your feedback has been saved privately. No Dakshina was charged. 🙏');
+        }catch(reviewError){
+          showStatus('warn','Your feedback has been received safely in our private records, but the public-review moderation system is temporarily unavailable. No Dakshina was charged.');
+        }
         form.querySelectorAll('input[type="text"],input[type="tel"],textarea').forEach(el=>el.disabled=true);
         feedbackOnlyBtn.textContent='Feedback Submitted ✓';
       }catch(e){showStatus('error','Could not save your feedback right now. Please try again.');feedbackOnlyBtn.disabled=false;payBtn.disabled=false;}
