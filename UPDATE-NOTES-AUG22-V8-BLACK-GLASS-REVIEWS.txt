@@ -1,0 +1,14 @@
+V8 Black Glass + Moderated Reviews
+
+- Main landing page: glossy black glass + gold theme.
+- Dakshina page: matching glossy black glass + gold theme.
+- Navagrah page: matching glossy black glass + gold theme.
+- Review admin: matching black glass theme.
+- Existing moderated review system preserved.
+- Approved reviews populate the continuously moving landing-page review strip.
+- Customer public-display permission remains required before approval.
+- Admin can approve, reject, feature, unpublish, mark verified, and reply.
+- Dakshina ₹201 "MOST COMMON" badge moved fully inside the card so it cannot be clipped.
+
+Required Netlify environment variable for review admin:
+REVIEW_ADMIN_SECRET = choose your own strong private secret

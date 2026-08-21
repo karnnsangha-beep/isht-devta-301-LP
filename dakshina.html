@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="Offer Dakshina for your Isht Devta guidance, or simply share private feedback. Dakshina is completely your choice." />
+  <meta name="description" content="Offer Dakshina for your Isht Devta guidance or share feedback. Reviews are displayed publicly only with your permission and after manual approval." />
   <title>Your Dakshina, Your Choice | DivyaLok Bhakti</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,7 +47,7 @@
     .field textarea{min-height:118px;resize:vertical}
     .field input::placeholder,.field textarea::placeholder{color:#71809e}
     .field input:focus,.field textarea:focus{border-color:rgba(101,230,218,.7);box-shadow:0 0 0 3px rgba(101,230,218,.09);background:rgba(4,12,34,.68)}
-    .privacy-note{font-size:12px;color:#8fa0bf;line-height:1.55;margin-top:-3px}
+    .privacy-note{font-size:12px;color:#8fa0bf;line-height:1.55;margin-top:-3px}.consent-box{display:flex;gap:10px;align-items:flex-start;margin:12px 0 2px;padding:13px 14px;border:1px solid rgba(126,157,219,.24);border-radius:15px;background:rgba(255,255,255,.028);cursor:pointer}.consent-box input{width:18px;height:18px;flex:0 0 auto;margin-top:2px;accent-color:var(--accent)}.consent-box span{font-size:12.5px;line-height:1.5;color:#d7e4fb}.consent-box strong{color:#fff}
     .section-rule{border:0;border-top:1px solid var(--line);margin:24px 0}
     .amounts{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
     .amount-card{position:relative;border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018));border-radius:20px;padding:18px 12px 16px;text-align:center;cursor:pointer;transition:.16s transform,.16s border,.16s background,.16s box-shadow;min-height:116px;display:flex;flex-direction:column;align-items:center;justify-content:center}
@@ -92,6 +92,42 @@
     }
     @media(max-width:380px){.hero h1{font-size:29px}.star{font-size:34px;min-width:39px}.amount-card{min-height:99px}.amt{font-size:25px}.btn{font-size:13.5px}}
   </style>
+
+  <style id="v8-black-glass-subtheme">
+    :root{--bg:#050505;--bg2:#0b0b0b;--panel:rgba(14,14,14,.78);--panel2:rgba(12,12,12,.82);--text:#fff8ec;--muted:#c9bda8;--accent:#efca72;--accent2:#ffebb5;--accent3:#f3d387;--line:rgba(240,201,111,.16);--green:#7fd99b;--gold:#efca72;--danger:#ff9f9f}
+    body{background:radial-gradient(circle at 50% -10%,rgba(240,201,111,.18),transparent 24%),radial-gradient(circle at 14% 0,rgba(255,255,255,.04),transparent 18%),linear-gradient(180deg,#020202 0%,#060606 46%,#090909 100%) !important;color:var(--text)!important}
+    body:before{background-image:radial-gradient(rgba(240,201,111,.25) 1px, transparent 1px)!important;background-size:36px 36px!important;opacity:.08}
+    .top{background:rgba(8,8,8,.72)!important;border-bottom-color:rgba(240,201,111,.16)!important;backdrop-filter:blur(18px) saturate(120%)}
+    .logo{background:linear-gradient(180deg,#f9df97,#c89830)!important;color:#0b0905!important;box-shadow:0 12px 28px rgba(240,201,111,.18)!important}
+    .kicker{background:rgba(240,201,111,.08)!important;border-color:rgba(240,201,111,.22)!important;color:#f5d789!important}
+    .hero h1,.card h2,.offer h2,.brand,.review-card h3{color:#f3d488!important}
+    .hero h1 span{background:linear-gradient(135deg,#fff6dc 8%,#efca72 48%,#f7dd9d 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
+    .lead,.confidence,.card .sub,.field label,.privacy-note,.promise div,.trust div,.giveback span,.offer li,.offer p,.footer,.amount-card .amt-label,.rating-text,.statusline,.field input::placeholder,.field textarea::placeholder{color:var(--muted)!important}
+    .confidence,.card,.consent-box,.amount-card,.custom,.giveback,.promise div,.trust div,.customer-note,.creative-wrap,.reply-current,.login,.private-warning,.toolbar .tab,.grid .card,.review-reply{background:linear-gradient(180deg, rgba(23,23,23,.76), rgba(8,8,8,.82)) !important;border-color:rgba(240,201,111,.16)!important;box-shadow:0 18px 48px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.08)!important;backdrop-filter:blur(18px) saturate(120%)}
+    .card,.confidence,.amount-card,.custom,.giveback,.customer-note,.creative-wrap,.login,.grid .card{position:relative;overflow:hidden}
+    .card::before,.confidence::before,.amount-card::before,.custom::before,.giveback::before,.customer-note::before,.creative-wrap::before,.login::before,.grid .card::before{content:"";position:absolute;left:1px;right:1px;top:1px;height:24%;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.03),transparent);border-radius:inherit;pointer-events:none}
+    .field input,.field textarea,.field select,.custom input,.reply-input{background:rgba(5,5,5,.72)!important;border-color:rgba(240,201,111,.16)!important;color:var(--text)!important}
+    .field input:focus,.field textarea:focus,.field select:focus,.custom input:focus,.reply-input:focus{border-color:rgba(240,201,111,.45)!important;box-shadow:0 0 0 3px rgba(240,201,111,.08)!important;background:rgba(10,10,10,.86)!important}
+    .star{color:#5b4c2a!important}.star:hover,.star.active{color:var(--gold)!important;filter:drop-shadow(0 5px 12px rgba(239,202,114,.22))}
+    .amount-card.selected{border-color:rgba(240,201,111,.54)!important;background:linear-gradient(180deg,rgba(45,37,18,.74),rgba(8,8,8,.92))!important;box-shadow:0 0 0 2px rgba(240,201,111,.08),0 18px 42px rgba(0,0,0,.34)!important}
+    .amt,.now,.price .now,.hero .price{color:#f4d88f!important}
+    .popular,.btn.primary,button.primary,.tab.active{background:linear-gradient(180deg,#f8dfa0,#e6bd62)!important;color:#0b0905!important;box-shadow:0 12px 28px rgba(240,201,111,.22), inset 0 1px 0 rgba(255,255,255,.42)!important}
+    /* Keep the MOST COMMON badge fully inside the ₹201 card so it can never be clipped by glass overflow. */
+    .amount-card{padding-top:29px!important;}
+    .popular{top:7px!important;z-index:4!important;padding:5px 11px!important;line-height:1!important;}
+    @media(max-width:640px){.amount-card{padding-top:28px!important}.popular{top:7px!important}}
+    .btn.secondary,.btn,.logout,.tab,.actions button{background:linear-gradient(180deg,rgba(24,24,24,.88),rgba(8,8,8,.94))!important;color:#f4d37e!important;border:1px solid rgba(240,201,111,.18)!important;box-shadow:0 14px 32px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.06)!important}
+    .actions button.good{background:linear-gradient(180deg,rgba(24,43,28,.95),rgba(9,22,11,.98))!important;color:#dff5e3!important;border-color:rgba(127,217,155,.22)!important}
+    .actions button.bad{background:linear-gradient(180deg,rgba(55,22,22,.95),rgba(26,9,9,.98))!important;color:#ffdada!important;border-color:rgba(255,159,159,.22)!important}
+    .actions button.gold{background:linear-gradient(180deg,rgba(45,37,18,.95),rgba(19,15,7,.98))!important;color:#f5d789!important;border-color:rgba(240,201,111,.24)!important}
+    .status.ok{background:rgba(127,217,155,.10)!important;border-color:rgba(127,217,155,.24)!important;color:#e8fff0!important}
+    .status.warn{background:rgba(240,201,111,.08)!important;border-color:rgba(240,201,111,.20)!important;color:#fff4d8!important}
+    .status.error{background:rgba(255,159,159,.08)!important;border-color:rgba(255,159,159,.20)!important;color:#ffe3e3!important}
+    .review-current b,.reply-current b{color:#f3d488!important}
+    .pill{background:rgba(255,255,255,.04)!important;border-color:rgba(240,201,111,.08)!important;color:var(--muted)!important}
+    .pill.ok{color:#d7f5df!important;border-color:rgba(127,217,155,.18)!important}.pill.no{color:#ffd8d8!important;border-color:rgba(255,159,159,.18)!important}
+  </style>
+
 </head>
 <body>
   <header class="top"><div class="wrap"><a class="brand" href="index.html"><span class="logo">ॐ</span><span>DivyaLok Bhakti</span></a></div></header>
@@ -106,7 +142,7 @@
     <section><div class="wrap">
       <div class="card">
         <h2>How was your report?</h2>
-        <p class="sub">Your rating and feedback are private and are sent only to DivyaLok Bhakti.</p>
+        <p class="sub">Your feedback stays private unless you give permission below. Public reviews are shown only after manual approval.</p>
 
         <form id="feedbackForm" name="isht-dakshina-feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="isht-dakshina-feedback">
@@ -131,11 +167,13 @@
           </div>
 
           <div class="fields">
-            <div class="field"><label for="customerName">Your name <span style="font-weight:500;color:var(--muted)">(optional)</span></label><input id="customerName" name="customer_name" type="text" placeholder="Name"></div>
-            <div class="field"><label for="customerPhone">WhatsApp number <span style="font-weight:500;color:var(--muted)">(optional)</span></label><input id="customerPhone" name="whatsapp_number" type="tel" placeholder="WhatsApp number"></div>
+            <div class="field"><label for="customerName">Your Name <span style="font-weight:500;color:var(--muted)">(optional unless sharing publicly)</span></label><input id="customerName" name="customer_name" type="text" placeholder="Your name"></div>
+            <div class="field"><label for="customerCity">City <span style="font-weight:500;color:var(--muted)">(optional unless sharing publicly)</span></label><input id="customerCity" name="city" type="text" placeholder="Your city"></div>
           </div>
-          <div class="field"><label for="feedback">Your feedback <span style="font-weight:500;color:var(--muted)">(optional)</span></label><textarea id="feedback" name="feedback" placeholder="Tell us what you liked, what could be better, or simply share your experience..."></textarea></div>
-          <div class="privacy-note">Feedback is stored privately in the site's Netlify Forms dashboard. It is not published publicly from this page.</div>
+          <div class="field"><label for="customerPhone">WhatsApp number <span style="font-weight:500;color:var(--muted)">(optional)</span></label><input id="customerPhone" name="whatsapp_number" type="tel" placeholder="WhatsApp number"></div>
+          <div class="field"><label for="feedback">Your Feedback <span style="font-weight:500;color:var(--muted)">(optional unless sharing publicly)</span></label><textarea id="feedback" name="feedback" placeholder="Tell us what you liked, what could be better, or simply share your experience..."></textarea></div>
+          <label class="consent-box" for="publicConsent"><input id="publicConsent" name="public_consent" type="checkbox" value="yes"><span><strong>Allow us to display this review on our website.</strong> Your contact number and email will not be disclosed. We will show only your first name, city, star rating and feedback after manual approval.</span></label>
+          <div class="privacy-note">If you leave this box unticked, your feedback remains private and will never appear on the website.</div>
 
           <hr class="section-rule">
           <h2 style="font-size:22px">Choose Dakshina, if you wish</h2>
@@ -168,7 +206,7 @@
 
       <div class="promise">
         <div><b>🙏 Your choice</b>No pressure to offer Dakshina.</div>
-        <div><b>🔒 Private feedback</b>Comments are not shown publicly here.</div>
+        <div><b>🔒 You control sharing</b>Reviews appear publicly only with your permission and our manual approval.</div>
         <div><b>💳 Secure payment</b>Dakshina payments open in Razorpay.</div>
       </div>
     </div></section>
@@ -206,6 +244,8 @@
     const paymentIdInput = document.getElementById('paymentIdInput');
     const orderIdInput = document.getElementById('orderIdInput');
     const submittedAtInput = document.getElementById('submittedAtInput');
+    const customerCity = document.getElementById('customerCity');
+    const publicConsent = document.getElementById('publicConsent');
 
     let selectedAmount = 201;
 
@@ -253,6 +293,7 @@
       try{saved=JSON.parse(localStorage.getItem('ishtDevtaOrder')||'{}')||{};}catch(e){}
       document.getElementById('customerName').value=q.get('name')||saved.fullName||'';
       document.getElementById('customerPhone').value=q.get('phone')||saved.phone||'';
+      customerCity.value=q.get('city')||saved.city||'';
     }
     prefill();
 
@@ -267,6 +308,40 @@
       if(!res.ok) throw new Error('Could not save feedback');
     }
 
+    function validatePublicReview(){
+      if(!publicConsent.checked) return true;
+      const name=document.getElementById('customerName').value.trim();
+      const city=customerCity.value.trim();
+      const feedbackText=document.getElementById('feedback').value.trim();
+      if(!name || !city || !feedbackText){
+        showStatus('warn','To allow this review on our website, please enter your name, city and feedback. Or untick the permission box to keep it private.');
+        return false;
+      }
+      return true;
+    }
+
+    async function submitReviewBlob({paymentStatus, amount='', paymentId='', orderId=''}){
+      const rating=ratingInput.value ? Number(ratingInput.value) : null;
+      const feedbackText=document.getElementById('feedback').value.trim();
+      if(!rating && !feedbackText) return null;
+      const res=await fetch('/api/submit-review',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+        fullName:document.getElementById('customerName').value.trim(),
+        city:customerCity.value.trim(),
+        phone:document.getElementById('customerPhone').value.trim(),
+        stars:rating,
+        feedback:feedbackText,
+        publicConsent:publicConsent.checked,
+        paymentStatus,
+        dakshinaAmount:amount,
+        paymentId,
+        orderId,
+        source:'dakshina-page'
+      })});
+      const data=await res.json().catch(()=>({}));
+      if(!res.ok) throw new Error(data.error||'Could not save review for moderation');
+      return data;
+    }
+
     async function feedbackOnly(){
       const rating = ratingInput.value;
       const feedbackText = document.getElementById('feedback').value.trim();
@@ -274,10 +349,12 @@
         showStatus('warn','Please add a star rating or write some feedback before submitting without Dakshina.');
         return;
       }
+      if(!validatePublicReview()) return;
       feedbackOnlyBtn.disabled=true; payBtn.disabled=true;
       try{
         await submitNetlify({paymentStatus:'feedback_only_no_dakshina',amount:'0'});
-        showStatus('ok','Thank you. Your feedback has been saved privately. No Dakshina was charged. 🙏');
+        const reviewResult=await submitReviewBlob({paymentStatus:'feedback_only_no_dakshina',amount:'0'});
+        showStatus('ok',reviewResult&&reviewResult.publicConsent?'Thank you. Your feedback is saved and waiting for manual approval before it can appear on our website. No Dakshina was charged. 🙏':'Thank you. Your feedback has been saved privately. No Dakshina was charged. 🙏');
         form.querySelectorAll('input[type="text"],input[type="tel"],textarea').forEach(el=>el.disabled=true);
         feedbackOnlyBtn.textContent='Feedback Submitted ✓';
       }catch(e){showStatus('error','Could not save your feedback right now. Please try again.');feedbackOnlyBtn.disabled=false;payBtn.disabled=false;}
@@ -285,6 +362,7 @@
 
     async function payDakshina(){
       if(!selectedAmount || selectedAmount<121){showStatus('warn','Please choose ₹121, ₹201, or enter a custom amount of ₹121 or more.');return;}
+      if(!validatePublicReview()) return;
       payBtn.disabled=true;feedbackOnlyBtn.disabled=true;payBtn.textContent='Opening secure payment...';
       const name=document.getElementById('customerName').value.trim();
       const phone=document.getElementById('customerPhone').value.trim();
@@ -308,7 +386,8 @@
               if(!vr.ok || !vd.success || vd.flow!=='verify-v6') throw new Error(vd.error||'Payment verification failed');
               try {
                 await submitNetlify({paymentStatus:'paid_dakshina',amount:String(selectedAmount),paymentId:response.razorpay_payment_id,orderId:response.razorpay_order_id});
-                showStatus('ok','Thank you for your Dakshina and feedback. 🙏 One more customer-only offer is opening...');
+                await submitReviewBlob({paymentStatus:'paid_dakshina',amount:String(selectedAmount),paymentId:response.razorpay_payment_id,orderId:response.razorpay_order_id});
+                showStatus('ok',publicConsent.checked?'Thank you for your Dakshina. Your review is saved for manual approval. 🙏 One more customer-only offer is opening...':'Thank you for your Dakshina and private feedback. 🙏 One more customer-only offer is opening...');
               } catch (saveError) {
                 showStatus('warn','Your Dakshina was received successfully. One more customer-only offer is opening...');
               }

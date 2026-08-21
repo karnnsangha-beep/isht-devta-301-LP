@@ -1,0 +1,58 @@
+ISHT DEVTA V7 — MAROON THEME + MODERATED REVIEW STRIP
+=====================================================
+
+WHAT CHANGED
+1) Main index.html visual palette changed to Maroon + Gold + Ivory.
+2) Existing static testimonials replaced by a continuously moving review strip.
+3) The current 10 testimonials are seeded automatically into Netlify Blobs as approved reviews.
+4) New feedback on dakshina.html can be public only when the customer checks the permission box.
+5) Public-consent reviews are saved as PENDING and never appear until manually approved.
+6) Private feedback stays PRIVATE and cannot be approved publicly.
+7) Admin can Approve, Reject, Unpublish, Feature, mark Verified Customer, and write/edit a DivyaLok Bhakti reply.
+8) Approved reviews automatically join the landing-page loop. No redeploy needed.
+
+IMPORTANT NETLIFY SETUP
+-----------------------
+Add one Environment Variable in Netlify:
+
+REVIEW_ADMIN_SECRET = choose-a-long-private-password
+
+Use a strong value that only you know. Do NOT put this secret in HTML or GitHub.
+
+Admin page:
+https://ishtdevta.pexasuite.com/review-admin.html
+
+Customer Dakshina/review page:
+https://ishtdevta.pexasuite.com/dakshina.html
+
+Review strip location:
+Existing "WHAT PEOPLE ARE SAYING" section on index.html, before the booking/order section.
+
+NETLIFY BLOBS
+-------------
+This build uses @netlify/blobs and the store name:
+isht-devta-reviews
+
+No external database is required.
+
+PUBLIC REVIEW RULES
+-------------------
+A review appears on the LP only when ALL are true:
+- customer ticked public-display permission
+- status is approved
+- feedback text exists
+
+Only first/display name, city, star rating, feedback, verified badge, and optional DivyaLok Bhakti reply are returned by the public review API.
+Phone, payment IDs, order IDs and private metadata are never returned by public-reviews.js.
+
+EXISTING PAYMENT BACKEND
+------------------------
+V6 Razorpay order and verification functions were intentionally left unchanged.
+The new review functions are separate from payment creation.
+
+NEW FUNCTIONS
+-------------
+/api/submit-review
+/api/public-reviews
+/api/admin-reviews
+/api/moderate-review

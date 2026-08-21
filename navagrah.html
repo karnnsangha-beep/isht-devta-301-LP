@@ -61,6 +61,38 @@
     }
     @media(max-width:380px){.hero h1{font-size:28px}.card{padding:11px}.offer h2{font-size:21px}.now{font-size:35px}.offer li{font-size:13px}.btn{font-size:13.5px}}
   </style>
+
+  <style id="v8-black-glass-subtheme">
+    :root{--bg:#050505;--bg2:#0b0b0b;--panel:rgba(14,14,14,.78);--panel2:rgba(12,12,12,.82);--text:#fff8ec;--muted:#c9bda8;--accent:#efca72;--accent2:#ffebb5;--accent3:#f3d387;--line:rgba(240,201,111,.16);--green:#7fd99b;--gold:#efca72;--danger:#ff9f9f}
+    body{background:radial-gradient(circle at 50% -10%,rgba(240,201,111,.18),transparent 24%),radial-gradient(circle at 14% 0,rgba(255,255,255,.04),transparent 18%),linear-gradient(180deg,#020202 0%,#060606 46%,#090909 100%) !important;color:var(--text)!important}
+    body:before{background-image:radial-gradient(rgba(240,201,111,.25) 1px, transparent 1px)!important;background-size:36px 36px!important;opacity:.08}
+    .top{background:rgba(8,8,8,.72)!important;border-bottom-color:rgba(240,201,111,.16)!important;backdrop-filter:blur(18px) saturate(120%)}
+    .logo{background:linear-gradient(180deg,#f9df97,#c89830)!important;color:#0b0905!important;box-shadow:0 12px 28px rgba(240,201,111,.18)!important}
+    .kicker{background:rgba(240,201,111,.08)!important;border-color:rgba(240,201,111,.22)!important;color:#f5d789!important}
+    .hero h1,.card h2,.offer h2,.brand,.review-card h3{color:#f3d488!important}
+    .hero h1 span{background:linear-gradient(135deg,#fff6dc 8%,#efca72 48%,#f7dd9d 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
+    .lead,.confidence,.card .sub,.field label,.privacy-note,.promise div,.trust div,.giveback span,.offer li,.offer p,.footer,.amount-card .amt-label,.rating-text,.statusline,.field input::placeholder,.field textarea::placeholder{color:var(--muted)!important}
+    .confidence,.card,.consent-box,.amount-card,.custom,.giveback,.promise div,.trust div,.customer-note,.creative-wrap,.reply-current,.login,.private-warning,.toolbar .tab,.grid .card,.review-reply{background:linear-gradient(180deg, rgba(23,23,23,.76), rgba(8,8,8,.82)) !important;border-color:rgba(240,201,111,.16)!important;box-shadow:0 18px 48px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.08)!important;backdrop-filter:blur(18px) saturate(120%)}
+    .card,.confidence,.amount-card,.custom,.giveback,.customer-note,.creative-wrap,.login,.grid .card{position:relative;overflow:hidden}
+    .card::before,.confidence::before,.amount-card::before,.custom::before,.giveback::before,.customer-note::before,.creative-wrap::before,.login::before,.grid .card::before{content:"";position:absolute;left:1px;right:1px;top:1px;height:24%;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.03),transparent);border-radius:inherit;pointer-events:none}
+    .field input,.field textarea,.field select,.custom input,.reply-input{background:rgba(5,5,5,.72)!important;border-color:rgba(240,201,111,.16)!important;color:var(--text)!important}
+    .field input:focus,.field textarea:focus,.field select:focus,.custom input:focus,.reply-input:focus{border-color:rgba(240,201,111,.45)!important;box-shadow:0 0 0 3px rgba(240,201,111,.08)!important;background:rgba(10,10,10,.86)!important}
+    .star{color:#5b4c2a!important}.star:hover,.star.active{color:var(--gold)!important;filter:drop-shadow(0 5px 12px rgba(239,202,114,.22))}
+    .amount-card.selected{border-color:rgba(240,201,111,.54)!important;background:linear-gradient(180deg,rgba(45,37,18,.74),rgba(8,8,8,.92))!important;box-shadow:0 0 0 2px rgba(240,201,111,.08),0 18px 42px rgba(0,0,0,.34)!important}
+    .amt,.now,.price .now,.hero .price{color:#f4d88f!important}
+    .popular,.btn.primary,button.primary,.tab.active{background:linear-gradient(180deg,#f8dfa0,#e6bd62)!important;color:#0b0905!important;box-shadow:0 12px 28px rgba(240,201,111,.22), inset 0 1px 0 rgba(255,255,255,.42)!important}
+    .btn.secondary,.btn,.logout,.tab,.actions button{background:linear-gradient(180deg,rgba(24,24,24,.88),rgba(8,8,8,.94))!important;color:#f4d37e!important;border:1px solid rgba(240,201,111,.18)!important;box-shadow:0 14px 32px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.06)!important}
+    .actions button.good{background:linear-gradient(180deg,rgba(24,43,28,.95),rgba(9,22,11,.98))!important;color:#dff5e3!important;border-color:rgba(127,217,155,.22)!important}
+    .actions button.bad{background:linear-gradient(180deg,rgba(55,22,22,.95),rgba(26,9,9,.98))!important;color:#ffdada!important;border-color:rgba(255,159,159,.22)!important}
+    .actions button.gold{background:linear-gradient(180deg,rgba(45,37,18,.95),rgba(19,15,7,.98))!important;color:#f5d789!important;border-color:rgba(240,201,111,.24)!important}
+    .status.ok{background:rgba(127,217,155,.10)!important;border-color:rgba(127,217,155,.24)!important;color:#e8fff0!important}
+    .status.warn{background:rgba(240,201,111,.08)!important;border-color:rgba(240,201,111,.20)!important;color:#fff4d8!important}
+    .status.error{background:rgba(255,159,159,.08)!important;border-color:rgba(255,159,159,.20)!important;color:#ffe3e3!important}
+    .review-current b,.reply-current b{color:#f3d488!important}
+    .pill{background:rgba(255,255,255,.04)!important;border-color:rgba(240,201,111,.08)!important;color:var(--muted)!important}
+    .pill.ok{color:#d7f5df!important;border-color:rgba(127,217,155,.18)!important}.pill.no{color:#ffd8d8!important;border-color:rgba(255,159,159,.18)!important}
+  </style>
+
 </head>
 <body>
   <header class="top"><div class="wrap"><a class="brand" href="index.html"><span class="logo">ॐ</span><span>DivyaLok Bhakti</span></a></div></header>

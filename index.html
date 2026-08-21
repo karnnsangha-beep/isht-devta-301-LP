@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Book Isht Devta Discovery for ₹51 | DivyaLok Bhakti</title>
   <meta name="description" content="Book your Isht Devta Discovery with a ₹51 Shagun. Receive your guidance in 24-48 hours, then decide Dakshina only if you are satisfied." />
-  <meta name="theme-color" content="#09111d" />
+  <meta name="theme-color" content="#050505" />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="apple-touch-icon" href="assets/favicon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -504,9 +504,136 @@ section { padding:62px 0; }
       color:#f4d47d;
       border-color:rgba(150,166,221,.28);
     }
+
+
+    /* V7 MAROON + GOLD + IVORY — main landing page only */
+    :root {
+      --bg:#16090a; --bg2:#3a1014; --panel:rgba(62,18,22,.82); --text:#fff7e8; --muted:#d9c8ba;
+      --accent:#d8aa52; --accent2:#8b2d2a; --blue:#d8aa52; --green:#e5c77c; --line:rgba(232,194,119,.24);
+      --button-text:#2a1208; --panel-soft:rgba(76,22,26,.58); --card-bg:rgba(40,11,13,.90); --badge-bg:rgba(40,11,13,.90);
+      --shadow:0 30px 85px rgba(19,3,5,.42);
+    }
+    body {
+      background:
+        radial-gradient(circle at 12% -4%,rgba(142,39,46,.28),transparent 31%),
+        radial-gradient(circle at 88% 6%,rgba(216,170,82,.10),transparent 25%),
+        linear-gradient(150deg,#16090a 0%,#2a0c10 48%,#3a1014 100%);
+    }
+    .topbar { background:rgba(22,8,9,.90); border-bottom-color:rgba(232,194,119,.20); }
+    .logo { background:linear-gradient(145deg,#f4d985,#c99538); box-shadow:0 14px 30px rgba(201,149,56,.20); }
+    .hero-shell,.glass,.flow-step,.payment-model-card { background:linear-gradient(145deg,rgba(73,20,25,.88),rgba(31,9,11,.93)); border-color:var(--line); }
+    .divine-stage,.mobile-outline-hero { background:linear-gradient(145deg,rgba(66,18,22,.90),rgba(25,8,10,.95)); border-color:var(--line); }
+    .deity-orb { background:#1b090b; }
+    .eyebrow { background:rgba(216,170,82,.09); border-color:rgba(216,170,82,.30); color:#f1d58f; }
+    .gold { background:linear-gradient(135deg,#d7a648,#fff0bd 52%,#b97832); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .guide-glow { color:#e4bd67; }
+    .btn.primary,body:not(.lang-hi) .lang-toggle [data-lang="en"],body.lang-hi .lang-toggle [data-lang="hi"] { background:linear-gradient(100deg,#f1d47d,#d8a94e); color:#2a1208; }
+    .btn.secondary,.mobile-cta .btn.secondary { background:linear-gradient(135deg,rgba(117,31,38,.62),rgba(80,21,26,.72)); color:#f3d691; border-color:rgba(232,194,119,.28); box-shadow:0 14px 34px rgba(61,8,12,.20); }
+    .btn.blue { background:linear-gradient(135deg,#a83a33,#6f1d24); color:#fff8e9; box-shadow:0 14px 34px rgba(92,19,25,.24); }
+    .stage-badge,.common-card,.trust-card,.step,.map-node,.note-box,.mini-note,.price-box,.form-price-display,details,.micro-pill,.hero-stat,.icon,.map-node .emoji { background:rgba(255,247,232,.035); border-color:var(--line); }
+    .common-card::before { background:radial-gradient(circle,rgba(216,170,82,.20),transparent 58%),rgba(38,10,13,.50); border-color:rgba(216,170,82,.30); box-shadow:0 0 26px rgba(216,170,82,.12); }
+    .common-card::after { background:radial-gradient(circle,rgba(137,40,45,.15),transparent 64%); }
+    .testimonial-cta { background:linear-gradient(135deg,rgba(216,170,82,.12),rgba(105,22,28,.22)); border-color:var(--line); }
+    input,select,textarea { background:rgba(34,9,12,.72); border-color:var(--line); color:#fff8ed; }
+    input:focus,select:focus,textarea:focus { border-color:rgba(216,170,82,.72); box-shadow:0 0 0 3px rgba(216,170,82,.10); }
+    .no-pressure-note,.choice-note { background:rgba(216,170,82,.08); border-color:rgba(216,170,82,.25); }
+    .payment-status.warn { background:rgba(216,170,82,.10); border-color:rgba(216,170,82,.25); color:#fff1cf; }
+    .footer { background:rgba(255,247,232,.025); }
+    .mobile-cta { background:rgba(22,8,9,.94); }
+    /* Strategic ivory section to create warmth and visual rhythm */
+    #inside { background:#f7eedf; color:#481519; border-top:1px solid rgba(168,116,48,.20); border-bottom:1px solid rgba(168,116,48,.20); }
+    #inside .section-head h2,#inside .feature h3 { color:#55191c; }
+    #inside .section-head p,#inside .feature p { color:#765b50; }
+    #inside .glass.feature { background:linear-gradient(180deg,#fffaf0,#f5ead7); border-color:rgba(176,124,55,.28); box-shadow:0 18px 46px rgba(77,36,18,.10); }
+    #inside .icon { background:#7a231f; border-color:rgba(216,170,82,.42); box-shadow:0 9px 24px rgba(83,18,22,.12); }
+    #inside .feature .icon { color:#f4d57f; }
+
+    /* V7 moderated, continuously moving review strip */
+    .testimonials-shell { padding:26px 0 28px; overflow:hidden; }
+    .testimonials-shell::before { background:radial-gradient(circle,rgba(216,170,82,.14),transparent 68%); }
+    .review-marquee { position:relative; z-index:1; overflow-x:auto; overflow-y:hidden; scrollbar-width:none; -ms-overflow-style:none; cursor:grab; touch-action:pan-x; overscroll-behavior-x:contain; padding:6px 0 12px; user-select:none; }
+    .review-marquee::-webkit-scrollbar { display:none; }
+    .review-marquee.dragging { cursor:grabbing; }
+    .review-track { display:flex; align-items:stretch; gap:14px; width:max-content; padding:0 14px; }
+    .review-card { flex:0 0 clamp(285px,31vw,365px); min-height:225px; display:flex; flex-direction:column; padding:18px; border-radius:22px; background:linear-gradient(155deg,rgba(255,247,232,.96),rgba(247,232,211,.93)); border:1px solid rgba(216,170,82,.48); box-shadow:0 18px 42px rgba(20,3,5,.22); color:#3c1517; user-select:text; }
+    .review-top { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:14px; }
+    .review-person { min-width:0; }
+    .review-person strong { display:block; color:#50181c; font-size:15px; line-height:1.2; }
+    .review-person span { display:block; margin-top:3px; color:#8a6258; font-size:12px; font-weight:700; }
+    .review-stars { color:#b47b20; letter-spacing:1px; font-size:14px; white-space:nowrap; }
+    .review-quote { margin:0; color:#4a2a26; font-size:14px; line-height:1.58; flex:1; }
+    .review-bottom { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:16px; padding-top:12px; border-top:1px solid rgba(91,32,33,.14); }
+    .verified-badge { display:inline-flex; align-items:center; gap:6px; color:#6b3a22; font-size:11.5px; font-weight:900; }
+    .verified-badge::before { content:'✓'; width:18px; height:18px; display:grid; place-items:center; border-radius:50%; background:#7a231f; color:#fff8e8; font-size:11px; }
+    .review-reply-toggle { border:0; background:transparent; color:#7b251f; padding:4px 0; font:800 11.5px/1.2 Inter,sans-serif; cursor:pointer; text-align:right; }
+    .review-reply { display:none; margin-top:10px; padding:11px 12px; border-radius:14px; background:rgba(93,30,31,.07); border:1px solid rgba(93,30,31,.12); color:#5e3933; font-size:12px; line-height:1.48; }
+    .review-reply.open { display:block; }
+    .review-reply b { display:block; color:#6f211e; margin-bottom:4px; }
+    .review-hint { position:relative; z-index:1; text-align:center; color:#d7c0ae; font-size:12px; font-weight:700; padding:4px 16px 2px; }
+    .review-loading { padding:30px; color:var(--muted); min-width:min(760px,80vw); text-align:center; }
+    @media(max-width:640px){
+      .testimonials-shell { padding:20px 0 24px; }
+      .review-track { gap:11px; padding:0 10px; }
+      .review-card { flex-basis:82vw; min-height:215px; padding:16px; }
+      .review-hint { font-size:11px; padding-inline:12px; }
+    }
+
 </style>
 
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=871049705466459&ev=PageView&noscript=1" alt="" /></noscript>
+
+  <style id="v8-black-glass-theme">
+    :root{
+      --bg:#050505;--bg2:#0b0b0b;--panel:rgba(12,12,12,.74);--panel-soft:rgba(18,18,18,.68);--card-bg:rgba(15,15,15,.72);--badge-bg:rgba(16,16,16,.72);
+      --text:#fff8ec;--muted:#c9bda8;--accent:#efca72;--accent2:#ffebb5;--blue:#f3d387;--green:#edd38b;--line:rgba(240,201,111,.16);--shadow:0 28px 80px rgba(0,0,0,.48);
+    }
+    body{
+      background:
+        radial-gradient(circle at 50% -12%,rgba(240,201,111,.18),transparent 24%),
+        radial-gradient(circle at 12% 0%,rgba(255,255,255,.04),transparent 18%),
+        radial-gradient(circle at 90% 12%,rgba(255,208,120,.08),transparent 20%),
+        linear-gradient(180deg,#020202 0%,#060606 36%,#090909 100%) !important;
+    }
+    body::before{opacity:.07 !important;background-image:radial-gradient(rgba(240,201,111,.35) 1px, transparent 1px) !important;background-size:36px 36px !important;}
+    .topbar{background:rgba(8,8,8,.72)!important;border-bottom:1px solid rgba(240,201,111,.16)!important;backdrop-filter:blur(18px) saturate(120%);} 
+    .logo{background:linear-gradient(180deg,#f9df97,#c89830)!important;box-shadow:0 12px 28px rgba(240,201,111,.18)!important;}
+    .lang-toggle{background:rgba(255,255,255,.04)!important;border-color:var(--line)!important;}
+    .hero-shell,.glass,.flow-step,.payment-model-card,.divine-stage,.mobile-outline-hero,.common-card,.trust-card,.price-box,.hero-stat,.micro-pill,.stage-badge,.map-node,.note-box,.mini-note,.form-price-display,details,.testimonial-cta,.choice-note,.no-pressure-note,.trust-card,.common-card::before,.bump-offer,.bump-check{
+      background:linear-gradient(180deg, rgba(23,23,23,.76), rgba(8,8,8,.82)) !important;
+      border:1px solid rgba(240,201,111,.16)!important;
+      box-shadow:0 18px 48px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.08)!important;
+      backdrop-filter:blur(18px) saturate(120%);
+    }
+    .hero-shell,.glass,.divine-stage,.flow-step,.payment-model-card,.common-card,.trust-card,.review-card,.bump-offer{position:relative;overflow:hidden;}
+    .hero-shell::after,.glass::after,.divine-stage::after,.flow-step::after,.payment-model-card::after,.bump-offer::after{content:"";position:absolute;left:1px;right:1px;top:1px;height:26%;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.03),transparent);border-radius:inherit;pointer-events:none;}
+    .divine-stage::before,.hero-shell::before{opacity:.55!important;}
+    .deity-orb{background:#080808!important;border-color:rgba(240,201,111,.14)!important;}
+    .eyebrow{background:rgba(240,201,111,.08)!important;border-color:rgba(240,201,111,.22)!important;color:#f5d789!important;}
+    .gold{background:linear-gradient(135deg,#fef8ea 8%,#f0c96f 40%,#fff1bf 78%,#c7932b 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;}
+    .guide-glow{color:#e6c873!important;text-shadow:0 0 18px rgba(240,201,111,.18);} 
+    .btn.primary,body:not(.lang-hi) .lang-toggle [data-lang="en"],body.lang-hi .lang-toggle [data-lang="hi"]{background:linear-gradient(180deg,#f8dfa0,#e6bd62)!important;color:#0b0905!important;box-shadow:0 12px 28px rgba(240,201,111,.22), inset 0 1px 0 rgba(255,255,255,.42)!important;}
+    .btn.secondary,.btn.blue,.mobile-cta .btn.secondary{background:linear-gradient(180deg,rgba(24,24,24,.88),rgba(8,8,8,.94))!important;color:#f4d37e!important;border:1px solid rgba(240,201,111,.18)!important;box-shadow:0 14px 32px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.06)!important;}
+    .btn.blue{color:#fff5de!important;}
+    .section-head p,.subhead,.trust-card span,.flow-step p,details p,.hero-stat span,.micro-pill,.common-card p,.note-box,.mini-note,.secure-copy,.review-hint,.field label,.copyright,.trust div,.offer li,.card .sub{color:var(--muted)!important;}
+    #inside{background:transparent!important;color:var(--text)!important;border-top:none!important;border-bottom:none!important;}
+    #inside .section-head h2,#inside .feature h3,#inside .section-head p,#inside .feature p{color:inherit!important;}
+    #inside .glass.feature{background:linear-gradient(180deg, rgba(23,23,23,.76), rgba(8,8,8,.82))!important;border-color:rgba(240,201,111,.16)!important;box-shadow:0 18px 48px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.08)!important;}
+    #inside .icon,.icon,.flow-badge{background:rgba(255,255,255,.04)!important;border-color:rgba(240,201,111,.18)!important;color:#f1cb72!important;box-shadow:0 10px 24px rgba(0,0,0,.22);}    
+    input,select,textarea{background:rgba(5,5,5,.72)!important;border-color:rgba(240,201,111,.16)!important;color:var(--text)!important;}
+    input:focus,select:focus,textarea:focus{border-color:rgba(240,201,111,.45)!important;box-shadow:0 0 0 3px rgba(240,201,111,.08)!important;background:rgba(10,10,10,.86)!important;}
+    .testimonials-shell{padding:26px 0 28px!important;}
+    .review-card{background:linear-gradient(180deg, rgba(17,17,17,.88), rgba(5,5,5,.94))!important;border:1px solid rgba(240,201,111,.26)!important;box-shadow:0 18px 40px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.08)!important;color:var(--text)!important;}
+    .review-card::before{content:"";position:absolute;top:0;left:0;right:0;height:28%;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.04),transparent);pointer-events:none;}
+    .review-person strong,.review-stars,.review-reply-toggle,.testimonial-name,.stars,.flow-step h3,.common-card h3,.trust-card b,.section-head h2,.hero h1,.feature h3{color:#f2cf78!important;}
+    .review-person span,.review-quote,.review-reply,.verified-badge,.section-head p,.recommend-line,.reply-box{color:#dfd0b7!important;}
+    .review-bottom{border-top:1px solid rgba(240,201,111,.12)!important;}
+    .verified-badge::before{background:linear-gradient(180deg,#f4d98a,#bf8d2e)!important;color:#0e0a03!important;}
+    .review-reply{background:rgba(255,255,255,.04)!important;border:1px solid rgba(240,201,111,.12)!important;}
+    .testimonial-cta{background:linear-gradient(180deg, rgba(20,20,20,.86), rgba(8,8,8,.9))!important;}
+    .footer{background:rgba(255,255,255,.02)!important;border-top-color:rgba(240,201,111,.12)!important;}
+    @media(max-width:780px){.hero-shell,.glass,.flow-step,.payment-model-card{border-radius:24px!important}}
+  </style>
+
 </head>
 <body>
   <header class="topbar">
@@ -688,91 +815,15 @@ section { padding:62px 0; }
       <div class="wrap">
         <div class="section-head">
           <h2><span class="en">What people are saying</span><span class="hi">लोग क्या कह रहे हैं</span></h2>
+          <p><span class="en">Real feedback from people who received their personalised guidance.</span><span class="hi">उन लोगों की वास्तविक प्रतिक्रिया जिन्होंने अपना व्यक्तिगत मार्गदर्शन प्राप्त किया।</span></p>
         </div>
         <div class="glass testimonials-shell">
-          <div class="testimonial-grid">
-            <article class="testimonial-card">
-              <div class="testimonial-body">
-                <div class="testimonial-head"><div class="testimonial-name">Sai Priya, <span class="city">Bangalore</span></div><div class="stars" aria-label="4 out of 5 stars">★★★★☆</div></div>
-                <p>I always had a pull towards certain deities. Seeing my report, I really understood the connection. Now I am able to take my sadhana forward to the next level.</p>
-                <div class="recommend-line">Do you recommend? <span class="status-yes">✔ Yes</span></div>
-              </div>
-            </article>
-            <article class="testimonial-card">
-              <div class="testimonial-body">
-                <div class="testimonial-head"><div class="testimonial-name">Shailesh, <span class="city">Surat</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div>
-                <p>My long-term doubt is finally cleared and I found my Ishta Devi. The report gave me a clear devotional direction.</p>
-                <div class="recommend-line">Do you recommend? <span class="status-yes">✔ Yes</span></div>
-              </div>
-            </article>
-            <article class="testimonial-card">
-              <div class="testimonial-body">
-                <div class="testimonial-head"><div class="testimonial-name">Ankur Mishra, <span class="city">Delhi</span></div><div class="stars" aria-label="4 out of 5 stars">★★★★☆</div></div>
-                <p>Report was good. I already had a feeling Hanuman Ji is my Isht, so this report confirmed it. But I would not recommend it if you want a fast result, because I had to wait the full 24 hours.</p>
-                <div class="recommend-line">Do you recommend? <span class="status-no">✖ No</span></div>
-                <details class="reply-details">
-                  <summary>See reply</summary>
-                  <div class="reply-box">We apologize for not meeting your expectations. This is a manual report that requires multiple checks, so it cannot be delivered like instant computer-generated reports. We take pride in giving an accurate report rather than a rushed one. Thank you for your understanding. Namaste 🙏</div>
-                </details>
-              </div>
-            </article>
-            <article class="testimonial-card">
-              <div class="testimonial-body">
-                <div class="testimonial-head"><div class="testimonial-name">Anjan Mandal, <span class="city">Kolkata</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div>
-                <p>They revealed my Isht Devta. I am happy with the result and can now direct my puja and meditation in the right direction.</p>
-                <div class="recommend-line">Do you recommend? <span class="status-yes">✔ Yes</span></div>
-              </div>
-            </article>
+          <div class="review-marquee" id="reviewMarquee" tabindex="0" aria-label="Customer reviews. Drag or swipe sideways to browse faster.">
+            <div class="review-track" id="reviewTrack">
+              <div class="review-loading">Loading verified customer feedback…</div>
+            </div>
           </div>
-
-          <div class="more-feedback-wrap">
-            <button type="button" class="btn outline" id="moreFeedbackBtn">View more testimonials</button>
-          </div>
-
-          <div class="testimonial-grid hidden-feedback" id="moreFeedbackGrid" hidden>
-            <article class="testimonial-card">
-              <div class="testimonial-body">
-                <div class="testimonial-head"><div class="testimonial-name">Prabhu, <span class="city">Chennai</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div>
-                <p>It's helpful and I am getting good result in my upasana.</p>
-                <div class="recommend-line">Do you recommend? <span class="status-yes">✔ Yes</span></div>
-              </div>
-            </article>
-            <article class="testimonial-card">
-              <div class="testimonial-body">
-                <div class="testimonial-head"><div class="testimonial-name">Aarya Singh, <span class="city">Bokaro Steel City</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div>
-                <p>Nice and prompt service.</p>
-                <div class="recommend-line">Do you recommend? <span class="status-yes">✔ Yes</span></div>
-              </div>
-            </article>
-            <article class="testimonial-card">
-              <div class="testimonial-body">
-                <div class="testimonial-head"><div class="testimonial-name">Ashik Rai, <span class="city">Bengaluru</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div>
-                <p>I'm thankful and satisfied with the recommendation.</p>
-                <div class="recommend-line">Do you recommend? <span class="status-yes">✔ Yes</span></div>
-              </div>
-            </article>
-            <article class="testimonial-card">
-              <div class="testimonial-body">
-                <div class="testimonial-head"><div class="testimonial-name">Anonymous, <span class="city">Trivandrum, Kerala</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div>
-                <p>My family temple was of Durga Kali and Lord Muruga, but I have been devoted to Lord Krishna since childhood and felt confused about my Ishta Devata. Thank you very much for the guidance.</p>
-                <div class="recommend-line">Do you recommend? <span class="status-yes">✔ Yes</span></div>
-              </div>
-            </article>
-            <article class="testimonial-card">
-              <div class="testimonial-body">
-                <div class="testimonial-head"><div class="testimonial-name">Anonymous, <span class="city">Bangalore</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div>
-                <p>Good job.</p>
-                <div class="recommend-line">Do you recommend? <span class="status-yes">✔ Yes</span></div>
-              </div>
-            </article>
-            <article class="testimonial-card">
-              <div class="testimonial-body">
-                <div class="testimonial-head"><div class="testimonial-name">Anonymous, <span class="city">Kozhikode</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div>
-                <p>Very clear and precise report.</p>
-                <div class="recommend-line">Do you recommend? <span class="status-yes">✔ Yes</span></div>
-              </div>
-            </article>
-          </div>
+          <div class="review-hint"><span class="en">↔ Drag or swipe to browse faster • The strip continues automatically</span><span class="hi">↔ तेज़ी से देखने के लिए खींचें या स्वाइप करें • पट्टी अपने आप चलती रहती है</span></div>
 
           <div class="testimonial-cta">
             <div>
@@ -1035,21 +1086,87 @@ section { padding:62px 0; }
       }
     }
 
-    const moreFeedbackBtn = document.getElementById('moreFeedbackBtn');
-    const moreFeedbackGrid = document.getElementById('moreFeedbackGrid');
-    if (moreFeedbackBtn && moreFeedbackGrid) {
-      moreFeedbackBtn.addEventListener('click', function () {
-        const isHidden = moreFeedbackGrid.hasAttribute('hidden');
-        if (isHidden) {
-          moreFeedbackGrid.removeAttribute('hidden');
-          moreFeedbackBtn.textContent = 'Show less testimonials';
-        } else {
-          moreFeedbackGrid.setAttribute('hidden', 'hidden');
-          moreFeedbackBtn.textContent = 'View more testimonials';
-          document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // V7: continuously moving, manually browsable moderated review strip
+    (function initReviewStrip(){
+      const marquee=document.getElementById('reviewMarquee');
+      const track=document.getElementById('reviewTrack');
+      if(!marquee||!track) return;
+      let copyWidth=0;
+      let interacting=false;
+      let resumeTimer=null;
+      let dragging=false;
+      let startX=0;
+      let startScroll=0;
+      let lastTime=performance.now();
+      let lastSignature='';
+      const speed=55; // pixels per second: medium pace, about one card every ~5–7 seconds
+
+      function text(el,value){el.textContent=value==null?'':String(value);return el;}
+      function makeCard(review){
+        const card=document.createElement('article');card.className='review-card';
+        const top=document.createElement('div');top.className='review-top';
+        const person=document.createElement('div');person.className='review-person';
+        const name=text(document.createElement('strong'),review.displayName||'Anonymous');
+        const city=text(document.createElement('span'),review.city||'');
+        person.append(name,city);
+        const stars=document.createElement('div');stars.className='review-stars';stars.setAttribute('aria-label',(review.stars||5)+' out of 5 stars');stars.textContent='★'.repeat(Math.max(1,Math.min(5,Number(review.stars)||5)))+'☆'.repeat(Math.max(0,5-(Number(review.stars)||5)));
+        top.append(person,stars);
+        const quote=text(document.createElement('p'),review.feedback||'');quote.className='review-quote';
+        const bottom=document.createElement('div');bottom.className='review-bottom';
+        const verified=document.createElement('span');verified.className='verified-badge';verified.textContent=review.verifiedCustomer?'Verified Customer':'Customer Feedback';
+        bottom.appendChild(verified);
+        card.append(top,quote,bottom);
+        if(review.reply){
+          const btn=text(document.createElement('button'),'Reply from DivyaLok Bhakti ›');btn.className='review-reply-toggle';btn.type='button';
+          const reply=document.createElement('div');reply.className='review-reply';
+          const rb=text(document.createElement('b'),'DivyaLok Bhakti');reply.append(rb,document.createTextNode(review.reply));
+          btn.addEventListener('click',()=>{
+            reply.classList.toggle('open');
+            btn.textContent=reply.classList.contains('open')?'Hide reply ↑':'Reply from DivyaLok Bhakti ›';
+            pauseForInteraction(2500);
+          });
+          bottom.appendChild(btn);card.appendChild(reply);
         }
-      });
-    }
+        return card;
+      }
+      function render(reviews){
+        track.replaceChildren();
+        if(!reviews.length){const empty=text(document.createElement('div'),'Customer feedback will appear here after approval.');empty.className='review-loading';track.appendChild(empty);return;}
+        for(let copy=0;copy<3;copy++) reviews.forEach(r=>track.appendChild(makeCard(r)));
+        requestAnimationFrame(()=>{copyWidth=track.scrollWidth/3;marquee.scrollLeft=copyWidth;});
+      }
+      async function load(){
+        try{
+          const res=await fetch('/api/public-reviews',{headers:{'Accept':'application/json'}});
+          const data=await res.json().catch(()=>({}));
+          if(!res.ok||!Array.isArray(data.reviews)) throw new Error(data.error||'Could not load reviews');
+          const signature=JSON.stringify(data.reviews.map(r=>[r.id,r.feedback,r.reply,r.verifiedCustomer,r.stars]));
+          if(signature!==lastSignature){lastSignature=signature;render(data.reviews);}
+        }catch(e){
+          const msg=text(document.createElement('div'),'Customer feedback is temporarily unavailable. Please refresh shortly.');msg.className='review-loading';track.replaceChildren(msg);
+        }
+      }
+      function pauseForInteraction(ms=1400){
+        interacting=true;clearTimeout(resumeTimer);resumeTimer=setTimeout(()=>{interacting=false;lastTime=performance.now();},ms);
+      }
+      marquee.addEventListener('pointerdown',e=>{dragging=true;interacting=true;startX=e.clientX;startScroll=marquee.scrollLeft;marquee.classList.add('dragging');try{marquee.setPointerCapture(e.pointerId);}catch(_){} });
+      marquee.addEventListener('pointermove',e=>{if(!dragging)return;marquee.scrollLeft=startScroll-(e.clientX-startX);});
+      const endDrag=e=>{if(!dragging)return;dragging=false;marquee.classList.remove('dragging');try{marquee.releasePointerCapture(e.pointerId);}catch(_){}pauseForInteraction(1200);};
+      marquee.addEventListener('pointerup',endDrag);marquee.addEventListener('pointercancel',endDrag);
+      marquee.addEventListener('wheel',()=>pauseForInteraction(1200),{passive:true});
+      marquee.addEventListener('scroll',()=>{
+        if(!copyWidth)return;
+        if(marquee.scrollLeft>=copyWidth*2) marquee.scrollLeft-=copyWidth;
+        else if(marquee.scrollLeft<=copyWidth*.35) marquee.scrollLeft+=copyWidth;
+      },{passive:true});
+      function animate(now){
+        const dt=Math.min(50,now-lastTime);lastTime=now;
+        if(!interacting&&copyWidth) marquee.scrollLeft+=(speed*dt/1000);
+        requestAnimationFrame(animate);
+      }
+      load();setInterval(load,60000);requestAnimationFrame(animate);
+    })();
+
     payBtn.addEventListener('click', startPayment);
     ['fullName', 'email', 'phone', 'dob', 'tob', 'pob', 'gender', 'reportLanguage'].forEach(id => {
       const el = document.getElementById(id);
