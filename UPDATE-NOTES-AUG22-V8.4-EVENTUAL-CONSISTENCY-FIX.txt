@@ -1,0 +1,17 @@
+V8.4 review backend correction
+
+Root cause confirmed from live /api/review-health:
+Netlify Blobs was configured with strong consistency. In this Lambda-compatible runtime, connectLambda(event) did not provide the uncachedEdgeURL required for strongly-consistent reads.
+
+Correction:
+- connectLambda(event) remains in place.
+- Review store now uses getStore(STORE_NAME) exactly as documented for Lambda-compatible functions.
+- This uses Netlify Blobs default eventual consistency.
+- Public review endpoint uses Cache-Control: no-store to avoid adding HTTP cache delay.
+- Admin moderation updates the dashboard optimistically from the mutation response, then silently refreshes after 65 seconds.
+- Original 10 reviews remain embedded in index.html as permanent fallback and also seed the Blob store.
+- All payment functions are unchanged from V8.3/V6.
+
+Expected propagation behavior:
+- New blob creation is available globally immediately according to Netlify docs.
+- Updates/deletes can take up to 60 seconds to propagate to all edge locations under eventual consistency.

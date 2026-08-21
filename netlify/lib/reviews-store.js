@@ -18,10 +18,12 @@ const SEED_REVIEWS = [
 
 async function getReviewStore(event) {
   // This site's existing backend uses Netlify's Lambda-compatible .js function format.
-  // @netlify/blobs requires connectLambda(event) before getStore() in this format.
+  // Lambda-compatible functions must call connectLambda(event) before getStore().
+  // Use Netlify Blobs' default eventual consistency here. Strong consistency requires
+  // an uncachedEdgeURL that is not supplied in this Lambda-compatible runtime.
   const { connectLambda, getStore } = await import('@netlify/blobs');
   connectLambda(event);
-  return getStore({ name: STORE_NAME, consistency: 'strong' });
+  return getStore(STORE_NAME);
 }
 
 function clean(value, max = 5000) {

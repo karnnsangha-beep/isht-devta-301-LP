@@ -3,7 +3,7 @@ const { listAllReviews, publicReviewShape } = require('../lib/reviews-store');
 exports.handler = async (event) => {
   const headers = {
     'Content-Type': 'application/json',
-    'Cache-Control': 'public, max-age=30, s-maxage=30, stale-while-revalidate=120'
+    'Cache-Control': 'no-store'
   };
   if (event.httpMethod !== 'GET') {
     return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };

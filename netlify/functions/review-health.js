@@ -14,6 +14,7 @@ exports.handler = async (event) => {
       body: JSON.stringify({
         ok: true,
         runtime: 'lambda-connected',
+        consistency: 'eventual',
         blobs: true,
         reviewCount: reviews.length,
         seedCount,
@@ -27,6 +28,7 @@ exports.handler = async (event) => {
       body: JSON.stringify({
         ok: false,
         runtime: 'lambda-connected',
+        consistency: 'eventual',
         blobs: false,
         error: error.message || 'Review storage unavailable',
         adminSecretConfigured: Boolean(process.env.REVIEW_ADMIN_SECRET)

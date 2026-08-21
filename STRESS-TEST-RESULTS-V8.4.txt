@@ -1,0 +1,42 @@
+V8.4 FINAL STRESS TEST
+======================
+UTC: 2026-08-21 22:00:50
+
+[1] Backend JS syntax
+PASS: all backend JS files parse.
+
+[2] No strong consistency remains
+PASS: no strong-consistency configuration remains in review backend.
+
+[3] Lambda Blobs initialization
+PASS: connectLambda(event) runs immediately before default eventual-consistency getStore(name).
+
+[4] Payment backend regression protection
+PASS: all 9 payment/verification functions are byte-for-byte unchanged from V8.3; ₹51, ₹99 and ₹121 limits intact.
+
+[5] OG reviews fallback
+PASS: 10 OG reviews embedded as immediate landing-page fallback.
+
+[6] Review consent / moderation rules
+PASS: no-consent reviews stay private; public approval is blocked without consent; permission checkbox text present.
+
+[7] Review API endpoints present
+PASS: submit/public/admin/moderate/health endpoints present.
+
+[8] Function redirect/config
+PASS: Netlify functions directory and /api/* redirect are configured.
+
+[9] HTML inline JS syntax
+PASS: all inline HTML JavaScript parses.
+
+[10] Local file references
+PASS: all local image/page/script references resolve.
+
+[11] Mocked end-to-end review workflow
+PASS: health seeds 10 OG reviews; public API returns 10; public-consent submission creates pending review; pending is hidden publicly; wrong admin secret rejects; correct admin secret loads 11; approve publishes; reply appears publicly; unpublish removes; private feedback cannot be approved.
+
+RESULT: PASS
+Offline code/integration validation passed. Final Netlify runtime injection can only be verified after a production deployment.
+
+[12] Eventual-consistency admin UX
+PASS: moderation dashboard updates its local state directly from the moderation response, so approve/reject/reply actions appear immediately in admin even if Blob edge reads take time to propagate.

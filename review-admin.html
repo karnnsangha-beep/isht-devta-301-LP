@@ -117,7 +117,7 @@
     return card;
   }
   function actionBtn(label,cls,fn){const b=node('button',cls,label);b.type='button';b.addEventListener('click',fn);return b;}
-  async function moderate(r,action,extra={}){try{const res=await fetch('/api/moderate-review',{method:'POST',headers:authHeaders(),body:JSON.stringify({id:r.id,action,...extra})});const data=await res.json().catch(()=>({}));if(!res.ok)throw new Error(data.error||'Could not update review');await loadReviews();}catch(e){alert(e.message)}}
+  async function moderate(r,action,extra={}){try{const res=await fetch('/api/moderate-review',{method:'POST',headers:authHeaders(),body:JSON.stringify({id:r.id,action,...extra})});const data=await res.json().catch(()=>({}));if(!res.ok)throw new Error(data.error||'Could not update review');if(data.review){const i=reviews.findIndex(x=>x.id===data.review.id);if(i>=0)reviews[i]=data.review;else reviews.unshift(data.review);render();setTimeout(()=>loadReviews().catch(()=>{}),65000);}else{await loadReviews();}}catch(e){alert(e.message)}}
   document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');currentStatus=t.dataset.status;render();}));
   loginBtn.addEventListener('click',login);secretInput.addEventListener('keydown',e=>{if(e.key==='Enter')login()});logoutBtn.addEventListener('click',leave);
   if(secret){loadReviews().then(enter).catch(()=>leave())}
