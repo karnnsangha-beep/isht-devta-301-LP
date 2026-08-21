@@ -1,0 +1,39 @@
+ISHT DEVTA ₹51 FUNNEL — V6 BACKEND FIX
+======================================
+
+WHAT WAS FIXED
+- Main booking payment is hard-locked to ₹51 (5100 paise).
+- Dakshina Razorpay order creation fixed for ₹121 / ₹201 / custom ₹121+.
+- Navagrah Remedies Razorpay order creation fixed at ₹99 (9900 paise).
+- New unique Netlify function endpoints added so old/stale functions cannot silently control the new funnel.
+- Legacy function filenames were ALSO replaced with the V6-safe code, so cached older frontend calls cannot charge ₹201.
+- Payment amount safety checks added in the browser BEFORE Razorpay can open.
+- A backend health endpoint was added.
+- If a URL was opened from ChatGPT and contains utm_source=chatgpt.com, the page removes that parameter from the visible address bar. Normal Meta/Google UTMs are not removed.
+
+NEW PRIMARY FUNCTION ENDPOINTS
+- /api/create-isht51-order
+- /api/create-dakshina-v2-order
+- /api/create-navagrah99-order
+- /api/verify-isht-payment
+
+BACKEND HEALTH CHECK
+After Netlify finishes deploying, open:
+https://ishtdevta.pexasuite.com/api/funnel-health
+
+It MUST show:
+- version: isht-funnel-v6
+- booking_rupees: 51
+- dakshina_min_rupees: 121
+- navagrah_rupees: 99
+
+If that URL is 404, the netlify/functions folder was NOT deployed. Do not test payments until it works.
+
+IMPORTANT GITHUB DEPLOY STEP
+Upload/replace the ENTIRE folder, especially:
+netlify/functions/
+
+The repo should show the functions folder as updated in the same commit. New files such as create-isht51-order.js and funnel-health.js must be visible inside the GitHub netlify/functions directory.
+
+PAYMENT SAFETY
+The new index page will refuse to open Razorpay unless the server confirms exactly 5100 paise (₹51) and the V6 function identity.

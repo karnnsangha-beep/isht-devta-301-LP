@@ -112,6 +112,19 @@
   </main>
   <footer class="footer"><div class="wrap">© 2026 DivyaLok Bhakti • Spiritual guidance only</div></footer>
 
+
+  <script>
+    (function(){
+      try {
+        const u = new URL(window.location.href);
+        if ((u.searchParams.get('utm_source') || '').toLowerCase() === 'chatgpt.com') {
+          u.searchParams.delete('utm_source');
+          const q = u.searchParams.toString();
+          history.replaceState({}, '', u.pathname + (q ? '?' + q : '') + u.hash);
+        }
+      } catch(e) {}
+    })();
+  </script>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
     const form=document.getElementById('navForm');
@@ -141,9 +154,10 @@
       if(!name || !phone){showStatus('warn','Please enter your name and WhatsApp number so we can deliver your guide.');return;}
       buyBtn.disabled=true;buyBtn.textContent='Opening secure payment...';
       try{
-        const res=await fetch('/api/create-navagrah-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,phone})});
+        const res=await fetch('/api/create-navagrah99-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,phone})});
         const data=await res.json().catch(()=>({}));
         if(!res.ok || !data.order_id) throw new Error(data.error||'Could not create order');
+        if(data.flow!=='navagrah99-v6' || Number(data.amount)!==9900) throw new Error('Safety stop: Navagrah payment server mismatch. No payment window was opened.');
         const rzp=new Razorpay({
           key:data.key_id,amount:data.amount,currency:data.currency||'INR',name:'DivyaLok Bhakti',description:'Navagrah Remedies • Customer Offer',order_id:data.order_id,
           prefill:{name,contact:phone},
@@ -151,9 +165,9 @@
           theme:{color:'#7f6cff'},
           handler:async function(response){
             showStatus('warn','Payment received. Verifying your order...');
-            const vr=await fetch('/api/verify-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(response)});
+            const vr=await fetch('/api/verify-isht-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(response)});
             const vd=await vr.json().catch(()=>({}));
-            if(!vr.ok || !vd.success){showStatus('error',vd.error||'Payment verification failed. Please contact us with your payment ID.');buyBtn.disabled=false;buyBtn.textContent='Get Navagrah Remedies for ₹99';return;}
+            if(!vr.ok || !vd.success || vd.flow!=='verify-v6'){showStatus('error',vd.error||'Payment verification failed. Please contact us with your payment ID.');buyBtn.disabled=false;buyBtn.textContent='Get Navagrah Remedies for ₹99';return;}
             try{await saveOrder(response.razorpay_payment_id,response.razorpay_order_id);}catch(e){}
             showStatus('ok','Payment confirmed. Thank you 🙏 Your Navagrah Remedies order has been recorded for WhatsApp delivery.');
             buyBtn.textContent='Order Confirmed ✓';

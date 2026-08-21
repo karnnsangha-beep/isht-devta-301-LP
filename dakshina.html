@@ -175,6 +175,19 @@
   </main>
   <footer class="footer"><div class="wrap">© 2026 DivyaLok Bhakti • Spiritual guidance only</div></footer>
 
+
+  <script>
+    (function(){
+      try {
+        const u = new URL(window.location.href);
+        if ((u.searchParams.get('utm_source') || '').toLowerCase() === 'chatgpt.com') {
+          u.searchParams.delete('utm_source');
+          const q = u.searchParams.toString();
+          history.replaceState({}, '', u.pathname + (q ? '?' + q : '') + u.hash);
+        }
+      } catch(e) {}
+    })();
+  </script>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
     const form = document.getElementById('feedbackForm');
@@ -278,9 +291,10 @@
       const rating=ratingInput.value ? Number(ratingInput.value) : null;
       const feedback=document.getElementById('feedback').value.trim();
       try{
-        const res=await fetch('/api/create-dakshina-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount:selectedAmount,name,phone,rating,feedback})});
+        const res=await fetch('/api/create-dakshina-v2-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount:selectedAmount,name,phone,rating,feedback})});
         const data=await res.json().catch(()=>({}));
         if(!res.ok || !data.order_id) throw new Error(data.error||'Could not create Dakshina order');
+        if(data.flow!=='dakshina-v6' || Number(data.amount)!==selectedAmount*100) throw new Error('Safety stop: Dakshina payment server mismatch. No payment window was opened.');
         const rzp=new Razorpay({
           key:data.key_id,amount:data.amount,currency:data.currency||'INR',name:'DivyaLok Bhakti',description:'Isht Devta Dakshina',order_id:data.order_id,
           prefill:{name:name,contact:phone},
@@ -289,9 +303,9 @@
           handler:async function(response){
             showStatus('warn','Dakshina received. Verifying and saving your feedback...');
             try {
-              const vr=await fetch('/api/verify-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(response)});
+              const vr=await fetch('/api/verify-isht-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(response)});
               const vd=await vr.json().catch(()=>({}));
-              if(!vr.ok || !vd.success) throw new Error(vd.error||'Payment verification failed');
+              if(!vr.ok || !vd.success || vd.flow!=='verify-v6') throw new Error(vd.error||'Payment verification failed');
               try {
                 await submitNetlify({paymentStatus:'paid_dakshina',amount:String(selectedAmount),paymentId:response.razorpay_payment_id,orderId:response.razorpay_order_id});
                 showStatus('ok','Thank you for your Dakshina and feedback. 🙏 One more customer-only offer is opening...');

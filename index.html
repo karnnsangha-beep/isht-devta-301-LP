@@ -863,6 +863,19 @@ section { padding:62px 0; }
 
   <button class="scroll-chevrons" id="scrollChevrons" type="button" aria-label="Jump to details and payment"><img src="assets/scroll-chevrons.png" alt="" aria-hidden="true"></button>
   <div class="mobile-cta"><div class="mobile-cta-grid"><a class="btn secondary" href="#process"><span class="en">See Process</span><span class="hi">प्रक्रिया देखें</span></a><a class="btn primary" href="#order"><span class="en">Book ₹51</span><span class="hi">₹51 में बुक करें</span></a></div></div>
+
+  <script>
+    (function(){
+      try {
+        const u = new URL(window.location.href);
+        if ((u.searchParams.get('utm_source') || '').toLowerCase() === 'chatgpt.com') {
+          u.searchParams.delete('utm_source');
+          const q = u.searchParams.toString();
+          history.replaceState({}, '', u.pathname + (q ? '?' + q : '') + u.hash);
+        }
+      } catch(e) {}
+    })();
+  </script>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
     const BASE_PRICE = 51;
@@ -968,9 +981,10 @@ section { padding:62px 0; }
       payBtn.style.opacity = '.75';
       payBtn.textContent = document.body.classList.contains('lang-hi') ? 'सुरक्षित भुगतान खोला जा रहा है...' : 'Opening secure payment...';
       try {
-        const res = await fetch('/api/create-order', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        const res = await fetch('/api/create-isht51-order', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
         const data = await res.json().catch(() => ({}));
-        if (!res.ok || !data.order_id) throw new Error(data.error || 'Could not create order');
+        if (!res.ok || !data.order_id) throw new Error(data.error || 'Could not create ₹51 booking order');
+        if (data.flow !== 'isht51-v6' || Number(data.amount) !== 5100) throw new Error('Safety stop: payment server is not on the ₹51 funnel. No payment window was opened.');
         const options = {
           key: data.key_id,
           amount: data.amount,
@@ -983,9 +997,9 @@ section { padding:62px 0; }
           theme: { color: '#d4af37' },
           handler: async function (response) {
             showStatus('warn', document.body.classList.contains('lang-hi') ? 'बुकिंग शगुन प्राप्त हुआ। सत्यापन हो रहा है...' : 'Booking Shagun received. Verifying...');
-            const verifyRes = await fetch('/api/verify-payment', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(response) });
+            const verifyRes = await fetch('/api/verify-isht-payment', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(response) });
             const verifyData = await verifyRes.json().catch(() => ({}));
-            if (!verifyRes.ok || !verifyData.success) throw new Error(verifyData.error || 'Payment verification failed');
+            if (!verifyRes.ok || !verifyData.success || verifyData.flow !== 'verify-v6') throw new Error(verifyData.error || 'Payment verification failed');
             const finalOrder = { ...d, orderId: response.razorpay_order_id, paymentId: response.razorpay_payment_id, amount: BASE_PRICE, paidAt: new Date().toISOString() };
             localStorage.setItem('ishtDevtaOrder', JSON.stringify(finalOrder));
             await submitNetlifyBackup(finalOrder);
