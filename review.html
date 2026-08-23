@@ -113,9 +113,7 @@
     .amt,.now,.price .now,.hero .price{color:#f4d88f!important}
     .popular,.btn.primary,button.primary,.tab.active{background:linear-gradient(180deg,#f8dfa0,#e6bd62)!important;color:#0b0905!important;box-shadow:0 12px 28px rgba(240,201,111,.22), inset 0 1px 0 rgba(255,255,255,.42)!important}
     /* Keep the MOST COMMON badge fully inside the ₹201 card so it can never be clipped by glass overflow. */
-    .amount-card{padding-top:29px!important;}
     .popular{top:7px!important;z-index:4!important;padding:5px 11px!important;line-height:1!important;}
-    @media(max-width:640px){.amount-card{padding-top:28px!important}.popular{top:7px!important}}
     .btn.secondary,.btn,.logout,.tab,.actions button{background:linear-gradient(180deg,rgba(24,24,24,.88),rgba(8,8,8,.94))!important;color:#f4d37e!important;border:1px solid rgba(240,201,111,.18)!important;box-shadow:0 14px 32px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.06)!important}
     .actions button.good{background:linear-gradient(180deg,rgba(24,43,28,.95),rgba(9,22,11,.98))!important;color:#dff5e3!important;border-color:rgba(127,217,155,.22)!important}
     .actions button.bad{background:linear-gradient(180deg,rgba(55,22,22,.95),rgba(26,9,9,.98))!important;color:#ffdada!important;border-color:rgba(255,159,159,.22)!important}
@@ -180,29 +178,18 @@
 
           <hr class="section-rule">
           <div style="text-align:center;margin-bottom:14px">
-            <h2 style="font-size:21px;margin-bottom:6px">Optional Dakshina, only if you wish</h2>
-            <p class="sub" style="margin-bottom:0">This is completely separate from your ₹201 report payment. You can submit your review without offering anything.</p>
+            <h2 style="font-size:21px;margin-bottom:6px">Optional Dakshina</h2>
+            <p class="sub" style="margin-bottom:0">If you wish, you may offer any amount of your choice. Your review can also be submitted without Dakshina.</p>
           </div>
-          <div class="amounts" style="grid-template-columns:repeat(2,1fr)">
-            <label class="amount-card" id="support51Card"><input type="radio" name="dakshina_choice" value="51"><div class="amt">₹51</div><div class="amt-label">With Gratitude</div></label>
-            <label class="amount-card" id="customCard"><input type="radio" name="dakshina_choice" value="custom"><div class="amt custom-amt">Your Choice</div><div class="amt-label">Any amount you wish</div></label>
-          </div>
-          <div class="custom hidden" id="customBox">
-            <b>Enter your amount</b>
-            <div class="custom-row"><span class="rupee">₹</span><input id="customAmount" type="number" min="1" step="1" inputmode="numeric" placeholder="Enter any whole rupee amount"></div>
-            <small>There is no set minimum. Razorpay requires a payable amount of at least ₹1.</small>
+          <div class="custom" id="customBox">
+            <b>Amount of your choice</b>
+            <div class="custom-row"><span class="rupee">₹</span><input id="customAmount" type="number" min="1" step="1" inputmode="numeric" placeholder="Enter any amount you wish"></div>
           </div>
           <div class="actions" style="grid-template-columns:1fr;margin-top:13px">
-            <button class="btn secondary" id="payDakshinaBtn" type="button" disabled>Select an amount to offer optional Dakshina</button>
+            <button class="btn secondary" id="payDakshinaBtn" type="button" disabled>Offer Dakshina & Submit Review</button>
           </div>
           <div class="status" id="statusBox" aria-live="polite"></div>
         </form>
-      </div>
-
-      <div class="promise">
-        <div><b>⭐ Quick feedback</b>A rating or short review is enough.</div>
-        <div><b>🔒 You control sharing</b>Only reviews with your permission can be considered for the website.</div>
-        <div><b>✅ Manual approval</b>Nothing is published automatically.</div>
       </div>
     </div></section>
   </main>
@@ -224,9 +211,6 @@
     const statusBox=document.getElementById('statusBox');
     const submitReviewBtn=document.getElementById('submitReviewBtn');
     const payBtn=document.getElementById('payDakshinaBtn');
-    const support51Card=document.getElementById('support51Card');
-    const customCard=document.getElementById('customCard');
-    const customBox=document.getElementById('customBox');
     const customAmount=document.getElementById('customAmount');
     const amountInput=document.getElementById('amountInput');
     const statusInput=document.getElementById('statusInput');
@@ -248,13 +232,7 @@
     }
     prefill();
 
-    function clearAmountSelection(){
-      support51Card.classList.remove('selected'); customCard.classList.remove('selected');
-      support51Card.querySelector('input').checked=false; customCard.querySelector('input').checked=false;
-    }
-    support51Card.addEventListener('click',()=>{clearAmountSelection();support51Card.classList.add('selected');support51Card.querySelector('input').checked=true;customBox.classList.add('hidden');customAmount.value='';selectedAmount=51;payBtn.disabled=false;payBtn.textContent='Offer ₹51 Dakshina + Submit Review';});
-    customCard.addEventListener('click',()=>{clearAmountSelection();customCard.classList.add('selected');customCard.querySelector('input').checked=true;customBox.classList.remove('hidden');selectedAmount=null;payBtn.disabled=true;payBtn.textContent='Enter your amount above';setTimeout(()=>customAmount.focus(),0);});
-    customAmount.addEventListener('input',()=>{const v=Number(customAmount.value);if(Number.isInteger(v)&&v>=1){selectedAmount=v;payBtn.disabled=false;payBtn.textContent='Offer ₹'+v+' Dakshina + Submit Review';}else{selectedAmount=null;payBtn.disabled=true;payBtn.textContent='Enter a whole rupee amount';}});
+    customAmount.addEventListener('input',()=>{const v=Number(customAmount.value);if(Number.isInteger(v)&&v>=1){selectedAmount=v;payBtn.disabled=false;payBtn.textContent='Offer ₹'+v+' Dakshina & Submit Review';}else{selectedAmount=null;payBtn.disabled=true;payBtn.textContent='Offer Dakshina & Submit Review';}});
 
     function validateReview(){
       const rating=ratingInput.value; const feedbackText=document.getElementById('feedback').value.trim();
@@ -288,7 +266,7 @@
     }
 
     async function payOptionalDakshina(){
-      if(!selectedAmount||selectedAmount<1){showStatus('warn','Please choose ₹51 or enter a custom amount.');return;}if(!validateReview())return;
+      if(!selectedAmount||selectedAmount<1){showStatus('warn','Please enter the Dakshina amount you wish to offer.');return;}if(!validateReview())return;
       submitReviewBtn.disabled=true;payBtn.disabled=true;payBtn.textContent='Opening secure payment...';
       const name=document.getElementById('customerName').value.trim();const phone=document.getElementById('customerPhone').value.trim();const rating=ratingInput.value?Number(ratingInput.value):null;const feedback=document.getElementById('feedback').value.trim();
       try{
@@ -300,10 +278,10 @@
           try{const vr=await fetch('/api/verify-isht-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(response)});const vd=await vr.json().catch(()=>({}));if(!vr.ok||!vd.success||vd.flow!=='verify-v6')throw new Error(vd.error||'Payment verification failed');
             try{await submitNetlify({paymentStatus:'paid_optional_dakshina',amount:String(selectedAmount),paymentId:response.razorpay_payment_id,orderId:response.razorpay_order_id});await submitReviewBlob({paymentStatus:'paid_optional_dakshina',amount:String(selectedAmount),paymentId:response.razorpay_payment_id,orderId:response.razorpay_order_id});}catch(e){}
             showStatus('ok','Thank you for your review and optional Dakshina. Opening a customer-only offer...');payBtn.textContent='Received ✓';goToNavagrah();
-          }catch(e){showStatus('error','Payment was received but automatic verification could not complete. Please contact us with Payment ID: '+(response.razorpay_payment_id||''));submitReviewBtn.disabled=false;payBtn.disabled=false;payBtn.textContent='Offer ₹'+selectedAmount+' Dakshina + Submit Review';}
-        },modal:{ondismiss:function(){showStatus('warn','Payment window closed. Nothing was charged. You can still submit your review without Dakshina.');submitReviewBtn.disabled=false;payBtn.disabled=false;payBtn.textContent='Offer ₹'+selectedAmount+' Dakshina + Submit Review';}}});
-        rzp.on('payment.failed',function(){showStatus('error','Payment did not complete. You can still submit your review without Dakshina.');submitReviewBtn.disabled=false;payBtn.disabled=false;payBtn.textContent='Offer ₹'+selectedAmount+' Dakshina + Submit Review';});rzp.open();
-      }catch(e){showStatus('error',e.message||'Could not start payment.');submitReviewBtn.disabled=false;payBtn.disabled=false;payBtn.textContent='Offer ₹'+selectedAmount+' Dakshina + Submit Review';}
+          }catch(e){showStatus('error','Payment was received but automatic verification could not complete. Please contact us with Payment ID: '+(response.razorpay_payment_id||''));submitReviewBtn.disabled=false;payBtn.disabled=false;payBtn.textContent='Offer ₹'+selectedAmount+' Dakshina & Submit Review';}
+        },modal:{ondismiss:function(){showStatus('warn','Payment window closed. Nothing was charged. You can still submit your review without Dakshina.');submitReviewBtn.disabled=false;payBtn.disabled=false;payBtn.textContent='Offer ₹'+selectedAmount+' Dakshina & Submit Review';}}});
+        rzp.on('payment.failed',function(){showStatus('error','Payment did not complete. You can still submit your review without Dakshina.');submitReviewBtn.disabled=false;payBtn.disabled=false;payBtn.textContent='Offer ₹'+selectedAmount+' Dakshina & Submit Review';});rzp.open();
+      }catch(e){showStatus('error',e.message||'Could not start payment.');submitReviewBtn.disabled=false;payBtn.disabled=false;payBtn.textContent='Offer ₹'+selectedAmount+' Dakshina & Submit Review';}
     }
     submitReviewBtn.addEventListener('click',submitReviewOnly);payBtn.addEventListener('click',payOptionalDakshina);
   </script>

@@ -1,0 +1,7 @@
+V9.2 - Simplified Review Page
+- Removed the three informational boxes below the review form.
+- Removed the ₹51 suggested Dakshina option on /review.
+- Kept one optional free-choice Dakshina amount field.
+- Review can still be submitted without Dakshina.
+- Review moderation/Blobs/admin backend unchanged.
+- Legacy /dakshina page unchanged for old ₹51-Shagun customers.
