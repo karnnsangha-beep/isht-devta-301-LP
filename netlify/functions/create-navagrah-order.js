@@ -50,7 +50,7 @@ exports.handler = async (event) => {
         regular_price: '299',
         customer_name: name,
         whatsapp_number: phone,
-        source: 'Post-Dakshina customer offer'
+        source: 'Isht Devta customer offer'
       }
     });
 

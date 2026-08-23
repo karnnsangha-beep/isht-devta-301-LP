@@ -1,0 +1,26 @@
+V9.1 - Separate Review + Legacy Dakshina URLs
+
+Main funnel:
+- Isht Devta report remains ₹201.
+- Navagrah Remedies remains optional ₹99 checkout add-on.
+- Main LP does not use the ₹51 + Dakshina sales model.
+
+New-customer review page:
+- https://ishtdevta.pexasuite.com/review
+- review.html is unchanged from validated V9.
+- Existing review moderation / Netlify Blobs system is unchanged.
+
+Legacy ₹51-customer Dakshina page:
+- https://ishtdevta.pexasuite.com/dakshina
+- Restores the last known-working V8.4 Dakshina UI.
+- ₹121 option.
+- ₹201 MOST COMMON option.
+- Custom Dakshina, minimum ₹121.
+- Uses a dedicated backend function: create-legacy-dakshina-order.js
+- After successful Dakshina payment it can continue to the Navagrah ₹99 customer offer.
+
+Isolation:
+- No review storage/moderation function was edited.
+- No V9 main checkout function was edited.
+- No V9 review.html code was edited.
+- No V9 Navagrah page/function was edited.

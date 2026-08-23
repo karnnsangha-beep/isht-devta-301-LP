@@ -1,0 +1,84 @@
+ISHT DEVTA V9 — STRESS TEST & VALIDATION RESULTS
+Date: 2026-08-23
+
+FINAL OFFER CONFIGURATION
+- Isht Devta Discovery Report: ₹201
+- Optional Navagrah Remedies checkout add-on: ₹99
+- Checkout total with add-on: ₹300
+- Main landing page contains NO Dakshina / ₹51 booking model messaging.
+- Customer review URL: /review
+- Old /dakshina and /dakshina.html redirect permanently to /review.
+- After review submission, navagrah.html opens automatically.
+- Review page retains optional Dakshina only as a secondary post-delivery option: ₹51 or custom whole-rupee amount; technical payable minimum ₹1.
+
+REVIEW SYSTEM REGRESSION PROTECTION
+The working V8.4 review backend was intentionally NOT modified. These files are byte-for-byte identical to the supplied working V8.4 build:
+  SAME AS WORKING V8.4  netlify/functions/admin-reviews.js  sha256=2b958a6184f22a3299ccd6f93b5fdbcdfe7b31d329b14e5f3203823299610e90
+  SAME AS WORKING V8.4  netlify/functions/moderate-review.js  sha256=adc12a6bffbff86e91126da16272409c06ec65071775af2a9f8dd68ecddb491d
+  SAME AS WORKING V8.4  netlify/functions/public-reviews.js  sha256=705b8c43c751ae462163137277140d207afb7f9a4511534c0af3158b69669763
+  SAME AS WORKING V8.4  netlify/functions/submit-review.js  sha256=605b1cceb356516a9c153a2fe96d11a756d13e5df66df9e0df3487ad94e75887
+  SAME AS WORKING V8.4  netlify/functions/review-health.js  sha256=0bcfe7e7c330c96cac8f66856e965c21402ef58502b939455269746f4808d3fc
+  SAME AS WORKING V8.4  netlify/lib/reviews-store.js  sha256=666b13ebe1d9d8504b5d783966852b07af83d92efe9eac60610c9c6db4cb9392
+  SAME AS WORKING V8.4  review-admin.html  sha256=289d1f36d3d8671c8e883f693f26bcde7ea57baa3d95d18304caa7c7008a6017
+- Moving OG + approved review strip code in index.html was also compared byte-for-byte and is unchanged.
+- OG 10 review fallback remains embedded in the landing page.
+- Approval / reject / feature / unpublish / reply behavior remains on review-admin.html.
+- Netlify Blobs eventual-consistency fix remains intact.
+
+PAYMENT BACKEND TESTS
+PASS — Main server ignores arbitrary client price and creates only:
+  • ₹20100 paise for report only
+  • ₹30000 paise for report + ₹99 add-on
+PASS — Main frontend calls /api/create-isht201-order and requires flow isht201-v9 plus exact selected amount before Razorpay opens.
+PASS — Legacy create-order.js and create-isht51-order.js are hardened to the same ₹201/₹300 server logic, preventing the old ₹51 backend from remaining active.
+PASS — Optional review-page Dakshina accepts whole-rupee ₹1+ only; ₹0, negative, decimal, non-numeric, and >₹500000 tests rejected.
+PASS — ₹51 optional review-page Dakshina produces 5100 paise.
+PASS — Standalone Navagrah order remains exactly ₹99 / 9900 paise.
+PASS — Razorpay signature verification tested with valid HMAC and rejected invalid signature.
+PASS — Razorpay keys remain read only from RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET environment variables.
+
+NAVAGRAH ADD-ON TESTS
+PASS — Checkout checkbox adds exactly ₹99 and changes total from ₹201 to ₹300.
+PASS — Razorpay notes record whether Navagrah add-on was selected.
+PASS — Netlify paid-order backup stores navagrah_addon and navagrah_amount.
+PASS — localStorage order stores navagrahAddon so navagrah.html can prevent a duplicate ₹99 purchase on the same browser.
+PASS — navagrah.html is still offered after review submission if it was not already added.
+
+REVIEW PAGE TESTS
+PASS — Customer-facing title/heading changed from Dakshina page to review-first page.
+PASS — Public-display checkbox wording retained: contact number and email are not disclosed.
+PASS — Public review still requires name + city + feedback when permission is checked.
+PASS — Review-only submission saves to existing Netlify Form backup and existing /api/submit-review moderation backend.
+PASS — Review-only submission redirects to Navagrah customer offer.
+PASS — Optional Dakshina payment also saves review and redirects to Navagrah after verified payment.
+PASS — Existing Netlify Form name is intentionally preserved for continuity of previous feedback records.
+
+ROUTING TESTS
+PASS — /review -> /review.html rewrite
+PASS — /review/ -> /review.html rewrite
+PASS — /dakshina -> /review 301
+PASS — /dakshina.html -> /review 301
+PASS — /api/* route preserved
+
+CONTENT / COPY TESTS
+PASS — index.html has no "Dakshina", "dakshina", "₹51", "Booking Shagun", "isht51-v6", or old create-isht51-order frontend call.
+PASS — index.html clearly shows ₹201 report price and optional ₹99 Navagrah add-on.
+PASS — Terms and Refund/Delivery pages updated from the ₹51 model to ₹201 + optional ₹99 add-on.
+PASS — Thank-you page no longer describes the ₹51 + Dakshina model.
+PASS — Thank-you WhatsApp order message includes Navagrah add-on when selected.
+
+CODE / STRUCTURE TESTS
+PASS — all Netlify function JS files: node --check
+PASS — netlify/lib JS: node --check
+PASS — all inline JavaScript in all HTML pages: node --check
+PASS — customer HTML pages parsed successfully
+PASS — duplicate HTML IDs checked on main interactive pages: none found
+PASS — all referenced local assets/pages checked: none missing
+PASS — every /api/... reference in index/review/navagrah/admin has a matching Netlify function file
+PASS — funnel-health reports ₹201 / ₹99 / ₹300 configuration
+
+IMPORTANT PRODUCTION NOTE
+No offline test can actually create a live Razorpay charge or reproduce Netlify's production environment-variable injection. The server-side amount logic, API contracts, signatures, routes, syntax, review regression hashes, and local integration paths have been tested before packaging. After the single deploy, the two no-charge checks to run are:
+1. /api/funnel-health — should report report_rupees 201 and report_with_addon_rupees 300.
+2. /api/review-health — should remain ok:true, blobs:true, reviewCount >= 10.
+Do not change REVIEW_ADMIN_SECRET or the existing Razorpay environment variables for this update.

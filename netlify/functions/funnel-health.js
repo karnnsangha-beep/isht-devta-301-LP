@@ -3,10 +3,11 @@ exports.handler = async () => ({
   headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
   body: JSON.stringify({
     ok: true,
-    version: 'isht-funnel-v6',
-    booking_rupees: 51,
-    dakshina_min_rupees: 121,
-    navagrah_rupees: 99,
-    functions: ['create-isht51-order','create-dakshina-v2-order','create-navagrah99-order','verify-isht-payment']
+    version: 'isht-funnel-v9-201',
+    report_rupees: 201,
+    navagrah_addon_rupees: 99,
+    report_with_addon_rupees: 300,
+    optional_review_dakshina_min_payable_rupees: 1,
+    functions: ['create-isht201-order','create-dakshina-v2-order','create-navagrah99-order','verify-isht-payment','review-health']
   })
 });

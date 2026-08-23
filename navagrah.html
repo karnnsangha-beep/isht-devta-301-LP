@@ -101,7 +101,7 @@
       <div class="kicker">A THANK-YOU OFFER FOR OUR CUSTOMERS</div>
       <h1>Continue Your Journey with <span style="color:var(--accent)">Navagrah Remedies</span></h1>
       <p>You have already experienced our work. As a valued customer, you can now get our Navagrah Remedies guide at a special customer price.</p>
-      <div class="customer-note"><b>Normally ₹299 • Your customer price ₹99</b><br>This offer appears only after your Isht Devta Dakshina payment.</div>
+      <div class="customer-note"><b>Normally ₹299 • Your customer price ₹99</b><br>This customer-only offer is also available after you submit your Isht Devta report review.</div>
     </div></section>
 
     <section><div class="wrap">
@@ -166,9 +166,16 @@
     const phoneEl=document.getElementById('phone');
     function showStatus(type,text){statusBox.className='status show '+type;statusBox.textContent=text;}
     try{
-      const saved=JSON.parse(sessionStorage.getItem('ishtDakshinaCustomer')||'{}');
-      if(saved.name) nameEl.value=saved.name;
+      const saved=JSON.parse(sessionStorage.getItem('ishtReviewCustomer')||sessionStorage.getItem('ishtDevtaOrder')||localStorage.getItem('ishtDevtaOrder')||'{}');
+      if(saved.name||saved.fullName) nameEl.value=saved.name||saved.fullName;
       if(saved.phone) phoneEl.value=saved.phone;
+    }catch(e){}
+    try{
+      const mainOrder=JSON.parse(localStorage.getItem('ishtDevtaOrder')||'{}')||{};
+      if(mainOrder.navagrahAddon===true){
+        showStatus('ok','Navagrah Remedies was already added to your Isht Devta order for ₹99. No second purchase is needed. 🙏');
+        buyBtn.disabled=true; buyBtn.textContent='Already Added to Your Order ✓';
+      }
     }catch(e){}
 
     async function saveOrder(paymentId,orderId){
@@ -193,7 +200,7 @@
         const rzp=new Razorpay({
           key:data.key_id,amount:data.amount,currency:data.currency||'INR',name:'DivyaLok Bhakti',description:'Navagrah Remedies • Customer Offer',order_id:data.order_id,
           prefill:{name,contact:phone},
-          notes:{payment_type:'Navagrah Remedies',customer_offer:'₹99 after Isht Devta Dakshina'},
+          notes:{payment_type:'Navagrah Remedies',customer_offer:'₹99 Isht Devta customer offer'},
           theme:{color:'#7f6cff'},
           handler:async function(response){
             showStatus('warn','Payment received. Verifying your order...');

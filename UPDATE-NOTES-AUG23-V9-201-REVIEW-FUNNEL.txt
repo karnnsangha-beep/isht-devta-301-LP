@@ -1,0 +1,20 @@
+V9 OFFER RESET
+
+Main offer
+- Isht Devta Discovery Report: ₹201 complete price.
+- No Dakshina messaging anywhere on the main landing page.
+- Navagrah Remedies restored as optional ₹99 checkout add-on (total ₹300 if selected).
+- Main payment backend is server-authoritative: only ₹201 or ₹300 can be created.
+
+Review flow
+- Customer-facing review URL: /review
+- Old /dakshina and /dakshina.html redirect to /review for backward compatibility.
+- Review moderation backend and Netlify Blobs files were preserved unchanged from working V8.4.
+- Review-only submission redirects to Navagrah customer offer.
+- Optional post-delivery Dakshina remains only on the review page: ₹51 or custom whole-rupee amount (processor minimum ₹1).
+- Optional Dakshina is not mentioned on the main landing page.
+
+Navagrah
+- ₹99 add-on available at main checkout.
+- ₹99 customer offer remains available after review submission.
+- If the same browser already bought the add-on with the main order, navagrah.html detects it and prevents a duplicate purchase.

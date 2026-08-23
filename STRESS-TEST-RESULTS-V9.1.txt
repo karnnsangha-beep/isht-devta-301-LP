@@ -1,0 +1,14 @@
+PASS: Review page, review admin, Netlify Blobs store, and all review moderation functions are byte-for-byte unchanged from validated V9.
+PASS: ₹201 main LP, ₹99 checkout add-on, review optional-Dakshina backend, Navagrah page, verification and funnel-health are unchanged from validated V9.
+PASS: /review and /dakshina are separate live 200-rewrite URLs; no Dakshina-to-review redirect remains.
+PASS: Legacy Dakshina page restores ₹121, ₹201 MOST COMMON and custom ≥₹121, uses its own endpoint and keeps Navagrah continuation.
+PASS: Legacy Dakshina server independently enforces minimum ₹121 and dakshina-v6 flow marker.
+PASS: All Netlify backend JavaScript passes node --check.
+PASS: All inline JavaScript in top-level HTML pages passes syntax checking.
+PASS: Every /api endpoint referenced by the HTML has a matching Netlify function.
+PASS: All local HTML page/image/payment-icon references resolve.
+PASS: Main LP is clean ₹201 pricing with no Dakshina messaging and preserves ₹99 Navagrah add-on / ₹300 combined total.
+PASS: New-customer /review page remains review-first and still continues to Navagrah after review submission.
+PASS: Dynamic server tests passed: ₹201 report, ₹300 report+Navagrah, legacy ₹121/₹201/custom ≥₹121, review optional ₹1+/₹51, and standalone Navagrah ₹99.
+PASS: Legacy and new-customer optional Dakshina payment paths are isolated and cannot conflict on flow markers/minimums.
+PASS: Old customer /dakshina remains live independently from /review.
