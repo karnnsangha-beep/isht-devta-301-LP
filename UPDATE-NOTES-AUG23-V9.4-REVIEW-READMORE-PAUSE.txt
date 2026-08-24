@@ -1,0 +1,9 @@
+V9.4 review carousel UX update
+
+- Customer reviews show maximum 5 lines when collapsed.
+- Long reviews show Read more ›.
+- Expanded reviews are vertically scrollable and completely pause/lock the moving strip.
+- Collapse ↑ returns review to 5 lines and resumes the strip.
+- DivyaLok Bhakti replies also completely lock the strip while open and resume only after Collapse ↑.
+- Live review API refreshes are deferred while expanded content is being read.
+- Only index.html behavior/styles changed. Review backend, payments, review page, Dakshina page and admin dashboard are unchanged.

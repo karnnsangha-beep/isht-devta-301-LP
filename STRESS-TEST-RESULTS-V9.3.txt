@@ -1,0 +1,19 @@
+V9.3 REVIEW INDEPENDENT - STRESS TEST RESULTS
+
+PASS - Review can be submitted without Dakshina.
+PASS - Review-only button is always a separate action.
+PASS - Review-only flow stores paymentStatus=review_only and amount=0.
+PASS - Review-only flow does not call Razorpay order creation.
+PASS - Optional Dakshina has its own separate button and amount field.
+PASS - Optional Dakshina accepts any whole-rupee amount from ₹1 upward (Razorpay payment requirement only).
+PASS - Working Netlify Blobs review backend unchanged byte-for-byte.
+PASS - Review admin dashboard unchanged byte-for-byte.
+PASS - All payment backend functions unchanged byte-for-byte from V9.2.
+PASS - Legacy /dakshina page unchanged.
+PASS - Main ₹201 page unchanged.
+PASS - Inline review page JavaScript syntax checked with Node.
+PASS - All backend JavaScript syntax checked with Node.
+
+Customer-facing review actions:
+1. Submit Review Only -> no payment required.
+2. Submit Review + Optional Dakshina -> requires user to enter an amount, then opens Razorpay.

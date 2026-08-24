@@ -1,0 +1,40 @@
+V9.4 REVIEW READ-MORE / PAUSE — STRESS TEST & VALIDATION
+Date: 2026-08-23
+
+SCOPE CONTROL
+PASS — Only index.html changed among all pre-existing V9.3 files.
+PASS — review.html, legacy dakshina.html, review-admin.html, navagrah.html and redirect rules are byte-for-byte unchanged.
+PASS — Netlify Blobs review storage/moderation functions are byte-for-byte unchanged.
+PASS — Razorpay/payment backend functions are byte-for-byte unchanged.
+PASS — The 10 embedded OG review records are byte-for-byte unchanged.
+
+REVIEW CARD BEHAVIOR
+PASS — Collapsed customer review text is hard-clamped to a maximum of 5 lines.
+PASS — Long-review detection measures actual rendered text height using an invisible same-width clone, rather than a character-count guess.
+PASS — Only reviews exceeding 5 rendered lines get the “Read more ›” control.
+PASS — “Read more ›” expands into a bounded vertical scroll area instead of enlarging the card to the full review length.
+PASS — Expanded review shows “Collapse ↑”.
+PASS — While any customer review is expanded, auto-scroll is disabled and horizontal drag/wrap behavior is disabled.
+PASS — Expanded customer review supports vertical wheel/touch scrolling inside the text area.
+PASS — Collapsing the review releases the strip lock and automatic movement resumes.
+
+DIVYALOK BHAKTI REPLY BEHAVIOR
+PASS — Reply remains collapsed behind “Reply from DivyaLok Bhakti ›” by default.
+PASS — Opening a reply locks the review strip completely.
+PASS — Long replies use their own bounded vertical scroll area.
+PASS — Open reply control changes to “Collapse ↑”.
+PASS — Strip movement resumes only after all expanded review/reply content has been collapsed.
+PASS — If both a customer review and a reply are open, collapsing only one does not unlock the strip.
+
+LIVE REVIEW UPDATE PROTECTION
+PASS — A live public-review refresh cannot replace/destroy a card while expanded content is being read; the update is queued until collapse.
+PASS — OG review fallback behavior remains intact if the public review API is unavailable.
+
+CODE / PACKAGE VALIDATION
+PASS — All inline JavaScript in index.html passed node --check syntax validation.
+PASS — All Netlify backend .js files passed node --check syntax validation.
+PASS — Critical unchanged-file SHA-256 comparisons passed.
+PASS — Main ₹201 / Navagrah / review submission backend was not modified by this update.
+
+VALIDATION NOTE
+The available Chromium runtime is enterprise-policy blocked from opening local/file/data test URLs, so no automated local-browser click-test claim is being made. To reduce regression risk, this release is constrained to index.html only, with full source-diff audit, unchanged-file hash comparison, syntax validation, actual rendered-line measurement logic, and explicit strip-lock state handling.
