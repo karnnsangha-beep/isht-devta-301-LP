@@ -1,0 +1,51 @@
+ISHT DEVTA LP V9.7 FINAL - VALIDATION
+Date: 2026-08-24
+
+CHANGES MADE
+1. Navagrah checkout thumbnail rebuilt from the existing approved Navagrah artwork.
+   - Crop is focused on NAVAGRAH REMEDIES title and ₹99 / ₹299 price reduction.
+   - No more random middle-of-image crop.
+   - 560x560 WebP; center positioning locked.
+2. Review strip slowed down.
+   - Mobile: 24 px/second.
+   - Desktop: 38 px/second.
+   - Existing Read more / Collapse pause-lock behavior preserved.
+3. Mobile sticky CTA updated.
+   - Left button is always: Check Reviews -> #testimonials.
+   - Right button before checkout: Get Report ₹201.
+   - Once checkout/details section is reached and fields are incomplete: Enter Details.
+   - Once all required details are valid/filled: Pay Now.
+   - Enter Details focuses the first incomplete field.
+   - Pay Now uses the existing startPayment() flow.
+4. Previously requested removals remain removed:
+   - ONE CLEAR PRICE section.
+   - MADE TO BE USEFUL, NOT COMPLICATED section.
+5. Existing checkout conversion layout preserved:
+   - bright gold Pay ₹201 Securely button directly under price.
+   - compact Navagrah add-on under primary payment CTA.
+   - desktop customer-details and secure-payment cards use equal grid columns and stretch alignment.
+
+REGRESSION PROTECTION
+- Compared against V9.6 base.
+- Only these existing files changed:
+  * index.html
+  * assets/navagrah-remedies-thumb.webp
+- Netlify functions: byte-for-byte unchanged.
+- Review backend / Blobs / moderation / admin: unchanged.
+- Review page: unchanged.
+- Legacy Dakshina page: unchanged.
+- Razorpay order/verification functions: unchanged.
+
+VALIDATION PASSED
+- All HTML parsed successfully.
+- No duplicate IDs found.
+- All local image/script asset references checked.
+- All inline JavaScript passed node --check.
+- All Netlify function JavaScript passed node --check.
+- Every /api/* reference has a matching Netlify function.
+- Review expansion lock selector still covers both expanded customer review and expanded DivyaLok reply.
+- Mobile review speed rule confirmed at 24 px/sec.
+- Sticky CTA states and targets confirmed in source.
+- Focused Navagrah thumbnail confirmed 560x560 and visually inspected at reduced thumbnail size.
+- Removed sections confirmed absent.
+- ZIP integrity test passed.

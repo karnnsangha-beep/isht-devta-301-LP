@@ -14,7 +14,7 @@ exports.handler=async(event)=>{
     const body=JSON.parse(event.body||'{}'), amountRupees=Number(body.amount);
     if(!Number.isInteger(amountRupees)||amountRupees<1||amountRupees>500000)return{statusCode:400,headers,body:JSON.stringify({error:'Optional Dakshina must be a whole rupee amount of ₹1 or more.',flow:'review-dakshina-v9'})};
     const clean=(v,m=250)=>String(v||'').trim().slice(0,m); const rating=Number(body.rating); const ratingText=Number.isInteger(rating)&&rating>=1&&rating<=5?`${rating}/5`:'Not provided'; const amountPaise=amountRupees*100;
-    const order=await createRazorpayOrder(key_id,key_secret,{amount:amountPaise,currency:'INR',receipt:`review_dak_${Date.now()}`.slice(0,40),notes:{payment_type:'Optional Dakshina after Isht Devta Review',funnel_version:'review-dakshina-v9',dakshina_amount:String(amountRupees),customer_name:clean(body.name,100),whatsapp_number:clean(body.phone,30),rating:ratingText,feedback_preview:clean(body.feedback,250),source:'Review page'}});
+    const order=await createRazorpayOrder(key_id,key_secret,{amount:amountPaise,currency:'INR',receipt:`review_dak_${Date.now()}`.slice(0,40),notes:{payment_type:'Optional Dakshina after Isht Devta Review',funnel_version:'review-dakshina-v9',dakshina_amount:String(amountRupees),rating:ratingText,source:'Review page'}});
     if(Number(order.amount)!==amountPaise)throw new Error('Safety check failed: optional Dakshina amount mismatch');
     return{statusCode:200,headers,body:JSON.stringify({flow:'review-dakshina-v9',order_id:order.id,amount:amountPaise,currency:'INR',key_id})};
   }catch(error){return{statusCode:500,headers,body:JSON.stringify({error:error.message||'Could not create optional Dakshina order',flow:'review-dakshina-v9'})};}

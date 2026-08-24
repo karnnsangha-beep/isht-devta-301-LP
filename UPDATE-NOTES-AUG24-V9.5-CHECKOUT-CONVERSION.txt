@@ -1,0 +1,16 @@
+V9.5 CHECKOUT CONVERSION UPDATE
+
+1. Removed the ONE CLEAR PRICE section entirely.
+2. Removed the MADE TO BE USEFUL, NOT COMPLICATED section entirely.
+3. Rebuilt checkout payment card mobile-first:
+   - ₹201 shown prominently
+   - bright gold Pay ₹201 Securely button immediately under price
+   - concise WhatsApp delivery line only
+   - compact, subdued ₹99 Navagrah add-on under payment button
+   - payment button updates to ₹300 when add-on is selected
+   - compact total summary appears only when add-on is selected
+   - payment-logo row removed from checkout to reduce distraction
+4. Desktop customer-details and secure-payment cards now align at the same top and stretch to the same row height.
+5. Review+optional-Dakshina Razorpay order notes no longer include customer review/name text. This prevents Razorpay notes UTF-8 failures while leaving the actual review storage and moderation backend untouched.
+6. Review-only flow remains independent and unchanged.
+7. Review moderation/Blobs/admin/public-review files were not modified.

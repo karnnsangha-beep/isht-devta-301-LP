@@ -1,0 +1,32 @@
+V9.6 NAVAGRAH THUMBNAIL FOCUS FIX - VALIDATION
+Date: 2026-08-24
+
+CHANGE SCOPE
+- Added assets/navagrah-remedies-thumb.webp: square crop focused only on Navagrah deity/planet artwork.
+- index.html checkout add-on now uses this dedicated thumbnail.
+- No review, payment, admin, Dakshina, Navagrah standalone, routing, or Netlify backend logic changed.
+
+IMAGE VALIDATION
+- Thumbnail dimensions: 560x560
+- Square aspect ratio: PASS
+
+REFERENCE VALIDATION
+- Checkout references dedicated thumbnail: PASS
+- Intrinsic square dimensions set: PASS
+
+BACKEND IMMUTABILITY
+- Critical unchanged files checked: 24
+- Critical backend/review/payment files byte-for-byte unchanged: PASS
+
+JAVASCRIPT SYNTAX
+- All Netlify function JS syntax: PASS
+- Inline scripts extracted: 3
+- index.html inline JS syntax: PASS
+
+FILE DIFFERENCE VS V9.5
+- STRESS-TEST-RESULTS-V9.6.txt
+- assets/navagrah-remedies-thumb.webp
+- index.html
+- Total changed/new files before this report: 2
+
+RESULT: PASS

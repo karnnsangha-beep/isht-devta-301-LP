@@ -707,6 +707,87 @@ section { padding:62px 0; }
       .review-quote.expanded{max-height:230px}
       .review-reply.open{max-height:210px}
     }
+  
+
+    /* V9.5 checkout conversion pass: mobile-first, bright primary payment CTA, compact add-on */
+    #order .section-head{margin-bottom:18px}
+    #order .section-head h2{margin-bottom:0}
+    #order .order-wrap{align-items:stretch;gap:20px}
+    #order .order-wrap>.panel{height:100%;min-height:100%;}
+    #order .panel{padding:24px}
+    #order .pay-card{position:static!important;display:flex;flex-direction:column;}
+    #order .v95-payment-heading{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-size:21px;}
+    #order .v95-lock{width:26px;height:26px;display:grid;place-items:center;border:1px solid rgba(240,201,111,.42);border-radius:50%;font-size:11px;color:#f0c96f;background:rgba(240,201,111,.06)}
+    #order .v95-price-box{padding:18px 18px 16px!important;margin:0!important;border-radius:20px!important;background:linear-gradient(155deg,rgba(21,21,21,.96),rgba(7,7,7,.98))!important;border:1px solid rgba(240,201,111,.28)!important;overflow:visible!important;}
+    #order .v95-price-box .label{font-size:12px!important;color:#bdb4a4!important}
+    #order .v95-price-box .title{font-size:22px!important;line-height:1.18;margin-top:4px!important;color:#fff!important}
+    #order .v95-price-box .total{font-size:64px!important;line-height:.95!important;margin:16px 0 10px!important;color:#f2c85e!important;text-shadow:0 4px 24px rgba(240,190,50,.22)}
+    #order .v95-delivery-line{font-size:13px;line-height:1.45;color:#c8c0b4;margin:0 0 16px;}
+    #order .v95-pay-btn{position:relative!important;width:100%!important;min-height:68px!important;padding:15px 54px 15px 20px!important;border-radius:22px!important;border:1px solid #ffe49a!important;background:linear-gradient(180deg,#ffe18a 0%,#f3c75d 52%,#dcae3e 100%)!important;color:#090909!important;font:900 23px/1.08 Inter,system-ui,sans-serif!important;box-shadow:0 0 0 2px rgba(240,201,111,.22),0 0 30px rgba(242,190,59,.44),0 18px 38px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.9)!important;transform:translateZ(0);}
+    #order .v95-pay-btn:hover{filter:brightness(1.04);transform:translateY(-1px)}
+    #order .v95-pay-btn:active{transform:translateY(1px)}
+    #order .v95-pay-btn:disabled{filter:saturate(.7);box-shadow:0 0 18px rgba(242,190,59,.25)!important}
+    #order .v95-arrow{position:absolute;right:20px;top:50%;transform:translateY(-52%);font-size:44px;font-weight:400;line-height:1;color:#111}
+    #order .v95-secure-copy{margin:13px 0 0!important;font-size:12.5px!important;line-height:1.4!important;color:#bdb6aa!important;text-align:center!important}
+    #order .v95-addon{display:grid!important;grid-template-columns:84px minmax(0,1fr) 34px!important;gap:14px!important;align-items:center!important;margin:14px 0 0!important;padding:12px!important;border-radius:18px!important;background:linear-gradient(155deg,rgba(18,18,18,.86),rgba(8,8,8,.92))!important;border:1px solid rgba(240,201,111,.20)!important;box-shadow:none!important;overflow:visible!important;}
+    #order .v95-addon::after{display:none!important}
+    #order .v95-addon-thumb{width:84px!important;height:84px!important;aspect-ratio:1/1!important;object-fit:cover!important;border-radius:12px!important;border:1px solid rgba(240,201,111,.18)!important;background:#080808!important}
+    #order .v95-addon-copy strong{display:block;font-size:15px;line-height:1.22;color:#fff;margin:0 0 2px}
+    #order .v95-addon-price{font-size:23px;line-height:1.1;font-weight:900;color:#f0c96f;margin:3px 0 4px}
+    #order .v95-addon-copy p{margin:0!important;font-size:12px!important;color:#9f998f!important}
+    #order .v95-addon-toggle{width:32px;height:32px;display:grid;place-items:center;cursor:pointer;align-self:center;}
+    #order .v95-addon-toggle input{position:absolute;opacity:0;pointer-events:none}
+    #order .v95-checkmark{width:27px;height:27px;border:2px solid rgba(232,220,194,.38);border-radius:8px;background:#0b0b0b;position:relative;transition:.18s ease}
+    #order .v95-addon-toggle input:checked + .v95-checkmark{background:#f0c96f;border-color:#f7df9a;box-shadow:0 0 16px rgba(240,201,111,.28)}
+    #order .v95-addon-toggle input:checked + .v95-checkmark::after{content:'✓';position:absolute;inset:0;display:grid;place-items:center;color:#0b0b0b;font-weight:1000;font-size:18px}
+    #order .v95-addon-summary{grid-column:1/-1!important;margin-top:0!important;padding:10px 3px 1px!important;border-top:1px solid rgba(240,201,111,.13)!important;font-size:12.5px!important;color:#bdb6aa!important}
+    #order .v95-addon-summary strong{color:#f0c96f;font-size:17px}
+    #order .payment-status{margin-top:10px}
+
+    @media(min-width:781px){
+      #order .order-wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;}
+      #order .order-wrap>.panel{align-self:stretch;}
+      #order .pay-card{top:auto!important;}
+    }
+    @media(max-width:780px){
+      #order{padding-top:42px!important}
+      #order .wrap{width:min(100% - 22px,var(--max))!important}
+      #order .section-head{margin-bottom:14px!important}
+      #order .section-head h2{font-size:26px!important;line-height:1.13!important}
+      #order .order-wrap{grid-template-columns:1fr!important;gap:12px!important}
+      #order .panel{padding:18px!important;border-radius:23px!important}
+      #order .panel>h3{font-size:20px!important;margin-bottom:14px!important}
+      #order .inline-grid{grid-template-columns:1fr!important;gap:10px!important}
+      #order .form{gap:10px!important}
+      #order .field input,#order .field select,#order .form-price-display{min-height:48px!important;padding:12px 13px!important;border-radius:13px!important}
+      #order .v95-price-box{padding:16px 14px 14px!important;border-radius:18px!important}
+      #order .v95-price-box .title{font-size:20px!important}
+      #order .v95-price-box .total{font-size:58px!important;margin:14px 0 8px!important}
+      #order .v95-delivery-line{font-size:12.5px;margin-bottom:14px}
+      #order .v95-pay-btn{min-height:64px!important;border-radius:20px!important;font-size:21px!important;padding-left:14px!important;padding-right:46px!important}
+      #order .v95-arrow{right:16px;font-size:39px}
+      #order .v95-secure-copy{font-size:11.5px!important;margin-top:11px!important}
+      #order .v95-addon{grid-template-columns:72px minmax(0,1fr) 32px!important;gap:11px!important;padding:10px!important;margin-top:11px!important;border-radius:16px!important}
+      #order .v95-addon-thumb{width:72px!important;height:72px!important;border-radius:10px!important}
+      #order .v95-addon-copy strong{font-size:14px}
+      #order .v95-addon-price{font-size:21px}
+      #order .v95-addon-copy p{font-size:11.5px!important}
+      #order .v95-checkmark{width:25px;height:25px;border-radius:7px}
+      #order .v95-addon-summary{padding-top:8px!important;font-size:11.5px!important}
+      #order .v95-addon-summary strong{font-size:16px}
+    }
+    #order .v95-addon-thumb{object-position:center center!important;}
+    .mobile-cta #mobileActionBtn{width:100%;}
+
+    @media(max-width:390px){
+      #order .panel{padding:15px!important}
+      #order .v95-price-box .title{font-size:19px!important}
+      #order .v95-price-box .total{font-size:54px!important}
+      #order .v95-pay-btn{font-size:20px!important;min-height:61px!important}
+      #order .v95-addon{grid-template-columns:66px minmax(0,1fr) 30px!important;gap:9px!important}
+      #order .v95-addon-thumb{width:66px!important;height:66px!important}
+    }
+
   </style>
 
 </head>
@@ -767,22 +848,6 @@ section { padding:62px 0; }
         </div>
       </div>
     </section>
-
-    <section class="payment-model" id="payment-model">
-      <div class="wrap">
-        <div class="glass payment-model-card">
-          <div class="payment-model-kicker"><span class="en">ONE CLEAR PRICE</span><span class="hi">एक स्पष्ट कीमत</span></div>
-          <h2><span class="en">Your complete personalised Isht Devta report for ₹201.</span><span class="hi">आपकी पूरी व्यक्तिगत इष्ट देवता रिपोर्ट ₹201 में।</span></h2>
-          <div class="payment-model-grid">
-            <div class="payment-model-step"><span class="pm-num">1</span><b><span class="en">Submit your birth details</span><span class="hi">अपना जन्म विवरण भरें</span></b><p><span class="en">Give us the details needed to prepare your personalised guidance.</span><span class="hi">अपनी व्यक्तिगत रिपोर्ट के लिए आवश्यक जन्म विवरण दें।</span></p></div>
-            <div class="payment-model-step"><span class="pm-num">2</span><b><span class="en">Pay ₹201 securely</span><span class="hi">₹201 सुरक्षित भुगतान करें</span></b><p><span class="en">Your complete Isht Devta Discovery Report is covered in this price.</span><span class="hi">इस कीमत में आपकी पूरी इष्ट देवता डिस्कवरी रिपोर्ट शामिल है।</span></p></div>
-            <div class="payment-model-step"><span class="pm-num">3</span><b><span class="en">Receive it on WhatsApp</span><span class="hi">WhatsApp पर रिपोर्ट पाएं</span></b><p><span class="en">Your personalised PDF is delivered within 24-48 hours.</span><span class="hi">आपकी व्यक्तिगत PDF 24-48 घंटे में भेजी जाती है।</span></p></div>
-          </div>
-          <div class="no-pressure-note"><span>✨</span><div><b><span class="en">No confusing payment model.</span><span class="hi">कोई उलझा हुआ भुगतान मॉडल नहीं।</span></b><p><span class="en">₹201 is the complete price for the Isht Devta Discovery Report. Navagrah Remedies is a separate optional ₹99 add-on.</span><span class="hi">₹201 इष्ट देवता डिस्कवरी रिपोर्ट की पूरी कीमत है। नवग्रह उपाय अलग वैकल्पिक ₹99 ऐड-ऑन है।</span></p></div></div>
-        </div>
-      </div>
-    </section>
-
     <section id="inside">
       <div class="wrap">
         <div class="section-head">
@@ -847,21 +912,6 @@ section { padding:62px 0; }
         </div>
       </div>
     </section>
-
-    <section>
-      <div class="wrap">
-        <div class="section-head">
-          <h2><span class="en">Made to be useful, not complicated</span><span class="hi">सरल और उपयोगी मार्गदर्शन</span></h2>
-          <p><span class="en">A clear personalised report you can actually use in your daily devotional practice.</span><span class="hi">एक स्पष्ट व्यक्तिगत रिपोर्ट जिसे आप अपनी दैनिक भक्ति में उपयोग कर सकते हैं।</span></p>
-        </div>
-        <div class="trust-grid">
-          <div class="trust-card"><b><span class="en">Complete personalised guidance</span><span class="hi">पूरी व्यक्तिगत गाइड</span></b><span><span class="en">Your Isht direction, explanation, mantra, worship guidance and 21-day sadhana path are included.</span><span class="hi">इष्ट दिशा, व्याख्या, मंत्र, पूजा मार्गदर्शन और 21-दिन साधना पथ शामिल हैं।</span></span></div>
-          <div class="trust-card"><b><span class="en">Manual review</span><span class="hi">मैनुअल समीक्षा</span></b><span><span class="en">The report is prepared from the birth details you submit rather than delivered as an instant generic result.</span><span class="hi">रिपोर्ट आपके दिए जन्म विवरण से तैयार होती है, यह कोई तुरंत मिलने वाला सामान्य परिणाम नहीं है।</span></span></div>
-          <div class="trust-card"><b><span class="en">Practical devotional direction</span><span class="hi">व्यावहारिक भक्ति दिशा</span></b><span><span class="en">The report gives you a simple starting point for mantra, offerings, routine and devotional discipline.</span><span class="hi">रिपोर्ट मंत्र, अर्पण, दिनचर्या और साधना अनुशासन की सरल शुरुआत देती है।</span></span></div>
-        </div>
-      </div>
-    </section>
-
     <section id="testimonials">
       <div class="wrap">
         <div class="section-head">
@@ -891,7 +941,7 @@ section { padding:62px 0; }
       <div class="wrap">
         <div class="section-head">
           <h2><span class="en">Enter your details & get the report for ₹201</span><span class="hi">अपना विवरण भरें और ₹201 में रिपोर्ट पाएं</span></h2>
-          <p><span class="en">One clear price for your complete personalised Isht Devta Discovery Report. Optional Navagrah Remedies can be added for ₹99.</span><span class="hi">आपकी पूरी व्यक्तिगत इष्ट देवता डिस्कवरी रिपोर्ट की स्पष्ट कीमत ₹201 है। चाहें तो ₹99 में नवग्रह उपाय जोड़ सकते हैं।</span></p>
+
         </div>
         <div class="order-wrap">
           <div class="glass panel">
@@ -915,32 +965,29 @@ section { padding:62px 0; }
               <label class="field"><span class="en">Report Price</span><span class="hi">रिपोर्ट की कीमत</span><div class="form-price-display" id="formPriceDisplay">₹201</div></label>
             </form>
           </div>
-          <div class="glass panel pay-card">
-            <h3><span class="en">Secure payment</span><span class="hi">सुरक्षित भुगतान</span></h3>
-            <div class="price-box">
+          <div class="glass panel pay-card v95-pay-card">
+            <h3 class="v95-payment-heading"><span class="v95-lock" aria-hidden="true">▣</span><span class="en">Secure payment</span><span class="hi">सुरक्षित भुगतान</span></h3>
+            <div class="price-box v95-price-box">
               <div class="label"><span class="en">Your order</span><span class="hi">आपका ऑर्डर</span></div>
               <div class="title"><span class="en">Isht Devta Discovery Report</span><span class="hi">इष्ट देवता डिस्कवरी रिपोर्ट</span></div>
               <div class="total" id="payCardTotal">₹201</div>
-              <p><span class="en"><b>Complete report: ₹201.</b> Your personalised PDF is prepared carefully and delivered on WhatsApp within 24-48 hours.</span><span class="hi"><b>पूरी रिपोर्ट: ₹201।</b> आपकी व्यक्तिगत PDF सावधानी से तैयार करके 24-48 घंटे में WhatsApp पर भेजी जाएगी।</span></p>
-              <div class="choice-note"><span>📲</span><span><span class="en">Delivery is digital on WhatsApp. Please enter an active WhatsApp number and accurate birth details.</span><span class="hi">डिलीवरी WhatsApp पर डिजिटल रूप में होगी। कृपया सही WhatsApp नंबर और सही जन्म विवरण भरें।</span></span></div>
+              <div class="v95-delivery-line"><span class="en">Personalised report • WhatsApp delivery in 24-48 hours</span><span class="hi">व्यक्तिगत रिपोर्ट • WhatsApp पर 24-48 घंटे में डिलीवरी</span></div>
+              <button class="btn full v95-pay-btn" id="payBtn" type="button"><span class="en">Pay ₹201 Securely</span><span class="hi">₹201 सुरक्षित भुगतान करें</span><span class="v95-arrow" aria-hidden="true">›</span></button>
+              <div class="secure-copy v95-secure-copy"><span aria-hidden="true">♢</span> <span class="en">UPI • Cards • Net banking via Razorpay</span><span class="hi">UPI • कार्ड • नेट बैंकिंग Razorpay के माध्यम से</span></div>
             </div>
-            <div class="bump-offer" id="navagrahAddonBox">
-              <div class="bump-head">
-                <img class="bump-thumb" src="assets/navagrah-remedies-addon.webp" alt="Navagrah Remedies add-on" width="1200" height="675" loading="lazy">
-                <div class="bump-copy">
-                  <strong><span class="en">Add Navagrah Remedies for ₹99 <span class="bump-was">₹299</span></span><span class="hi">₹99 में नवग्रह उपाय जोड़ें <span class="bump-was">₹299</span></span></strong>
-                  <p><span class="en">A separate digital guide with simple day-wise remedies, offerings and devotional steps for all 9 Grahas.</span><span class="hi">सभी 9 ग्रहों के लिए सरल दिन-वार उपाय, अर्पण और भक्ति चरणों की अलग डिजिटल गाइड।</span></p>
-                </div>
+            <div class="bump-offer v95-addon" id="navagrahAddonBox">
+              <img class="bump-thumb v95-addon-thumb" src="assets/navagrah-remedies-thumb.webp" alt="Navagrah Remedies add-on" width="560" height="560" loading="lazy">
+              <div class="v95-addon-copy">
+                <strong><span class="en">Add Navagrah Remedies</span><span class="hi">नवग्रह उपाय जोड़ें</span></strong>
+                <div class="v95-addon-price">+₹99</div>
+                <p><span class="en">Optional add-on</span><span class="hi">वैकल्पिक ऐड-ऑन</span></p>
               </div>
-              <label class="bump-check" for="navagrahAddonCheck">
+              <label class="v95-addon-toggle" for="navagrahAddonCheck" aria-label="Add Navagrah Remedies for ₹99">
                 <input id="navagrahAddonCheck" type="checkbox">
-                <span><b><span class="en">Yes, add Navagrah Remedies for ₹99</span><span class="hi">हाँ, ₹99 में नवग्रह उपाय जोड़ें</span></b><small><span class="en">Optional add-on. Your total becomes ₹300.</span><span class="hi">वैकल्पिक ऐड-ऑन। कुल ₹300 होगा।</span></small></span>
+                <span class="v95-checkmark" aria-hidden="true"></span>
               </label>
-              <div class="addon-summary" id="addonSummary"><span><span class="en">Report ₹201 + Navagrah ₹99</span><span class="hi">रिपोर्ट ₹201 + नवग्रह ₹99</span></span><strong>₹300</strong></div>
+              <div class="addon-summary v95-addon-summary" id="addonSummary"><span><span class="en">Report ₹201 + Navagrah ₹99</span><span class="hi">रिपोर्ट ₹201 + नवग्रह ₹99</span></span><strong>₹300</strong></div>
             </div>
-            <button class="btn blue full" id="payBtn" type="button"><span class="en">Pay ₹201 Securely</span><span class="hi">₹201 सुरक्षित भुगतान करें</span></button>
-            <div class="pay-icons"><img src="assets/payment/gpay.svg" alt="Google Pay" /><img src="assets/payment/phonepe.svg" alt="PhonePe" /><img src="assets/payment/paytm.svg" alt="Paytm" /><img src="assets/payment/upi.svg" alt="UPI" /></div>
-            <div class="secure-copy"><span class="en">UPI, cards and net banking supported through Razorpay checkout.</span><span class="hi">Razorpay checkout के माध्यम से UPI, कार्ड और नेट बैंकिंग समर्थित हैं।</span></div>
             <div class="payment-status" id="paymentStatus"></div>
           </div>
         </div>
@@ -978,7 +1025,7 @@ section { padding:62px 0; }
   </footer>
 
   <button class="scroll-chevrons" id="scrollChevrons" type="button" aria-label="Jump to details and payment"><img src="assets/scroll-chevrons.png" alt="" aria-hidden="true"></button>
-  <div class="mobile-cta"><div class="mobile-cta-grid"><a class="btn secondary" href="#process"><span class="en">See Process</span><span class="hi">प्रक्रिया देखें</span></a><a class="btn primary" href="#order"><span class="en">Get Report ₹201</span><span class="hi">रिपोर्ट ₹201</span></a></div></div>
+  <div class="mobile-cta"><div class="mobile-cta-grid"><a class="btn secondary" href="#testimonials"><span class="en">Check Reviews</span><span class="hi">रिव्यू देखें</span></a><button class="btn primary" id="mobileActionBtn" type="button"><span class="en" id="mobileActionEn">Get Report ₹201</span><span class="hi" id="mobileActionHi">रिपोर्ट ₹201</span></button></div></div>
 
   <script>
     (function(){
@@ -1011,12 +1058,12 @@ section { padding:62px 0; }
     function selectedTotal() { return BASE_PRICE + (navagrahAddonCheck && navagrahAddonCheck.checked ? NAVAGRAH_ADDON_PRICE : 0); }
     function payButtonMarkup() {
       const total=selectedTotal();
-      return '<span class="en">Pay ₹'+total+' Securely</span><span class="hi">₹'+total+' सुरक्षित भुगतान करें</span>';
+      return '<span class="en">Pay ₹'+total+' Securely</span><span class="hi">₹'+total+' सुरक्षित भुगतान करें</span><span class="v95-arrow" aria-hidden="true">›</span>';
     }
     function updatePricingUI() {
       const total=selectedTotal();
-      if (formPriceDisplay) formPriceDisplay.textContent = total===BASE_PRICE ? '₹201' : '₹201 + ₹99 = ₹300';
-      if (payCardTotal) payCardTotal.textContent = '₹'+total;
+      if (formPriceDisplay) formPriceDisplay.textContent = '₹201';
+      if (payCardTotal) payCardTotal.textContent = '₹201';
       if (payBtn && !payBtn.disabled) payBtn.innerHTML = payButtonMarkup();
       if (addonSummary) addonSummary.classList.toggle('show', total>BASE_PRICE);
     }
@@ -1199,7 +1246,7 @@ section { padding:62px 0; }
       let lastSignature='';
       let pendingReviewUpdate=null;
       let pendingSignature='';
-      const speed=55; // medium pace
+      const reviewSpeed=()=>window.innerWidth<=640?24:38; // deliberately slower on mobile for comfortable reading
 
       function text(el,value){el.textContent=value==null?'':String(value);return el;}
       function stopStripGesture(el){
@@ -1343,7 +1390,7 @@ section { padding:62px 0; }
       },{passive:true});
       function animate(now){
         const dt=Math.min(50,now-lastTime);lastTime=now;
-        if(!interacting&&!expansionLocked&&copyWidth) marquee.scrollLeft+=(speed*dt/1000);
+        if(!interacting&&!expansionLocked&&copyWidth) marquee.scrollLeft+=(reviewSpeed()*dt/1000);
         requestAnimationFrame(animate);
       }
       let resizeTimer=null;
@@ -1355,9 +1402,65 @@ section { padding:62px 0; }
     })();
 
     payBtn.addEventListener('click', startPayment);
+
+    // V9.7 mobile sticky guidance: Review shortcut is fixed; primary action follows the visitor's progress.
+    const mobileActionBtn = document.getElementById('mobileActionBtn');
+    const mobileActionEn = document.getElementById('mobileActionEn');
+    const mobileActionHi = document.getElementById('mobileActionHi');
+    const requiredFieldIds = ['fullName','email','phone','dob','tob','pob','gender'];
+    function mobileFormReady(){
+      const d=getDetails();
+      return Boolean(d.fullName && d.email && isValidEmail(d.email) && d.phone && d.dob && d.tob && d.pob && d.gender);
+    }
+    function orderReached(){
+      if(!orderSection) return false;
+      return (window.scrollY + window.innerHeight*.72) >= orderSection.offsetTop;
+    }
+    function setMobileActionLabel(en,hi){
+      if(mobileActionEn) mobileActionEn.textContent=en;
+      if(mobileActionHi) mobileActionHi.textContent=hi;
+    }
+    function updateMobileAction(){
+      if(!mobileActionBtn) return;
+      if(!orderReached()) setMobileActionLabel('Get Report ₹201','रिपोर्ट ₹201');
+      else if(mobileFormReady()) setMobileActionLabel('Pay Now','भुगतान करें');
+      else setMobileActionLabel('Enter Details','विवरण भरें');
+    }
+    function firstIncompleteField(){
+      for(const id of requiredFieldIds){
+        const el=document.getElementById(id);
+        if(!el) continue;
+        const value=String(el.value||'').trim();
+        if(!value || (id==='email' && !isValidEmail(value))) return el;
+      }
+      return null;
+    }
+    if(mobileActionBtn){
+      mobileActionBtn.addEventListener('click',()=>{
+        if(orderReached() && mobileFormReady()) { startPayment(); return; }
+        const target=orderReached()?firstIncompleteField():orderSection;
+        if(target){
+          target.scrollIntoView({behavior:'smooth',block:target===orderSection?'start':'center'});
+          if(target!==orderSection) setTimeout(()=>{try{target.focus({preventScroll:true});}catch(_){target.focus();}},380);
+        }
+      });
+      let mobileActionTick=false;
+      const scheduleMobileAction=()=>{
+        if(mobileActionTick) return;
+        mobileActionTick=true;
+        requestAnimationFrame(()=>{mobileActionTick=false;updateMobileAction();});
+      };
+      window.addEventListener('scroll',scheduleMobileAction,{passive:true});
+      window.addEventListener('resize',scheduleMobileAction,{passive:true});
+      updateMobileAction();
+    }
+
     ['fullName', 'email', 'phone', 'dob', 'tob', 'pob', 'gender', 'reportLanguage'].forEach(id => {
       const el = document.getElementById(id);
-      if (el) { el.addEventListener('input', clearErrors); el.addEventListener('change', clearErrors); }
+      if (el) {
+        el.addEventListener('input', ()=>{clearErrors();updateMobileAction();});
+        el.addEventListener('change', ()=>{clearErrors();updateMobileAction();});
+      }
     });
   </script>
 </body>

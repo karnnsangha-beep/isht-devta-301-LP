@@ -1,0 +1,75 @@
+V9.5 CHECKOUT CONVERSION + REVIEW PAYMENT FIX
+Validation date: 2026-08-24
+Base build: V9.4 Review Read-More + Pause
+
+REQUESTED UI CHANGES
+PASS - Removed entire "ONE CLEAR PRICE" section.
+PASS - Removed entire "MADE TO BE USEFUL, NOT COMPLICATED" section.
+PASS - Removed redundant checkout copy "Complete report: ₹201...".
+PASS - Removed redundant digital-delivery instruction box.
+PASS - Main ₹201 price remains prominent.
+PASS - Bright gold "Pay ₹201 Securely" CTA now sits directly under ₹201 inside the same price/payment box.
+PASS - CTA is the strongest visual element in checkout.
+PASS - Payment-method clutter reduced to one compact line: UPI • Cards • Net banking via Razorpay.
+PASS - Payment-logo row removed from checkout.
+PASS - Navagrah Remedies converted to a compact/subtle add-on card beneath the primary payment CTA.
+PASS - Navagrah add-on stays ₹99.
+PASS - Navagrah checkbox preserved with the same DOM id used by payment logic.
+PASS - Selecting add-on changes payment CTA to ₹300 and reveals compact total summary.
+PASS - Report Price remains ₹201 rather than being visually rewritten as the combined order total.
+PASS - Mobile layout is single-column and compact.
+PASS - Desktop customer-details and secure-payment cards share the same grid row, top alignment and stretched height.
+
+REVIEW + OPTIONAL DAKSHINA PAYMENT ERROR
+Observed issue: Razorpay returned "The notes field should contain valid UTF-8 encoded characters."
+PASS - Review text and customer-name text are no longer sent inside Razorpay order notes for the optional review-page Dakshina transaction.
+PASS - Razorpay order notes for this flow now contain only fixed ASCII-safe metadata.
+PASS - Full review text still goes to the existing Netlify Forms + Blobs review system after successful payment.
+PASS - Review-only submission remains independent of Dakshina and was not modified.
+
+PROTECTED REVIEW SYSTEM
+PASS - netlify/lib/reviews-store.js byte-for-byte unchanged from V9.4.
+PASS - submit-review.js unchanged.
+PASS - public-reviews.js unchanged.
+PASS - admin-reviews.js unchanged.
+PASS - moderate-review.js unchanged.
+PASS - review-health.js unchanged.
+PASS - review-admin.html unchanged.
+PASS - review.html unchanged.
+PASS - Existing 5-line/read-more/pause/collapse review marquee behavior remains untouched.
+
+PROTECTED PAYMENT SYSTEM
+PASS - create-isht201-order.js unchanged.
+PASS - verify-isht-payment.js unchanged.
+PASS - create-navagrah99-order.js unchanged.
+PASS - create-legacy-dakshina-order.js unchanged.
+PASS - legacy dakshina.html unchanged.
+PASS - standalone navagrah.html unchanged.
+
+DYNAMIC PAYMENT TESTS
+PASS - Main report without add-on creates exactly ₹201 / 20100 paise.
+PASS - Main report with Navagrah creates exactly ₹300 / 30000 paise.
+PASS - Review optional Dakshina test at ₹501 creates exactly 50100 paise.
+PASS - Long review payload containing hundreds of emoji, Devanagari and a deliberately malformed surrogate never enters Razorpay notes.
+PASS - Razorpay review-Dakshina notes are ASCII-safe after fix.
+
+STRUCTURAL TESTS
+PASS - All HTML files parse successfully.
+PASS - No duplicate HTML element IDs.
+PASS - All Netlify function/library JavaScript passes node --check.
+PASS - All inline JavaScript blocks pass node --check.
+PASS - All /api/ references map to existing Netlify functions.
+PASS - All referenced local image/icon assets exist.
+PASS - Removed sections/text do not remain in page markup.
+
+FILES INTENTIONALLY CHANGED FROM V9.4
+- index.html
+- netlify/functions/create-dakshina-v2-order.js
+- netlify/functions/create-dakshina-order.js (compatibility alias for same review-Dakshina flow)
+- UPDATE-NOTES-AUG24-V9.5-CHECKOUT-CONVERSION.txt
+- STRESS-TEST-RESULTS-V9.5.txt
+
+DEPLOYMENT
+One deployment of the full V9.5 folder is sufficient.
+No new Netlify environment variables are required.
+Do not change REVIEW_ADMIN_SECRET, RAZORPAY_KEY_ID or RAZORPAY_KEY_SECRET.
