@@ -1,0 +1,20 @@
+DivyaLok Bhakti LP V12.10 review strip reliability fix
+
+Review strip fixes:
+- fixed the auto-scroll implementation so it moves reliably even on browsers that integer-round scrollLeft values
+- mobile auto-scroll remains deliberately slow at 5 px/sec; desktop at 7 px/sec
+- manual horizontal drag/swipe still works
+- long reviews now open in a full-width natural-height pop-out below the strip, with no internal review scrollbar
+- page can still scroll vertically while a review is open
+- strip can still be manually scrolled horizontally while a review is open
+- auto movement pauses while the full review is open and resumes after it closes
+- the pop-out auto-closes when its source review is moved out of the visible strip or when the expanded review is scrolled completely past the viewport
+- Collapse button closes the full review immediately
+- Read more remains hidden for reviews that fit within five lines
+
+Browser harness validation:
+- mobile 390px viewport: strip moved 16px over ~3.2 sec, matching the intended ~5 px/sec rate
+- long review pop-out rendered at natural height with no internal scrollbar
+- automatic movement paused at 0px delta while pop-out was open
+- automatic movement resumed after collapse
+- manually moving the source card out of the strip closed the pop-out automatically

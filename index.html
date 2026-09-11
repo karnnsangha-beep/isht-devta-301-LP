@@ -138,6 +138,7 @@
         <p class="v12-subtitle"><span class="en">Real feedback from people who received their personalised guidance.</span><span class="hi">उन लोगों की वास्तविक प्रतिक्रिया जिन्होंने अपना व्यक्तिगत मार्गदर्शन प्राप्त किया।</span></p>
         <div class="testimonials-shell">
           <div class="review-marquee" id="reviewMarquee" tabindex="0" aria-label="Customer reviews. Drag or swipe sideways to browse. Open long reviews to read more."><div class="review-track" id="reviewTrack"></div></div>
+          <div class="review-popout-host" id="reviewPopoutHost" aria-live="polite"></div>
           <div class="review-hint"><span class="en">Swipe or wait • the review strip moves slowly automatically</span><span class="hi">स्वाइप करें या प्रतीक्षा करें • रिव्यू पट्टी धीरे-धीरे अपने आप चलती है</span></div>
         </div>
         <div class="v12-faq" id="faq">
@@ -395,7 +396,8 @@
     (function initReviewStrip(){
       const marquee=document.getElementById('reviewMarquee');
       const track=document.getElementById('reviewTrack');
-      if(!marquee||!track) return;
+      const popoutHost=document.getElementById('reviewPopoutHost');
+      if(!marquee||!track||!popoutHost) return;
       const OG_REVIEWS=[
         {id:'seed-01-sai-priya',displayName:'Sai Priya',fullName:'Sai Priya',city:'Bangalore',stars:4,feedback:'I always had a pull towards certain deities. Seeing my report, I really understood the connection. Now I am able to take my sadhana forward to the next level.',verifiedCustomer:true,featured:true,reply:''},
         {id:'seed-02-shailesh',displayName:'Shailesh',fullName:'Shailesh',city:'Surat',stars:5,feedback:'My long-term doubt is finally cleared and I found my Ishta Devi. The report gave me a clear devotional direction.',verifiedCustomer:true,featured:true,reply:''},
@@ -408,9 +410,11 @@
         {id:'seed-09-anonymous-bangalore',displayName:'Anonymous',fullName:'Anonymous',city:'Bangalore',stars:5,feedback:'Good job.',verifiedCustomer:true,featured:false,reply:''},
         {id:'seed-10-anonymous-kozhikode',displayName:'Anonymous',fullName:'Anonymous',city:'Kozhikode',stars:5,feedback:'Very clear and precise report.',verifiedCustomer:true,featured:false,reply:''}
       ];
+
       let copyWidth=0;
+      let autoPosition=0;
       let interacting=false;
-      let expansionLocked=false;
+      let popoutOpen=false;
       let resumeTimer=null;
       let dragging=false;
       let startX=0;
@@ -419,7 +423,10 @@
       let lastSignature='';
       let pendingReviewUpdate=null;
       let pendingSignature='';
-      const reviewSpeed=()=>window.innerWidth<=640?5:7; // Visible slow auto-scroll: ~40s per 200px card on mobile
+      let sourceObserver=null;
+      let panelObserver=null;
+      let currentSourceCard=null;
+      const reviewSpeed=()=>window.innerWidth<=640?5:7;
 
       function text(el,value){el.textContent=value==null?'':String(value);return el;}
       function stopStripGesture(el){
@@ -427,113 +434,119 @@
         el.addEventListener('mousedown',e=>e.stopPropagation());
         el.addEventListener('touchstart',e=>e.stopPropagation(),{passive:true});
       }
-      function syncExpansionLock(){
-        expansionLocked=!!track.querySelector('.review-quote.expanded,.review-reply.open');
-        marquee.classList.toggle('expansion-locked',expansionLocked);
-        if(expansionLocked){
-          clearTimeout(resumeTimer);
-          interacting=false;
-          if(dragging){dragging=false;marquee.classList.remove('dragging');}
-        }else{
-          lastTime=performance.now();
-          if(pendingReviewUpdate){
-            const queued=pendingReviewUpdate;
-            const sig=pendingSignature;
-            pendingReviewUpdate=null;pendingSignature='';
-            lastSignature=sig;
-            render(queued);
-          }
-        }
+      function starsText(review){
+        const n=Math.max(1,Math.min(5,Number(review.stars)||5));
+        return '★'.repeat(n)+'☆'.repeat(5-n);
       }
-      function collapseReviewCard(card){
-        if(!card) return;
-        const quote=card.querySelector('.review-quote.expanded');
-        const reply=card.querySelector('.review-reply.open');
-        if(quote){
-          quote.classList.remove('expanded');
-          quote.scrollTop=0;
-          quote.scrollLeft=0;
-          const toggle=card.querySelector('.review-read-toggle');
-          if(toggle) toggle.textContent='Read more ›';
-        }
-        if(reply){
-          reply.classList.remove('open');
-          reply.scrollTop=0;
-          reply.scrollLeft=0;
-          const toggle=card.querySelector('.review-reply-toggle');
-          if(toggle) toggle.textContent='Reply from DivyaLok Bhakti ›';
-        }
-        interacting=false;
+      function disconnectPopoutObservers(){
+        if(sourceObserver){sourceObserver.disconnect();sourceObserver=null;}
+        if(panelObserver){panelObserver.disconnect();panelObserver=null;}
+      }
+      function closeReviewPopout(){
+        if(!popoutOpen&&!popoutHost.firstChild) return;
+        disconnectPopoutObservers();
+        popoutHost.replaceChildren();
+        popoutOpen=false;
+        currentSourceCard=null;
+        autoPosition=marquee.scrollLeft;
         lastTime=performance.now();
-        syncExpansionLock();
+        if(pendingReviewUpdate){
+          const queued=pendingReviewUpdate;
+          const sig=pendingSignature;
+          pendingReviewUpdate=null;pendingSignature='';
+          lastSignature=sig;
+          render(queued);
+        }
       }
+      function openReviewPopout(review,sourceCard,showReply=false){
+        closeReviewPopout();
+        popoutOpen=true;
+        currentSourceCard=sourceCard;
 
-      const reviewVisibilityObserver = ('IntersectionObserver' in window)
-        ? new IntersectionObserver((entries)=>{
+        const panel=document.createElement('article');
+        panel.className='review-popout';
+        panel.setAttribute('role','region');
+        panel.setAttribute('aria-label','Expanded customer review');
+
+        const head=document.createElement('div');head.className='review-popout-head';
+        const who=document.createElement('div');who.className='review-popout-person';
+        who.append(text(document.createElement('strong'),review.fullName||review.displayName||'Anonymous'),text(document.createElement('span'),review.city||''));
+        const collapse=text(document.createElement('button'),'Collapse ↑');collapse.className='review-popout-close';collapse.type='button';
+        collapse.addEventListener('click',closeReviewPopout);
+        head.append(who,collapse);
+
+        const stars=text(document.createElement('div'),starsText(review));stars.className='review-popout-stars';
+        stars.setAttribute('aria-label',(review.stars||5)+' out of 5 stars');
+        const body=text(document.createElement('p'),review.feedback||'');body.className='review-popout-text';
+        const verified=text(document.createElement('div'),review.verifiedCustomer?'Verified Customer':'Customer Feedback');verified.className='review-popout-verified';
+        panel.append(head,stars,body,verified);
+
+        if(review.reply){
+          const replyWrap=document.createElement('div');replyWrap.className='review-popout-reply';
+          replyWrap.append(text(document.createElement('strong'),'Reply from DivyaLok Bhakti'),text(document.createElement('p'),review.reply));
+          if(showReply) replyWrap.classList.add('highlight');
+          panel.appendChild(replyWrap);
+        }
+        popoutHost.replaceChildren(panel);
+
+        // Pause only automatic motion. Manual horizontal strip movement and page scrolling remain available.
+        autoPosition=marquee.scrollLeft;
+        lastTime=performance.now();
+
+        if('IntersectionObserver' in window){
+          // If the source review is manually moved out of the visible strip, close the pop-out and resume auto movement.
+          sourceObserver=new IntersectionObserver(entries=>{
             entries.forEach(entry=>{
-              if(!entry.isIntersecting && entry.target.querySelector('.review-quote.expanded,.review-reply.open')){
-                collapseReviewCard(entry.target);
-              }
+              if(popoutOpen&&entry.target===currentSourceCard&&entry.intersectionRatio<0.12) closeReviewPopout();
             });
-          },{root:null,threshold:0})
-        : null;
+          },{root:marquee,threshold:[0,0.12]});
+          sourceObserver.observe(sourceCard);
+
+          // If the full expanded review is vertically scrolled completely past the screen, close it automatically.
+          let panelSeen=false;
+          panelObserver=new IntersectionObserver(entries=>{
+            entries.forEach(entry=>{
+              if(entry.isIntersecting) panelSeen=true;
+              else if(popoutOpen&&panelSeen) closeReviewPopout();
+            });
+          },{root:null,threshold:0});
+          panelObserver.observe(panel);
+        }
+      }
 
       function makeCard(review){
         const card=document.createElement('article');card.className='review-card';
         const top=document.createElement('div');top.className='review-top';
         const person=document.createElement('div');person.className='review-person';
-        const name=text(document.createElement('strong'),review.fullName||review.displayName||'Anonymous');
-        const city=text(document.createElement('span'),review.city||'');
-        person.append(name,city);
-        const stars=document.createElement('div');stars.className='review-stars';stars.setAttribute('aria-label',(review.stars||5)+' out of 5 stars');stars.textContent='★'.repeat(Math.max(1,Math.min(5,Number(review.stars)||5)))+'☆'.repeat(Math.max(0,5-(Number(review.stars)||5)));
+        person.append(text(document.createElement('strong'),review.fullName||review.displayName||'Anonymous'),text(document.createElement('span'),review.city||''));
+        const stars=text(document.createElement('div'),starsText(review));stars.className='review-stars';stars.setAttribute('aria-label',(review.stars||5)+' out of 5 stars');
         top.append(person,stars);
 
         const quote=text(document.createElement('p'),review.feedback||'');quote.className='review-quote';
         const readToggle=text(document.createElement('button'),'Read more ›');readToggle.className='review-read-toggle';readToggle.type='button';readToggle.hidden=true;
         stopStripGesture(readToggle);
-        readToggle.addEventListener('click',e=>{
-          e.stopPropagation();
-          const willExpand=!quote.classList.contains('expanded');
-          quote.classList.toggle('expanded',willExpand);
-          readToggle.textContent=willExpand?'Collapse ↑':'Read more ›';
-          if(willExpand){ quote.scrollTop=0; quote.scrollLeft=0; }
-          syncExpansionLock();
-        });
+        readToggle.addEventListener('click',e=>{e.stopPropagation();openReviewPopout(review,card,false);});
 
         const bottom=document.createElement('div');bottom.className='review-bottom';
-        const verified=document.createElement('span');verified.className='verified-badge';verified.textContent=review.verifiedCustomer?'Verified Customer':'Customer Feedback';
+        const verified=text(document.createElement('span'),review.verifiedCustomer?'Verified Customer':'Customer Feedback');verified.className='verified-badge';
         bottom.append(verified);
         card.append(top,quote,readToggle,bottom);
 
         if(review.reply){
           const btn=text(document.createElement('button'),'Reply from DivyaLok Bhakti ›');btn.className='review-reply-toggle';btn.type='button';
-          const reply=document.createElement('div');reply.className='review-reply';
-          const rb=text(document.createElement('b'),'DivyaLok Bhakti');reply.append(rb,document.createTextNode(review.reply));
           stopStripGesture(btn);
-          btn.addEventListener('click',e=>{
-            e.stopPropagation();
-            const willOpen=!reply.classList.contains('open');
-            reply.classList.toggle('open',willOpen);
-            btn.textContent=willOpen?'Collapse ↑':'Reply from DivyaLok Bhakti ›';
-            if(willOpen){ reply.scrollTop=0; reply.scrollLeft=0; }
-            syncExpansionLock();
-          });
-          bottom.appendChild(btn);card.appendChild(reply);
+          btn.addEventListener('click',e=>{e.stopPropagation();openReviewPopout(review,card,true);});
+          bottom.appendChild(btn);
         }
-        if(reviewVisibilityObserver) reviewVisibilityObserver.observe(card);
         return card;
       }
+
       function detectLongReviews(){
-        if(expansionLocked)return;
+        if(popoutOpen)return;
         track.querySelectorAll('.review-card').forEach(card=>{
           const quote=card.querySelector('.review-quote');
           const toggle=card.querySelector('.review-read-toggle');
           if(!quote||!toggle)return;
-          quote.classList.remove('expanded');
-          toggle.textContent='Read more ›';
-
-          // Measure the full un-clamped text in an invisible clone. This is more reliable
-          // than guessing by character count and works across desktop/mobile widths.
           const styles=getComputedStyle(quote);
           const lineHeight=parseFloat(styles.lineHeight)||22;
           const measure=quote.cloneNode(true);
@@ -542,22 +555,23 @@
           card.appendChild(measure);
           const fullHeight=measure.scrollHeight;
           measure.remove();
-          const visibleLines=5;
-          toggle.hidden=!(fullHeight>(lineHeight*visibleLines)+2);
+          toggle.hidden=!(fullHeight>(lineHeight*5)+2);
         });
       }
+
       function render(reviews){
-        expansionLocked=false;
-        marquee.classList.remove('expansion-locked');
+        closeReviewPopout();
         track.replaceChildren();
         if(!reviews.length){const empty=text(document.createElement('div'),'Customer feedback will appear here after approval.');empty.className='review-loading';track.appendChild(empty);return;}
         for(let copy=0;copy<3;copy++) reviews.forEach(r=>track.appendChild(makeCard(r)));
         requestAnimationFrame(()=>{
           copyWidth=track.scrollWidth/3;
-          marquee.scrollLeft=copyWidth;
+          autoPosition=copyWidth;
+          marquee.scrollLeft=autoPosition;
           requestAnimationFrame(detectLongReviews);
         });
       }
+
       async function load(){
         try{
           const res=await fetch('/api/public-reviews',{headers:{'Accept':'application/json'},cache:'no-store'});
@@ -565,47 +579,72 @@
           if(!res.ok||!Array.isArray(data.reviews)) throw new Error(data.error||'Could not load reviews');
           const signature=JSON.stringify(data.reviews.map(r=>[r.id,r.fullName,r.displayName,r.feedback,r.reply,r.verifiedCustomer,r.stars,r.featured]));
           if(signature!==lastSignature){
-            if(expansionLocked){
-              // Never destroy/refresh a card while a visitor is reading an expanded review or reply.
-              pendingReviewUpdate=data.reviews;
-              pendingSignature=signature;
-            }else{
-              lastSignature=signature;
-              render(data.reviews);
-            }
+            if(popoutOpen){pendingReviewUpdate=data.reviews;pendingSignature=signature;}
+            else{lastSignature=signature;render(data.reviews);}
           }
-        }catch(e){
-          // Keep the original reviews visible if the live review API is unavailable.
-          console.warn('Live review API unavailable; keeping original reviews on screen.',e);
-        }
+        }catch(e){console.warn('Live review API unavailable; keeping original reviews on screen.',e);}
       }
-      function pauseForInteraction(ms=1400){
-        if(expansionLocked)return;
-        interacting=true;clearTimeout(resumeTimer);resumeTimer=setTimeout(()=>{interacting=false;lastTime=performance.now();},ms);
+
+      function pauseForInteraction(ms=1200){
+        interacting=true;
+        clearTimeout(resumeTimer);
+        resumeTimer=setTimeout(()=>{
+          interacting=false;
+          autoPosition=marquee.scrollLeft;
+          lastTime=performance.now();
+        },ms);
       }
       marquee.addEventListener('pointerdown',e=>{
-        dragging=true;interacting=true;startX=e.clientX;startScroll=marquee.scrollLeft;marquee.classList.add('dragging');try{marquee.setPointerCapture(e.pointerId);}catch(_){}
+        dragging=true;interacting=true;startX=e.clientX;startScroll=marquee.scrollLeft;autoPosition=startScroll;
+        marquee.classList.add('dragging');
+        try{marquee.setPointerCapture(e.pointerId);}catch(_){}
       });
-      marquee.addEventListener('pointermove',e=>{if(!dragging)return;marquee.scrollLeft=startScroll-(e.clientX-startX);});
-      const endDrag=e=>{if(!dragging)return;dragging=false;marquee.classList.remove('dragging');try{marquee.releasePointerCapture(e.pointerId);}catch(_){}if(!expansionLocked)pauseForInteraction(1200);};
-      marquee.addEventListener('pointerup',endDrag);marquee.addEventListener('pointercancel',endDrag);
-      marquee.addEventListener('wheel',()=>{if(!expansionLocked)pauseForInteraction(1200);},{passive:true});
+      marquee.addEventListener('pointermove',e=>{
+        if(!dragging)return;
+        autoPosition=startScroll-(e.clientX-startX);
+        marquee.scrollLeft=autoPosition;
+      });
+      const endDrag=e=>{
+        if(!dragging)return;
+        dragging=false;marquee.classList.remove('dragging');
+        try{marquee.releasePointerCapture(e.pointerId);}catch(_){}
+        pauseForInteraction(1000);
+      };
+      marquee.addEventListener('pointerup',endDrag);
+      marquee.addEventListener('pointercancel',endDrag);
+      marquee.addEventListener('wheel',()=>pauseForInteraction(1000),{passive:true});
       marquee.addEventListener('scroll',()=>{
         if(!copyWidth)return;
-        if(marquee.scrollLeft>=copyWidth*2) marquee.scrollLeft-=copyWidth;
-        else if(marquee.scrollLeft<=copyWidth*.35) marquee.scrollLeft+=copyWidth;
+        let x=marquee.scrollLeft;
+        if(x>=copyWidth*2){x-=copyWidth;marquee.scrollLeft=x;}
+        else if(x<=copyWidth*.35){x+=copyWidth;marquee.scrollLeft=x;}
+        if(interacting||dragging) autoPosition=x;
       },{passive:true});
+
       function animate(now){
-        const dt=Math.min(50,now-lastTime);lastTime=now;
-        if(!interacting&&!expansionLocked&&copyWidth) marquee.scrollLeft+=(reviewSpeed()*dt/1000);
+        const dt=Math.min(64,Math.max(0,now-lastTime));
+        lastTime=now;
+        if(!interacting&&!popoutOpen&&copyWidth){
+          autoPosition+=reviewSpeed()*dt/1000;
+          if(autoPosition>=copyWidth*2) autoPosition-=copyWidth;
+          else if(autoPosition<=copyWidth*.35) autoPosition+=copyWidth;
+          // Keep a floating accumulator so sub-pixel movement is not lost on browsers that integer-round scrollLeft.
+          marquee.scrollLeft=autoPosition;
+        }
         requestAnimationFrame(animate);
       }
+
       let resizeTimer=null;
       window.addEventListener('resize',()=>{
         clearTimeout(resizeTimer);
-        resizeTimer=setTimeout(()=>{if(!expansionLocked)detectLongReviews();},180);
+        resizeTimer=setTimeout(()=>{autoPosition=marquee.scrollLeft;if(!popoutOpen)detectLongReviews();},180);
       },{passive:true});
-      render(OG_REVIEWS);lastSignature='fallback-og';load();setInterval(load,60000);requestAnimationFrame(animate);
+
+      render(OG_REVIEWS);
+      lastSignature='fallback-og';
+      load();
+      setInterval(load,60000);
+      requestAnimationFrame(animate);
     })();
 
     payBtn.addEventListener('click', startPayment);
