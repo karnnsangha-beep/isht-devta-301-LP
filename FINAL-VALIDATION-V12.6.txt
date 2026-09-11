@@ -1,0 +1,55 @@
+DivyaLok Bhakti — V12.6 Final Validation
+
+STATUS: PASS
+
+Main landing page
+- No duplicate HTML IDs found.
+- All internal section anchors resolve to existing sections.
+- Exactly 3 inline Get Report CTAs remain.
+- Sticky Check Reviews / Get Report / Enter Details / Pay flow wiring remains intact.
+- Pay button and mobile action button IDs/listeners are present.
+- English/Hindi language toggle wiring remains intact.
+- Review strip API endpoint and review interaction JS remain present and syntactically valid.
+
+Pricing/payment invariants
+- Frontend base price: ₹201.
+- Frontend Navagrah add-on: ₹99.
+- Backend base price: ₹201.
+- Backend Navagrah add-on: ₹99.
+- Base backend order mocked successfully at 20,100 paise.
+- Base + add-on backend order mocked successfully at 30,000 paise.
+- Server ignores a forged client total and calculates amount from server-side constants.
+- Razorpay create flow marker matches: isht201-v9.
+- Razorpay verification flow marker matches: verify-v6.
+- Valid HMAC signature accepted in mocked cryptographic verification test.
+- Invalid HMAC signature rejected.
+- /api/* redirect maps correctly to Netlify functions.
+
+Backend code
+- Every JavaScript file under netlify/functions and netlify/lib passes node --check.
+- Every inline JavaScript block across the included HTML pages passes node --check.
+- All API endpoints referenced by included pages have corresponding Netlify functions.
+
+Post-sale WhatsApp message
+- Message contains only:
+  Service: Isht Service
+  Name
+  Birth Date
+  Birth Place
+  Birth Location (city/state derived from submitted place)
+  Gender
+  Phone Number
+  Email
+  Order ID
+- Removed birth time, report language, Navagrah add-on line, payment ID, amount, greetings and closing copy from the WhatsApp payload.
+
+Assets
+- New supplied Navagrah artwork converted to WebP and stored as assets/navagrah-remedies-icon.webp.
+- Navagrah icon is centered with object-fit: contain; no crop.
+- Approved report preview WebP retained.
+- Approved common Isht Devtas/Devis WebP retained.
+- Unreferenced/deprecated image assets were removed after a runtime reference scan.
+- Every remaining non-favicon image asset is referenced by live HTML/CSS/JS.
+
+Important scope note
+- Validation covers HTML/JS wiring, local routes/assets, server-side amount logic, mocked Razorpay order creation, and cryptographic payment verification. No real Razorpay charge was made during testing.

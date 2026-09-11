@@ -1,0 +1,7 @@
+DivyaLok Bhakti LP V12.8 lotus asset replacement
+
+Changes made:
+- replaced the existing Om + lotus image on the LP with the newly provided square image
+- converted that image to WebP and saved it as assets/creative-v12/lotus-om-approved.webp
+- removed the older similar Om + lotus assets that are no longer used
+- left all other LP content and behavior unchanged

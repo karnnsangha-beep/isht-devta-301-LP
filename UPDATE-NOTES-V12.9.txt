@@ -1,0 +1,7 @@
+DivyaLok Bhakti LP V12.9
+
+Targeted changes only:
+- Review strip remains manually scrollable, but now visibly auto-scrolls slowly at 5 px/sec on mobile and 7 px/sec on larger screens.
+- Existing pause-on-expanded-review behavior remains intact.
+- Added the customer-selected report Language to the post-sale WhatsApp prefilled message.
+- No other LP layout, pricing, assets, payment logic, or backend functions changed.

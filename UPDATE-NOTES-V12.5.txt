@@ -1,0 +1,7 @@
+DivyaLok Bhakti LP V12.5 approved asset swap
+
+Changes made:
+- replaced the report preview section with the approved screenshot converted to WebP
+- replaced the common Isht Devtas/Devis section with the approved screenshot converted to WebP
+- saved both new WebP files inside assets/creative-v12
+- left the rest of the LP unchanged

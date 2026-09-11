@@ -1,0 +1,18 @@
+V10 MARBLE + BOTTLE GREEN VISUAL REFRESH
+
+Main landing page updated:
+- Elegant white / ivory marble background
+- Bottle green primary CTAs and active language state
+- Gold used as restrained accent for headings, dividers and price highlights
+- White/ivory cards replace black glass surfaces
+- Reviews, FAQ, forms, process cards and common-Isht cards restyled for the light theme
+- Checkout/payment area restyled to white marble + green while preserving existing payment logic
+- Mobile sticky conversion bar restyled: white review button + bottle-green report button
+- Mobile spacing, card radii, typography and section density tightened for easier reading
+- Desktop spacing and surfaces refined for the same theme
+- Existing functional JavaScript, Razorpay flow, Meta Pixel configuration, forms, URLs, copy and prices were not intentionally changed
+
+Implementation:
+- Added: assets/marble-bottle-green.css
+- index.html links this stylesheet last so it overrides older theme layers safely
+- Browser theme-color updated to #fffdf8

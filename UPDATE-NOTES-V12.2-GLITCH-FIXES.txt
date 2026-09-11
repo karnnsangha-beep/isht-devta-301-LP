@@ -1,0 +1,14 @@
+DivyaLok Bhakti LP V12.2 glitch fixes
+
+Included fixes:
+- centered Om inside the header logo circle
+- rebuilt common Isht section with square deity images, no image boxes, and decorative marigold garland
+- fixed Mahakaal crop issue by using clean individual square crops
+- cleaned report preview image to remove the ghosted language badge and hidden CTA bleed
+- changed process step numbering to top-left inside each box
+- corrected the WhatsApp step icon and made it green
+- updated Navagrah add-on section to use the supplied webp creative
+- reworked review cards to show name/location at top, stars under that, review body in the middle, and verified badge at the bottom-left
+- read more now appears only for genuinely longer reviews
+- review strip motion slowed down for mobile and keeps two square cards visible
+- existing payment flow, variables, and CTA behavior preserved

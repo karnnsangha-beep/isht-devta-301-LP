@@ -1,0 +1,55 @@
+V12 — 7-screen white-marble landing page rebuild
+
+Landing page rebuilt in HTML/CSS using the approved 7-screen creative direction.
+
+Visual changes
+- True white marble background image, not a flat off-white fill.
+- Bottle-green primary actions with white button text.
+- Gold + bottle-green typography and borders.
+- Elegant high-contrast serif headings + clean sans-serif body copy.
+- Seven progressive mobile-first sections:
+  1. Hero
+  2. Why your Isht Devta matters
+  3. What you receive
+  4. Common Isht Devtas / Devis
+  5. How it works
+  6. Reviews + FAQs
+  7. Details + payment
+- Uses cropped artwork from the approved creative set for the hero deity group,
+  lotus/Om artwork, report preview, and 9-deity grid.
+- Desktop layout remains responsive and centred rather than stretching content too wide.
+
+CTA behaviour
+- Only 3 inline Get Report ₹201 CTAs: hero, report preview, reviews/FAQ.
+- Persistent bottom sticky bar:
+  - Check Reviews always jumps to the review section.
+  - Get Report before the order section.
+  - Enter Details once the order/details section is reached and required fields are incomplete.
+  - Pay ₹201 (or selected total when optional add-on is enabled) once required fields are valid.
+- Bottle-green CTA text is forced white.
+
+Reviews
+- Live moderated review API preserved.
+- Full name field is displayed (fullName first, displayName only as fallback).
+- Square cards.
+- Mobile shows 2 cards at a time.
+- Automatic strip movement slowed to 3.5 px/sec on mobile and 6 px/sec on desktop.
+- Read More pauses automatic movement.
+- Expanded reviews remain internally scrollable and the strip can still be manually moved.
+- Expanded review/reply auto-collapses once its card leaves the viewport.
+- Live review refresh waits until expanded content is closed, so reading is not interrupted.
+
+Functionality preserved
+- SITE_CONFIG and Meta Pixel ID.
+- ₹201 base price and ₹99 Navagrah add-on.
+- Razorpay create-order and verify-payment endpoints.
+- Netlify paid-order backup form.
+- Hindi / English UI toggle.
+- Payment success/failure flow and thank-you redirect.
+- Moderated review API and admin/review backend files.
+
+Validation
+- All required payment/form/review element IDs are present exactly once.
+- All referenced local assets exist.
+- Inline JavaScript passes Node syntax checks.
+- Seven landing-page sections and exactly three inline CTAs verified.

@@ -1,0 +1,7 @@
+DivyaLok Bhakti LP V12.7 lotus mobile refinement
+
+Change made:
+- converted the lotus/Om visual into a square WebP asset for more symmetrical display
+- updated the LP to use the square lotus asset
+- increased mobile width so the lotus visual spans the section properly instead of appearing narrow or elongated
+- kept desktop appearance balanced

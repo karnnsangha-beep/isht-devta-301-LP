@@ -1,0 +1,19 @@
+V11 WHITE MARBLE / BOTTLE GREEN / REVIEWS UPDATE
+
+Visual
+- Changed page base from warm off-white/ivory to true white marble.
+- Added visible soft grey marble veining across desktop and mobile.
+- Kept gold accents and bottle-green primary actions.
+- Forced white text on all bottle-green CTA buttons, including nested spans/icons and high-specificity testimonial/payment/sticky CTAs.
+
+Reviews
+- Public review API now returns the stored full name when available.
+- New review consent copy states that full name, city, stars and feedback may be shown publicly after approval.
+- Legacy records for which only a first name/Anonymous exists are not fabricated.
+- Review auto-scroll speed reduced to 6px/s mobile and 10px/s desktop.
+- Mobile review cards are compact squares with two visible per screen.
+- Tablet 641-900px also uses a two-card layout.
+- Long reviews use Read more inside the square card and become internally scrollable.
+- Automatic review movement pauses while a review/reply is expanded.
+- Manual horizontal strip scrolling remains available while expanded; vertical page/content scrolling remains available.
+- Expanded review/reply auto-collapses after its card leaves the viewport.

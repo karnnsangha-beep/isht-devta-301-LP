@@ -132,7 +132,7 @@ async function createReview(event, input) {
   const review = {
     id,
     fullName,
-    displayName: publicConsent ? firstNameOnly(fullName) : '',
+    displayName: publicConsent ? fullName : '',
     city,
     phone: clean(input.phone, 30),
     stars,
@@ -159,7 +159,8 @@ async function createReview(event, input) {
 function publicReviewShape(review) {
   return {
     id: clean(review.id, 160),
-    displayName: clean(review.displayName || firstNameOnly(review.fullName), 80),
+    fullName: clean(review.fullName || review.displayName || 'Anonymous', 100),
+    displayName: clean(review.fullName || review.displayName || 'Anonymous', 100),
     city: clean(review.city, 100),
     stars: normalizeStars(review.stars) || 5,
     feedback: clean(review.feedback, 2400),

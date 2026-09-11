@@ -1,0 +1,74 @@
+DivyaLok Bhakti LP V12.6
+
+Targeted final changes:
+- Navagrah icon replaced with the newly supplied artwork, converted to WebP and centered without cropping.
+- Post-sale WhatsApp message reduced to only the requested fields.
+- Unused image assets removed after runtime-reference scan.
+- Live payment/review/backend routes and frontend variables validated.
+
+Removed unused assets:
+- assets/mobile-devta-outline.webp
+- assets/hero-devtas-outline.webp
+- assets/navagrah-remedies-thumb.webp
+- assets/marigold-garland.svg
+- assets/deepak-clay.svg
+- assets/scroll-chevrons.png
+- assets/payment/gpay.svg
+- assets/payment/paytm.svg
+- assets/payment/phonepe.svg
+- assets/payment/upi.svg
+- assets/isht-icons/vishnu.png
+- assets/isht-icons/krishna.png
+- assets/isht-icons/saraswati-maa.png
+- assets/isht-icons/ganesha.png
+- assets/isht-icons/shri-ram.png
+- assets/isht-icons/shiva.png
+- assets/isht-icons/lakshmi-maa.png
+- assets/isht-icons/surya-dev.png
+- assets/isht-icons/hanuman-ji.png
+- assets/isht-icons/durga-maa.png
+- assets/creative-v12/isht-grid.webp
+- assets/creative-v12/report-preview.webp
+- assets/creative-v12/report-preview-clean.webp
+- assets/creative-v12/diya-only.webp
+- assets/creative-v12/diya-crop.webp
+- assets/creative-v12/trial2/vishnu.webp
+- assets/creative-v12/trial2/krishna.webp
+- assets/creative-v12/trial2/durga.webp
+- assets/creative-v12/trial2/montage.webp
+- assets/creative-v12/trial2/shiva.webp
+- assets/creative-v12/trial2/ganesha.webp
+- assets/creative-v12/trial2/kaal.webp
+- assets/creative-v12/trial2/lakshmi.webp
+- assets/creative-v12/trial2/mahakaal.webp
+- assets/creative-v12/trial2/hanuman.webp
+- assets/creative-v12/trial3/vishnu.webp
+- assets/creative-v12/trial3/krishna.webp
+- assets/creative-v12/trial3/durga.webp
+- assets/creative-v12/trial3/montage.webp
+- assets/creative-v12/trial3/shiva.webp
+- assets/creative-v12/trial3/ganesha.webp
+- assets/creative-v12/trial3/kaal.webp
+- assets/creative-v12/trial3/lakshmi.webp
+- assets/creative-v12/trial3/mahakaal.webp
+- assets/creative-v12/trial3/hanuman.webp
+- assets/creative-v12/trial/vishnu.webp
+- assets/creative-v12/trial/krishna.webp
+- assets/creative-v12/trial/durga.webp
+- assets/creative-v12/trial/montage.webp
+- assets/creative-v12/trial/shiva.webp
+- assets/creative-v12/trial/ganesha.webp
+- assets/creative-v12/trial/kaal.webp
+- assets/creative-v12/trial/lakshmi.webp
+- assets/creative-v12/trial/mahakaal.webp
+- assets/creative-v12/trial/hanuman.webp
+- assets/creative-v12/deity-crops/vishnu.webp
+- assets/creative-v12/deity-crops/krishna.webp
+- assets/creative-v12/deity-crops/durga.webp
+- assets/creative-v12/deity-crops/shiva.webp
+- assets/creative-v12/deity-crops/ganesha.webp
+- assets/creative-v12/deity-crops/lakshmi.webp
+- assets/creative-v12/deity-crops/mahakaal.webp
+- assets/creative-v12/deity-crops/kaal-bhairav.webp
+- assets/creative-v12/deity-crops/contact.webp
+- assets/creative-v12/deity-crops/hanuman.webp

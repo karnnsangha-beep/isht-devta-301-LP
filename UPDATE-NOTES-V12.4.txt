@@ -1,0 +1,10 @@
+DivyaLok Bhakti LP V12.4 targeted mobile fixes
+
+This revision fixes only the issues reported:
+- restored the sticky header on mobile view
+- removed the duplicate mobile language pill so the mobile header stays clean
+- reduced the hero gap by removing the forced square aspect ratio on the hero deity image for mobile
+- rebuilt the common Isht deity crops so embedded cut-off labels are gone and only one clean name is shown
+- kept the deity names visible below each image
+- kept the diya visible in the common Isht section
+- kept other working sections unchanged

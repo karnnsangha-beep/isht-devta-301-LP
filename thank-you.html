@@ -40,23 +40,22 @@
     const whatsappNumber = '918375010369';
     const order = JSON.parse(localStorage.getItem('ishtDevtaOrder') || '{}');
     function clean(v){ return (v || '').toString().trim() || '-'; }
-    const addonLine = order.navagrahAddon ? `\nNavagrah Remedies Add-on: Yes (+₹99)` : '';
-    const message = `Namaste DivyaLok Bhakti,
-
-I have paid for my Isht Devta Discovery Report.
-
+    function cityState(v){
+      const raw=clean(v);
+      if(raw==='-') return raw;
+      const parts=raw.split(',').map(s=>s.trim()).filter(Boolean);
+      return parts.length>=2 ? parts.slice(0,2).join(', ') : raw;
+    }
+    const message = `Service: Isht Service
 Name: ${clean(order.fullName)}
-Email: ${clean(order.email)}
-WhatsApp: ${clean(order.phone)}
-DOB: ${clean(order.dob)}
-Birth Time: ${clean(order.tob)}
+Birth Date: ${clean(order.dob)}
 Birth Place: ${clean(order.pob)}
-Report Language: ${clean(order.reportLanguage)}${addonLine}
-Payment ID: ${clean(order.paymentId)}
-Order ID: ${clean(order.orderId)}
-Amount: ₹${clean(order.amount)}
-
-Please prepare my report. Thank you. 🙏`;
+Birth Location: ${cityState(order.pob)}
+Gender: ${clean(order.gender)}
+Language: ${clean(order.reportLanguage)}
+Phone Number: ${clean(order.phone)}
+Email: ${clean(order.email)}
+Order ID: ${clean(order.orderId)}`;
     const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     document.getElementById('whatsappBtn').href = waUrl;
     document.getElementById('orderBox').textContent = message;

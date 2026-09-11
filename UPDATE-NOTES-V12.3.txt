@@ -1,0 +1,7 @@
+DivyaLok Bhakti LP V12.3 final visual fixes
+
+New fixes in this revision:
+- Navagrah add-on image reduced to small icon size so it stays a soft mention only.
+- Decorative marigold garland above the common Isht section removed.
+- Common Isht deity images rebuilt with extra breathing space so heads/crowns do not get cut off.
+- Existing payment, CTA, review strip, and functional logic preserved.
