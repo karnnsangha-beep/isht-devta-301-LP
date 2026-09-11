@@ -1,0 +1,13 @@
+V12.14 targeted fixes
+
+1. Mobile form jump fix
+- Sticky Review control changed from an anchor to a button, removing native #testimonials navigation/restoration.
+- Review shortcut is guarded during active form entry and for a short grace period after keyboard/focus transitions.
+- Sticky buttons remain visible while form fields are being edited.
+- Existing payment, pricing, review strip, and page layout logic otherwise unchanged.
+
+2. Review privacy checkbox semantics
+- Checkbox now means: Hide my review from the website.
+- Unchecked = public display allowed after manual approval.
+- Checked = private review.
+- Backend still receives the existing publicConsent boolean, inverted from the new hide checkbox, so moderation/public-review functions remain compatible.

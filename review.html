@@ -136,7 +136,7 @@
       <div class="kicker">AFTER YOUR ISHT DEVTA REPORT</div>
       <h1>Share Your <span>Experience</span> 🙏</h1>
       <p class="lead">Your quick review helps us improve our work and helps other seekers understand what to expect.</p>
-      <div class="confidence"><b>Your privacy stays in your control.</b> A review can appear on our website only if you tick the permission box below and we manually approve it.</div>
+      <div class="confidence"><b>Your privacy stays in your control.</b> Reviews may be displayed on our website after manual approval. Tick the privacy box below only if you want your review kept private.</div>
     </div></section>
 
     <section><div class="wrap">
@@ -153,6 +153,7 @@
           <input type="hidden" id="paymentIdInput" name="payment_id" value="">
           <input type="hidden" id="orderIdInput" name="order_id" value="">
           <input type="hidden" id="submittedAtInput" name="submitted_at" value="">
+          <input type="hidden" id="publicConsentInput" name="public_consent" value="yes">
 
           <div class="rating-wrap">
             <b>Tap a star to rate your experience</b>
@@ -172,7 +173,7 @@
           </div>
           <div class="field"><label for="customerPhone">WhatsApp number <span style="font-weight:500;color:var(--muted)">(optional)</span></label><input id="customerPhone" name="whatsapp_number" type="tel" placeholder="WhatsApp number"></div>
           <div class="field"><label for="feedback">Your Feedback <span style="font-weight:500;color:var(--muted)">(optional unless sharing publicly)</span></label><textarea id="feedback" name="feedback" placeholder="Share what you liked, what could be better, or simply tell us about your experience..."></textarea></div>
-          <label class="consent-box" for="publicConsent"><input id="publicConsent" name="public_consent" type="checkbox" value="yes"><span><strong>Allow us to display this review on our website.</strong> Your contact number and email will not be disclosed. We will show your full name, city, star rating and feedback after manual approval. Your contact number and email will not be disclosed.</span></label>
+          <label class="consent-box" for="hideReview"><input id="hideReview" name="hide_review" type="checkbox" value="yes"><span><strong>Hide my review from the website.</strong> Tick this only if you want your review kept private. If left unticked, we may display your full name, city, star rating and feedback after manual approval. Your phone number and email are never displayed.</span></label>
 
           <div style="margin-top:18px;padding:13px 14px;border:1px solid rgba(127,217,155,.20);border-radius:15px;background:rgba(127,217,155,.055);color:#e9f7ed;font-size:12.5px;line-height:1.5;text-align:center">
             <strong>Your review does not require any Dakshina.</strong> You can submit it directly below.
@@ -211,7 +212,8 @@
     const stars=[...document.querySelectorAll('.star')];
     const ratingInput=document.getElementById('ratingInput');
     const ratingText=document.getElementById('ratingText');
-    const publicConsent=document.getElementById('publicConsent');
+    const hideReview=document.getElementById('hideReview');
+    const publicConsentInput=document.getElementById('publicConsentInput');
     const customerCity=document.getElementById('customerCity');
     const statusBox=document.getElementById('statusBox');
     const submitReviewBtn=document.getElementById('submitReviewBtn');
@@ -239,22 +241,23 @@
 
     customAmount.addEventListener('input',()=>{const v=Number(customAmount.value);if(Number.isInteger(v)&&v>=1){selectedAmount=v;payBtn.textContent='Submit Review + ₹'+v+' Optional Dakshina';}else{selectedAmount=null;payBtn.textContent='Submit Review + Optional Dakshina';}});
 
+    function publicDisplayAllowed(){return !hideReview.checked;}
     function validateReview(){
       const rating=ratingInput.value; const feedbackText=document.getElementById('feedback').value.trim();
       if(!rating&&!feedbackText){showStatus('warn','Please add a star rating or write some feedback before submitting.');return false;}
-      if(publicConsent.checked){
+      if(publicDisplayAllowed()){
         const name=document.getElementById('customerName').value.trim();const city=customerCity.value.trim();
-        if(!name||!city||!feedbackText){showStatus('warn','To allow this review on our website, please enter your name, city and feedback. Or untick the permission box to keep it private.');return false;}
+        if(!name||!city||!feedbackText){showStatus('warn','To display this review on our website, please enter your name, city and feedback. Or tick “Hide my review from the website” to keep it private.');return false;}
       }
       return true;
     }
     async function submitNetlify({paymentStatus,amount='',paymentId='',orderId=''}){
-      amountInput.value=amount;statusInput.value=paymentStatus;paymentIdInput.value=paymentId;orderIdInput.value=orderId;submittedAtInput.value=new Date().toISOString();
+      amountInput.value=amount;statusInput.value=paymentStatus;paymentIdInput.value=paymentId;orderIdInput.value=orderId;submittedAtInput.value=new Date().toISOString();publicConsentInput.value=publicDisplayAllowed()?'yes':'no';
       const data=new FormData(form);const res=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(data).toString()});if(!res.ok)throw new Error('Could not save feedback');
     }
     async function submitReviewBlob({paymentStatus,amount='',paymentId='',orderId=''}){
       const rating=ratingInput.value?Number(ratingInput.value):null;const feedbackText=document.getElementById('feedback').value.trim();
-      const res=await fetch('/api/submit-review',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fullName:document.getElementById('customerName').value.trim(),city:customerCity.value.trim(),phone:document.getElementById('customerPhone').value.trim(),stars:rating,feedback:feedbackText,publicConsent:publicConsent.checked,paymentStatus,dakshinaAmount:amount,paymentId,orderId,source:'review-page'})});
+      const res=await fetch('/api/submit-review',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fullName:document.getElementById('customerName').value.trim(),city:customerCity.value.trim(),phone:document.getElementById('customerPhone').value.trim(),stars:rating,feedback:feedbackText,publicConsent:publicDisplayAllowed(),paymentStatus,dakshinaAmount:amount,paymentId,orderId,source:'review-page'})});
       const data=await res.json().catch(()=>({}));if(!res.ok)throw new Error(data.error||'Could not save review for moderation');return data;
     }
     function rememberCustomer(){try{sessionStorage.setItem('ishtReviewCustomer',JSON.stringify({name:document.getElementById('customerName').value.trim(),phone:document.getElementById('customerPhone').value.trim()}));}catch(e){}}

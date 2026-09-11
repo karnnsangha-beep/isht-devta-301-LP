@@ -1,0 +1,26 @@
+DivyaLok Bhakti LP V12.14 validation
+
+MOBILE FORM JUMP
+PASS - Sticky Check Reviews control is a button, not a #testimonials anchor.
+PASS - Review shortcut is locked while an order-form input/select/textarea is focused.
+PASS - Review shortcut stays locked through a 2.2s keyboard/focus transition grace period after form interaction.
+PASS - Exact interaction harness: active field -> review click ignored; temporary mobile focus loss -> ignored; next field -> ignored; intentional review click after leaving form -> works.
+PASS - Sticky bottom bar remains visible during form editing; only Check Reviews is temporarily non-interactive.
+PASS - Form input/change handlers contain no review-section scrolling call.
+PASS - No duplicate IDs, missing local assets, or broken same-page anchor targets found.
+
+PAYMENT / BACKEND REGRESSION
+PASS - Netlify backend folder unchanged byte-for-byte from V12.13 input ZIP.
+PASS - BASE_PRICE remains 201.
+PASS - NAVAGRAH_ADDON_PRICE remains 99.
+PASS - /api/create-isht201-order and /api/verify-isht-payment calls remain in place.
+PASS - isht201-v9 and verify-v6 safety checks remain in place.
+PASS - All Netlify function/library JavaScript passes node --check.
+PASS - Main page, review page, and admin inline JavaScript passes syntax checks.
+PASS - Review auto-scroll/pop-out code remains in place, including 10 px/s mobile / 12 px/s desktop speed.
+
+REVIEW PRIVACY CHECKBOX
+PASS - Checkbox now reads "Hide my review from the website."
+PASS - Unchecked => publicConsent true (eligible for manual approval/public display).
+PASS - Checked => publicConsent false (stored privately, excluded from public review feed).
+PASS - Existing backend publicConsent contract is preserved, so admin moderation/public feed logic remains compatible.

@@ -199,7 +199,7 @@
     </div>
   </footer>
 
-  <div class="mobile-cta"><div class="mobile-cta-grid"><a class="btn secondary" id="reviewShortcutBtn" href="#testimonials"><span class="en">Check Reviews</span><span class="hi">रिव्यू देखें</span></a><button class="btn primary" id="mobileActionBtn" type="button"><span class="en" id="mobileActionEn">Get Report</span><span class="hi" id="mobileActionHi">रिपोर्ट पाएं</span></button></div></div>
+  <div class="mobile-cta"><div class="mobile-cta-grid"><button class="btn secondary" id="reviewShortcutBtn" type="button"><span class="en">Check Reviews</span><span class="hi">रिव्यू देखें</span></button><button class="btn primary" id="mobileActionBtn" type="button"><span class="en" id="mobileActionEn">Get Report</span><span class="hi" id="mobileActionHi">रिपोर्ट पाएं</span></button></div></div>
 
   <script>
     (function(){
@@ -662,54 +662,80 @@
       requestAnimationFrame(animate);
     })();
 
-    // V12.13: prevent mobile form-entry jumps caused by sticky section anchors / fixed CTAs.
-    // Internal section navigation now scrolls without leaving a persistent #anchor in the URL.
+    // V12.14: mobile form-entry safety.
+    // The sticky Review control is a real button (not an anchor), so Safari/Chrome cannot
+    // restore a #testimonials hash while the keyboard is changing the visual viewport.
     function clearSectionHash(){
       try{
         if(location.hash) history.replaceState(null,'',location.pathname+location.search);
       }catch(_){ }
     }
+
+    // Keep ordinary section links hash-free. This does not affect the form or payment flow.
     document.querySelectorAll('a[href^="#"]').forEach(link=>{
       link.addEventListener('click',e=>{
         const href=link.getAttribute('href');
         if(!href || href==='#') return;
         const target=document.querySelector(href);
         if(!target) return;
-        // If a form control is currently being edited, never let the review shortcut steal focus/scroll.
-        if(link.id==='reviewShortcutBtn' && document.body.classList.contains('form-editing')){
-          e.preventDefault();
-          return;
-        }
         e.preventDefault();
         clearSectionHash();
         target.scrollIntoView({behavior:'smooth',block:'start'});
       });
     });
 
-    // Keep the fixed sticky CTA completely out of the touch path while a customer types/selects form data.
-    // This also prevents a keyboard/viewport resize from re-activating the Reviews anchor.
-    let formFocusTimer=null;
+    const reviewShortcutBtn=document.getElementById('reviewShortcutBtn');
     const formControls=[...orderForm.querySelectorAll('input,select,textarea')];
+    let formInteractionUntil=0;
+    let formFocusReleaseTimer=null;
+
+    function markFormInteraction(ms=1800){
+      formInteractionUntil=performance.now()+ms;
+    }
+    function formControlIsActive(){
+      const active=document.activeElement;
+      return !!(active && orderForm.contains(active) && /^(INPUT|SELECT|TEXTAREA)$/.test(active.tagName));
+    }
+    function reviewShortcutLocked(){
+      return formControlIsActive() || performance.now()<formInteractionUntil;
+    }
+
+    // Never submit the HTML form natively. Payment is started only by the dedicated payment flow.
     orderForm.addEventListener('submit',e=>e.preventDefault());
+
+    // Keep both sticky buttons VISIBLE while customers fill the form. Only the Review button is
+    // temporarily non-interactive while a field is active, preventing it from stealing taps above
+    // the mobile keyboard or during the keyboard's resize/reflow.
     orderForm.addEventListener('focusin',()=>{
-      clearTimeout(formFocusTimer);
+      clearTimeout(formFocusReleaseTimer);
       clearSectionHash();
+      markFormInteraction(2200);
       document.body.classList.add('form-editing');
     });
     orderForm.addEventListener('focusout',()=>{
-      clearTimeout(formFocusTimer);
-      formFocusTimer=setTimeout(()=>{
-        if(!orderForm.contains(document.activeElement)) document.body.classList.remove('form-editing');
-      },450);
+      markFormInteraction(1800);
+      clearTimeout(formFocusReleaseTimer);
+      formFocusReleaseTimer=setTimeout(()=>{
+        if(!formControlIsActive()) document.body.classList.remove('form-editing');
+      },120);
     });
-    const reviewShortcutBtn=document.getElementById('reviewShortcutBtn');
+    ['input','change','pointerdown','touchstart'].forEach(evt=>{
+      orderForm.addEventListener(evt,()=>markFormInteraction(2200),{passive:true});
+    });
+
     if(reviewShortcutBtn){
-      ['pointerdown','touchstart'].forEach(evt=>reviewShortcutBtn.addEventListener(evt,e=>{
-        if(document.body.classList.contains('form-editing')){
-          e.preventDefault();
-          e.stopImmediatePropagation();
-        }
-      },{passive:false}));
+      reviewShortcutBtn.addEventListener('click',e=>{
+        e.preventDefault();
+        e.stopPropagation();
+        // This guard deliberately survives a brief focusout. On real phones the keyboard may
+        // temporarily move focus to <body> between fields; the grace window prevents that transient
+        // state from turning the sticky Review button into an accidental navigation target.
+        if(reviewShortcutLocked()) return;
+        const target=document.getElementById('testimonials');
+        if(!target) return;
+        clearSectionHash();
+        target.scrollIntoView({behavior:'smooth',block:'start'});
+      });
     }
 
     payBtn.addEventListener('click', startPayment);
