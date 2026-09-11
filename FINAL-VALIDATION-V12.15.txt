@@ -1,0 +1,137 @@
+DivyaLok Bhakti / Isht Devta LP
+V12.15 MOBILE FORM JUMP ROOT FIX
+Validation date: 2026-09-12
+STATUS: PASS
+
+WHAT WAS ACTUALLY CHANGED
+- index.html
+- assets/creative-v12/creative-v12.css
+- added LOCAL-MOBILE-PREVIEW.html for single-file Android/content:// testing
+- added UPDATE-NOTES-V12.15.txt
+- no existing backend, payment, review, admin, thank-you, or other page file was modified
+
+MOBILE JUMP ROOT-FIX CHECKS
+1. Mobile .v12-screen height is now frozen to the initial viewport pixel height instead of changing with keyboard viewport resize.
+2. Stable height refreshes only on orientation change, not ordinary keyboard resize.
+3. Review strip is no longer a tabindex/focus-return target.
+4. Reviews are excluded from browser scroll anchoring.
+5. Review auto-motion pauses while a mobile form/keyboard session is active.
+6. During an active mobile form session, an abnormal upward scroll above the order section is corrected automatically.
+7. No input/change/focus handler contains navigation to #testimonials / Reviews.
+8. Sticky buttons stay visible during form entry.
+9. CSS URL was cache-busted from creative-v12.css?v=12 to ?v=15 so a deployed browser cannot keep using the old cached stylesheet.
+
+MOBILE KEYBOARD / VIEWPORT STRESS TEST
+Browser emulation: Android mobile Chromium, 390px wide.
+Viewport cycle: 844px -> 520px -> 844px to simulate keyboard open/close.
+
+New build offsets stayed fixed:
+- Reviews offsetTop: 4500 -> 4500 -> 4500
+- Order offsetTop:   5470 -> 5470 -> 5470
+- Stable mobile viewport variable remained 844px.
+
+For EACH field below, the test deliberately forced the page back to the Reviews section while the field session was active. The page restored to the Order/form region each time, both before and after keyboard-close simulation:
+- Full Name: PASS
+- WhatsApp Number: PASS
+- Email: PASS
+- Date of Birth: PASS
+- Birth Time: PASS
+- Place of Birth: PASS
+
+Sticky mobile CTA visibility during form test:
+- display: visible
+- opacity: 1
+- remained inside mobile viewport
+PASS
+
+REVIEW STRIP REGRESSION CHECK
+- 30 fallback review cards rendered in the isolated test harness.
+- Auto-scroll resumed after form session expired.
+- Measured movement: ~20px over 2 seconds on mobile (~10px/sec).
+- Manual/native overflow scrolling code remains unchanged.
+PASS
+
+FRONT-END MOCK ORDER TEST
+Filled:
+- Name
+- Phone
+- Email
+- DOB
+- Birth Time
+- Birth Place
+- Gender
+- Report Language = Hindi
+
+Base order:
+- Razorpay options amount = 20100 paise
+- report_language = Hindi
+- navagrah_addon = no
+PASS
+
+With Navagrah add-on:
+- Razorpay options amount = 30000 paise
+- report_language = Hindi
+- navagrah_addon = yes
+PASS
+
+BACKEND MOCK TESTS
+create-isht201-order.js:
+- base order = 20100 paise
+- add-on order = 30000 paise
+- forged client totalAmount was ignored
+- GET rejected with 405
+- flow marker = isht201-v9
+PASS
+
+verify-isht-payment.js:
+- valid HMAC signature accepted
+- invalid signature rejected with 400
+- flow marker = verify-v6
+PASS
+
+POST-SALE WHATSAPP CHECK
+thank-you.html still includes:
+- Service: Isht Service
+- Name
+- Birth Date
+- Birth Place
+- Birth Location
+- Gender
+- Phone Number
+- Email
+- Language
+- Order ID
+PASS
+
+REVIEW PRIVACY CHECK
+review.html checkbox remains:
+"Hide my review from the website."
+- unchecked -> publicConsent true -> can appear only after manual approval
+- checked -> publicConsent false -> stored private
+public-reviews.js filters to publicConsent === true AND approved.
+PASS
+
+STATIC VALIDATION
+- all Netlify function/lib JavaScript passed node --check
+- 17 inline JavaScript blocks across HTML pages passed syntax validation
+- no duplicate IDs found
+- internal anchor targets resolve
+- local HTML src/href references resolve
+- CSS local url() references resolve
+PASS
+
+FILE-INTEGRITY COMPARISON AGAINST USER-UPLOADED V12.14
+Changed existing files ONLY:
+- index.html
+- assets/creative-v12/creative-v12.css
+Added only:
+- LOCAL-MOBILE-PREVIEW.html
+- UPDATE-NOTES-V12.15.txt
+- FINAL-VALIDATION-V12.15.txt
+No existing file was removed.
+
+IMPORTANT TESTING NOTE
+Opening index.html from WhatsApp/Android often uses a content:// URL. That environment does not reliably give the HTML file access to sibling CSS/images, which is why the local screenshots can appear as raw unstyled HTML with missing images. That local rendering is not the deployed LP.
+Use LOCAL-MOBILE-PREVIEW.html for local visual/form testing. It inlines the LP CSS/images. Its real Razorpay checkout is intentionally disabled; deploy the normal index.html for real payment testing.
+
+No live Razorpay charge was made during validation.

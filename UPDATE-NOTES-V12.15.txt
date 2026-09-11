@@ -1,0 +1,11 @@
+V12.15 MOBILE FORM JUMP ROOT FIX
+
+Root issue addressed:
+- mobile sections used a viewport-height min-height. Opening/closing the Android keyboard changes the mobile viewport and can reposition content above the form. The mobile section height is now frozen to the initial viewport height in pixels and refreshed only on orientation change.
+- while a form session is active, an abnormal upward escape above the order section is immediately restored.
+- the review strip is no longer a tabindex focus-return target and is excluded from scroll anchoring.
+- review auto-motion pauses during form/keyboard interaction.
+- no input/change/focus handler navigates to Reviews.
+- sticky buttons remain visible.
+
+LOCAL-MOBILE-PREVIEW.html is included as a single-file visual/form preview because Android content:// opening of index.html cannot reliably read sibling CSS/images. Real payment remains intentionally disabled in the local preview only.

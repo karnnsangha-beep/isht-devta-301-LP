@@ -1,0 +1,9 @@
+DivyaLok Bhakti LP V12.16
+
+Targeted mobile form fix only:
+- removed all V12.15 forced scroll repair logic, timers and viewport sentinels
+- form focus/input/change events no longer call scrollTo or scrollIntoView
+- page remains freely scrollable above and below the order form even while a field is active
+- mobile Check Reviews shortcut is disabled only while the Order section is actually visible, preventing accidental fixed-button taps during keyboard transitions
+- stale internal #section hashes are cleared so old #testimonials state cannot be restored
+- Razorpay/payment logic, pricing, review rendering, backend functions and page content were not changed

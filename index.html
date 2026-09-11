@@ -6,6 +6,16 @@
   <title>Isht Devta Discovery Report ₹201 | DivyaLok Bhakti</title>
   <meta name="description" content="Get your personalised Isht Devta Discovery Report for ₹201, including deity direction, mantra and a 21-day sadhana guide. Delivered on WhatsApp within 24-48 hours." />
   <meta name="theme-color" content="#ffffff" />
+  <meta name="lp-build" content="v12.16-mobile-form-free-scroll-fix" />
+  <script>
+    (function(){
+      function setStableMobileHeight(){
+        try{ document.documentElement.style.setProperty('--v12-stable-mobile-h', Math.max(520, window.innerHeight) + 'px'); }catch(_){}
+      }
+      setStableMobileHeight();
+      window.addEventListener('orientationchange', function(){ setTimeout(setStableMobileHeight, 450); }, {passive:true});
+    })();
+  </script>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="apple-touch-icon" href="assets/favicon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +28,7 @@
     (function(){ var id = window.SITE_CONFIG.META_PIXEL_ID; if(!id) return; !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js'); fbq('init', id); fbq('track', 'PageView'); })();
   </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=871049705466459&ev=PageView&noscript=1" alt="" /></noscript>
-<link rel="stylesheet" href="assets/creative-v12/creative-v12.css?v=12">
+<link rel="stylesheet" href="assets/creative-v12/creative-v12.css?v=16">
 </head>
 <body class="creative-v12">
   <header class="topbar">
@@ -137,7 +147,7 @@
         <h2 class="v12-title"><span class="en">Reviews <span class="gold-text">&amp; FAQs</span></span><span class="hi">रिव्यू <span class="gold-text">और प्रश्न</span></span></h2>
         <p class="v12-subtitle"><span class="en">Real feedback from people who received their personalised guidance.</span><span class="hi">उन लोगों की वास्तविक प्रतिक्रिया जिन्होंने अपना व्यक्तिगत मार्गदर्शन प्राप्त किया।</span></p>
         <div class="testimonials-shell">
-          <div class="review-marquee" id="reviewMarquee" tabindex="0" aria-label="Customer reviews. Drag or swipe sideways to browse. Open long reviews to read more."><div class="review-track" id="reviewTrack"></div></div>
+          <div class="review-marquee" id="reviewMarquee" aria-label="Customer reviews. Drag or swipe sideways to browse. Open long reviews to read more."><div class="review-track" id="reviewTrack"></div></div>
           <div class="review-popout-host" id="reviewPopoutHost" aria-live="polite"></div>
           <div class="review-hint"><span class="en">Swipe or wait • the review strip moves slowly automatically</span><span class="hi">स्वाइप करें या प्रतीक्षा करें • रिव्यू पट्टी धीरे-धीरे अपने आप चलती है</span></div>
         </div>
@@ -249,11 +259,11 @@
     function setLanguage(lang) {
       document.body.classList.toggle('lang-hi', lang === 'hi');
       document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
-      localStorage.setItem('isht_lp_lang', lang);
+      try{ localStorage.setItem('isht_lp_lang', lang); }catch(_){}
       updateText(lang);
     }
     document.querySelectorAll('[data-lang]').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.lang)));
-    setLanguage(localStorage.getItem('isht_lp_lang') || 'en');
+    let savedLpLang=null; try{ savedLpLang=localStorage.getItem('isht_lp_lang'); }catch(_){} setLanguage(savedLpLang || 'en');
     if(navagrahAddonCheck) navagrahAddonCheck.addEventListener('change', ()=>{ updatePricingUI(); if(typeof updateMobileAction==='function') updateMobileAction(); });
     updatePricingUI();
 
@@ -639,7 +649,7 @@
       function animate(now){
         const dt=Math.min(64,Math.max(0,now-lastTime));
         lastTime=now;
-        if(!interacting&&!popoutOpen&&copyWidth){
+        if(!interacting&&!popoutOpen&&!document.body.classList.contains('form-editing')&&copyWidth){
           autoPosition+=reviewSpeed()*dt/1000;
           if(autoPosition>=copyWidth*2) autoPosition-=copyWidth;
           else if(autoPosition<=copyWidth*.35) autoPosition+=copyWidth;
@@ -662,16 +672,18 @@
       requestAnimationFrame(animate);
     })();
 
-    // V12.14: mobile form-entry safety.
-    // The sticky Review control is a real button (not an anchor), so Safari/Chrome cannot
-    // restore a #testimonials hash while the keyboard is changing the visual viewport.
+    // V12.16: mobile form-entry safety without scroll locking.
+    // Form focus/input events NEVER move the page. The only automatic section movement comes from an intentional button tap.
     function clearSectionHash(){
       try{
         if(location.hash) history.replaceState(null,'',location.pathname+location.search);
       }catch(_){ }
     }
 
-    // Keep ordinary section links hash-free. This does not affect the form or payment flow.
+    // Remove stale internal hashes left by older builds so mobile browsers cannot restore #testimonials unexpectedly.
+    clearSectionHash();
+
+    // Section links still work normally, but without leaving a persistent #anchor in browser history.
     document.querySelectorAll('a[href^="#"]').forEach(link=>{
       link.addEventListener('click',e=>{
         const href=link.getAttribute('href');
@@ -685,52 +697,65 @@
     });
 
     const reviewShortcutBtn=document.getElementById('reviewShortcutBtn');
-    const formControls=[...orderForm.querySelectorAll('input,select,textarea')];
-    let formInteractionUntil=0;
-    let formFocusReleaseTimer=null;
+    let formEditingTimer=null;
+    let shortcutStateTick=false;
 
-    function markFormInteraction(ms=1800){
-      formInteractionUntil=performance.now()+ms;
+    function activeOrderControl(){
+      const a=document.activeElement;
+      return a && form.contains(a) && /^(INPUT|SELECT|TEXTAREA)$/.test(a.tagName) ? a : null;
     }
-    function formControlIsActive(){
-      const active=document.activeElement;
-      return !!(active && orderForm.contains(active) && /^(INPUT|SELECT|TEXTAREA)$/.test(active.tagName));
-    }
-    function reviewShortcutLocked(){
-      return formControlIsActive() || performance.now()<formInteractionUntil;
-    }
-
-    // Never submit the HTML form natively. Payment is started only by the dedicated payment flow.
-    orderForm.addEventListener('submit',e=>e.preventDefault());
-
-    // Keep both sticky buttons VISIBLE while customers fill the form. Only the Review button is
-    // temporarily non-interactive while a field is active, preventing it from stealing taps above
-    // the mobile keyboard or during the keyboard's resize/reflow.
-    orderForm.addEventListener('focusin',()=>{
-      clearTimeout(formFocusReleaseTimer);
-      clearSectionHash();
-      markFormInteraction(2200);
+    function markFormEditing(){
       document.body.classList.add('form-editing');
+      clearTimeout(formEditingTimer);
+      formEditingTimer=setTimeout(()=>{
+        if(!activeOrderControl()) document.body.classList.remove('form-editing');
+      },700);
+    }
+    function orderIsOnScreen(){
+      if(!orderSection) return false;
+      const r=orderSection.getBoundingClientRect();
+      const vh=window.innerHeight || document.documentElement.clientHeight || 0;
+      return r.bottom>80 && r.top<vh-80;
+    }
+    function updateReviewShortcutState(){
+      shortcutStateTick=false;
+      if(!reviewShortcutBtn) return;
+      // On mobile, disable only the Review shortcut while the order area is on screen.
+      // This prevents the fixed button from accidentally receiving a tap during keyboard/focus changes.
+      // It never changes scroll position and never prevents normal page swiping/scrolling.
+      const locked=window.innerWidth<=780 && orderIsOnScreen();
+      document.body.classList.toggle('order-in-view',locked);
+      reviewShortcutBtn.disabled=locked;
+      reviewShortcutBtn.setAttribute('aria-disabled',locked?'true':'false');
+    }
+    function scheduleReviewShortcutState(){
+      if(shortcutStateTick) return;
+      shortcutStateTick=true;
+      requestAnimationFrame(updateReviewShortcutState);
+    }
+
+    // Native form submission is never used; Razorpay starts only through startPayment().
+    form.addEventListener('submit',e=>e.preventDefault());
+    ['focusin','focusout','input','change','touchstart','pointerdown'].forEach(evt=>{
+      form.addEventListener(evt,()=>{
+        markFormEditing();
+        scheduleReviewShortcutState();
+      }, evt==='touchstart' ? {passive:true} : false);
     });
-    orderForm.addEventListener('focusout',()=>{
-      markFormInteraction(1800);
-      clearTimeout(formFocusReleaseTimer);
-      formFocusReleaseTimer=setTimeout(()=>{
-        if(!formControlIsActive()) document.body.classList.remove('form-editing');
-      },120);
-    });
-    ['input','change','pointerdown','touchstart'].forEach(evt=>{
-      orderForm.addEventListener(evt,()=>markFormInteraction(2200),{passive:true});
-    });
+    window.addEventListener('scroll',scheduleReviewShortcutState,{passive:true});
+    window.addEventListener('resize',scheduleReviewShortcutState,{passive:true});
+    if(window.visualViewport){
+      window.visualViewport.addEventListener('resize',scheduleReviewShortcutState,{passive:true});
+      window.visualViewport.addEventListener('scroll',scheduleReviewShortcutState,{passive:true});
+    }
+    updateReviewShortcutState();
 
     if(reviewShortcutBtn){
       reviewShortcutBtn.addEventListener('click',e=>{
         e.preventDefault();
         e.stopPropagation();
-        // This guard deliberately survives a brief focusout. On real phones the keyboard may
-        // temporarily move focus to <body> between fields; the grace window prevents that transient
-        // state from turning the sticky Review button into an accidental navigation target.
-        if(reviewShortcutLocked()) return;
+        updateReviewShortcutState();
+        if(reviewShortcutBtn.disabled) return;
         const target=document.getElementById('testimonials');
         if(!target) return;
         clearSectionHash();

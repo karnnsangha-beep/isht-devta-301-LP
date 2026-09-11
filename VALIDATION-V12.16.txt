@@ -1,0 +1,25 @@
+V12.16 MOBILE FORM FREE-SCROLL VALIDATION
+
+Scope intentionally limited to the mobile form/review-jump protection.
+
+PASS:
+- Removed all V12.15 forced scroll repair logic and its 100ms sentinel.
+- No form focus/input/change/touch/pointer handler calls window.scrollTo() or scrollIntoView().
+- User can manually scroll above/below the Details section while a field remains focused.
+- Sticky CTA container remains visible during form entry.
+- Mobile Check Reviews shortcut is made non-interactive while the Order section is onscreen, preventing an accidental fixed-button tap from sending the customer back to Reviews during keyboard/focus transitions.
+- Review shortcut re-enables automatically after Order leaves the viewport.
+- Stale internal URL hashes are removed on load; internal section navigation no longer leaves #testimonials in browser history.
+- All Netlify backend files are byte-for-byte unchanged from V12.15.
+- Razorpay server-authoritative pricing mock: ₹201 => 20100 paise; +₹99 add-on => 30000 paise; forged client total ignored.
+- Netlify create-order GET method remains rejected with 405.
+- All Netlify/lib JS passed node --check.
+- All inline JS blocks across HTML files passed node --check.
+- Post-sale WhatsApp payload still includes selected report language.
+- Review privacy behavior remains unchanged: unchecked = eligible for public display after approval; checked = private.
+
+Changed runtime files only:
+- index.html
+- assets/creative-v12/creative-v12.css
+
+No payment/backend/review data code was modified.
