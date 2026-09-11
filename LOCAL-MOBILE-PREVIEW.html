@@ -290,7 +290,7 @@ body.creative-v12 .mobile-cta{
   background:rgba(255,255,255,.94) !important;border:1px solid rgba(6,63,50,.13) !important;
   box-shadow:0 16px 50px rgba(23,47,40,.16) !important;backdrop-filter:blur(18px);
 }
-body.creative-v12 .mobile-cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+body.creative-v12 .mobile-cta-grid{display:grid;grid-template-columns:1fr;gap:0;}
 body.creative-v12 .mobile-cta .btn{min-height:54px;border-radius:13px;font-size:15px;padding:11px 13px;}
 body.creative-v12 .mobile-cta .btn.secondary{background:#fff !important;color:var(--v12-green) !important;border:1px solid rgba(6,63,50,.32) !important;box-shadow:none !important;}
 body.creative-v12 .mobile-cta .btn.secondary::before{content:'★';font-size:16px;}
@@ -498,6 +498,9 @@ body.creative-v12 #reviewMarquee,
 body.creative-v12 #reviewTrack{overflow-anchor:none;}
 body.creative-v12 #order{overflow-anchor:auto;}
 
+
+body.creative-v12 .mobile-cta-grid{grid-template-columns:1fr !important;gap:0 !important;}
+body.creative-v12 #mobileActionBtn{width:100% !important;}
 </style>
 <script>
 (function(){
@@ -694,7 +697,7 @@ body.creative-v12 #order{overflow-anchor:auto;}
     </div>
   </footer>
 
-  <div class="mobile-cta"><div class="mobile-cta-grid"><button class="btn secondary" id="reviewShortcutBtn" type="button"><span class="en">Check Reviews</span><span class="hi">रिव्यू देखें</span></button><button class="btn primary" id="mobileActionBtn" type="button"><span class="en" id="mobileActionEn">Get Report</span><span class="hi" id="mobileActionHi">रिपोर्ट पाएं</span></button></div></div>
+  <div class="mobile-cta"><div class="mobile-cta-grid"><button class="btn primary" id="mobileActionBtn" type="button"><span class="en" id="mobileActionEn">Get Report</span><span class="hi" id="mobileActionHi">रिपोर्ट पाएं</span></button></div></div>
 
   <script>
     (function(){
@@ -1179,133 +1182,16 @@ body.creative-v12 #order{overflow-anchor:auto;}
       });
     });
 
-    const reviewShortcutBtn=document.getElementById('reviewShortcutBtn');
-    let formSessionUntil=0;
-    let lastFormField=null;
-    let lastSafeFormY=0;
-    let formScrollRepairing=false;
-    let formSessionTimer=null;
-    let formRepairTimers=[];
-
-    function formNow(){ return performance.now(); }
-    function activeFormControl(){
-      const a=document.activeElement;
-      return a && orderForm.contains(a) && /^(INPUT|SELECT|TEXTAREA)$/.test(a.tagName) ? a : null;
-    }
-    function extendFormSession(ms=2200){
-      formSessionUntil=Math.max(formSessionUntil,formNow()+ms);
-      document.body.classList.add('form-editing');
-      clearTimeout(formSessionTimer);
-      formSessionTimer=setTimeout(()=>{
-        if(!activeFormControl() && formNow()>=formSessionUntil) document.body.classList.remove('form-editing');
-      },ms+80);
-    }
-    function formSessionActive(){ return window.innerWidth<=780 && (!!activeFormControl() || formNow()<formSessionUntil); }
-    function reviewShortcutLocked(){ return formSessionActive(); }
-    function currentOrderTop(){ return orderSection ? orderSection.offsetTop : 0; }
-    function rememberSafeFormY(){
-      if(!orderSection) return;
-      const floor=Math.max(0,currentOrderTop()-110);
-      if(window.scrollY>=floor) lastSafeFormY=Math.max(window.scrollY,floor);
-    }
-    function cancelRepairTimers(){
-      formRepairTimers.forEach(clearTimeout);
-      formRepairTimers=[];
-    }
-    function repairUnexpectedFormJump(){
-      if(formScrollRepairing || !formSessionActive() || !orderSection) return;
-      const orderTop=currentOrderTop();
-      const minAllowed=Math.max(0,orderTop-130);
-      if(window.scrollY>=minAllowed){ rememberSafeFormY(); return; }
-
-      // This is the exact failure mode: the browser has moved the page one or more sections upward
-      // while a field/keyboard transition is still active. Restore instantly, never with smooth scroll.
-      formScrollRepairing=true;
-      const active=activeFormControl() || (lastFormField && lastFormField.isConnected ? lastFormField : null);
-      let target=Math.max(lastSafeFormY || minAllowed,minAllowed);
-      if(active){
-        const r=active.getBoundingClientRect();
-        const absoluteTop=r.top+window.scrollY;
-        const vh=(window.visualViewport&&window.visualViewport.height)||window.innerHeight;
-        target=Math.max(minAllowed,absoluteTop-Math.max(105,vh*.26));
-      }
-      window.scrollTo(0,target);
-      requestAnimationFrame(()=>{
-        formScrollRepairing=false;
-        rememberSafeFormY();
-      });
-    }
-    function scheduleFormRepairs(){
-      cancelRepairTimers();
-      repairUnexpectedFormJump();
-      [70,180,360,650].forEach(ms=>formRepairTimers.push(setTimeout(repairUnexpectedFormJump,ms)));
-    }
-
-    // Native form submission is never used; Razorpay starts only through startPayment().
-    orderForm.addEventListener('submit',e=>e.preventDefault());
-
-    orderForm.addEventListener('focusin',e=>{
-      if(/^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName)) lastFormField=e.target;
-      extendFormSession(4200);
-      requestAnimationFrame(()=>{ rememberSafeFormY(); scheduleFormRepairs(); });
-    });
-    orderForm.addEventListener('focusout',()=>{
-      extendFormSession(2400);
-      scheduleFormRepairs();
-    });
-    ['input','change'].forEach(evt=>{
-      orderForm.addEventListener(evt,e=>{
-        if(/^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName)) lastFormField=e.target;
-        extendFormSession(3200);
-        rememberSafeFormY();
-        scheduleFormRepairs();
-      });
-    });
-    orderForm.addEventListener('touchstart',e=>{
-      if(/^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName)) lastFormField=e.target;
-      extendFormSession(3600);
-      rememberSafeFormY();
-    },{passive:true});
-
-    // Android Chrome's keyboard changes visualViewport. Re-check during the whole transition.
-    if(window.visualViewport){
-      window.visualViewport.addEventListener('resize',()=>{ if(formSessionActive()) scheduleFormRepairs(); },{passive:true});
-      window.visualViewport.addEventListener('scroll',()=>{ if(formSessionActive()) scheduleFormRepairs(); },{passive:true});
-    }
-    window.addEventListener('resize',()=>{ if(formSessionActive()) scheduleFormRepairs(); },{passive:true});
-    window.addEventListener('scroll',()=>{
-      if(!formSessionActive() || formScrollRepairing) return;
-      if(window.scrollY < Math.max(0,currentOrderTop()-130)) scheduleFormRepairs();
-      else rememberSafeFormY();
-    },{passive:true});
-    const formViewportSentinel=setInterval(()=>{ if(formSessionActive()) repairUnexpectedFormJump(); else document.body.classList.remove('form-editing'); },100);
-
-    if(reviewShortcutBtn){
-      reviewShortcutBtn.addEventListener('click',e=>{
-        e.preventDefault();
-        e.stopPropagation();
-        if(reviewShortcutLocked()) return;
-        const target=document.getElementById('testimonials');
-        if(!target) return;
-        clearSectionHash();
-        target.scrollIntoView({behavior:'smooth',block:'start'});
-      });
-    }
-
     payBtn.addEventListener('click', startPayment);
 
-    // V9.7 mobile sticky guidance: Review shortcut is fixed; primary action follows the visitor's progress.
+
+    // V12.17: one full-width sticky action only.
     const mobileActionBtn = document.getElementById('mobileActionBtn');
     const mobileActionEn = document.getElementById('mobileActionEn');
     const mobileActionHi = document.getElementById('mobileActionHi');
-    const requiredFieldIds = ['fullName','email','phone','dob','tob','pob','gender'];
     function mobileFormReady(){
       const d=getDetails();
       return Boolean(d.fullName && d.email && isValidEmail(d.email) && d.phone && d.dob && d.tob && d.pob && d.gender);
-    }
-    function orderReached(){
-      if(!orderSection) return false;
-      return (window.scrollY + window.innerHeight*.72) >= orderSection.offsetTop;
     }
     function setMobileActionLabel(en,hi){
       if(mobileActionEn) mobileActionEn.textContent=en;
@@ -1313,36 +1199,18 @@ body.creative-v12 #order{overflow-anchor:auto;}
     }
     function updateMobileAction(){
       if(!mobileActionBtn) return;
-      if(!orderReached()) setMobileActionLabel('Get Report','रिपोर्ट पाएं');
-      else if(mobileFormReady()) setMobileActionLabel('Pay ₹'+selectedTotal(),'₹'+selectedTotal()+' भुगतान करें');
-      else setMobileActionLabel('Enter Details','विवरण भरें');
-    }
-    function firstIncompleteField(){
-      for(const id of requiredFieldIds){
-        const el=document.getElementById(id);
-        if(!el) continue;
-        const value=String(el.value||'').trim();
-        if(!value || (id==='email' && !isValidEmail(value))) return el;
+      if(mobileFormReady()){
+        const total=selectedTotal();
+        setMobileActionLabel('Pay ₹'+total+' Securely Now','₹'+total+' सुरक्षित भुगतान करें');
+      } else {
+        setMobileActionLabel('Get Report','रिपोर्ट पाएं');
       }
-      return null;
     }
     if(mobileActionBtn){
       mobileActionBtn.addEventListener('click',()=>{
-        if(orderReached() && mobileFormReady()) { startPayment(); return; }
-        const target=orderReached()?firstIncompleteField():orderSection;
-        if(target){
-          target.scrollIntoView({behavior:'smooth',block:target===orderSection?'start':'center'});
-          if(target!==orderSection) setTimeout(()=>{try{target.focus({preventScroll:true});}catch(_){target.focus();}},380);
-        }
+        if(mobileFormReady()){ startPayment(); return; }
+        if(orderSection) orderSection.scrollIntoView({behavior:'smooth',block:'start'});
       });
-      let mobileActionTick=false;
-      const scheduleMobileAction=()=>{
-        if(mobileActionTick) return;
-        mobileActionTick=true;
-        requestAnimationFrame(()=>{mobileActionTick=false;updateMobileAction();});
-      };
-      window.addEventListener('scroll',scheduleMobileAction,{passive:true});
-      window.addEventListener('resize',scheduleMobileAction,{passive:true});
       updateMobileAction();
     }
 

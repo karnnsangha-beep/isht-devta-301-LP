@@ -1,0 +1,9 @@
+DivyaLok Bhakti LP V12.17
+
+Only the mobile sticky CTA flow was changed:
+- removed the sticky Check Reviews button entirely
+- sticky bar is now one full-width primary button
+- before required form details are complete: Get Report -> scrolls to Details/Order section
+- after required form details are complete: Pay ₹201 Securely Now (or ₹300 when Navagrah add-on is selected) -> starts the existing Razorpay checkout
+- removed all review-shortcut/form-editing guard JavaScript tied to the old sticky review button
+- no payment backend, review strip, page sections, pricing variables, or other LP content changed

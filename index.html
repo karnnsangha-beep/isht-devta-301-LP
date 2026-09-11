@@ -6,7 +6,7 @@
   <title>Isht Devta Discovery Report ₹201 | DivyaLok Bhakti</title>
   <meta name="description" content="Get your personalised Isht Devta Discovery Report for ₹201, including deity direction, mantra and a 21-day sadhana guide. Delivered on WhatsApp within 24-48 hours." />
   <meta name="theme-color" content="#ffffff" />
-  <meta name="lp-build" content="v12.16-mobile-form-free-scroll-fix" />
+  <meta name="lp-build" content="v12.17-single-sticky-cta" />
   <script>
     (function(){
       function setStableMobileHeight(){
@@ -28,7 +28,7 @@
     (function(){ var id = window.SITE_CONFIG.META_PIXEL_ID; if(!id) return; !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js'); fbq('init', id); fbq('track', 'PageView'); })();
   </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=871049705466459&ev=PageView&noscript=1" alt="" /></noscript>
-<link rel="stylesheet" href="assets/creative-v12/creative-v12.css?v=16">
+<link rel="stylesheet" href="assets/creative-v12/creative-v12.css?v=17">
 </head>
 <body class="creative-v12">
   <header class="topbar">
@@ -209,7 +209,7 @@
     </div>
   </footer>
 
-  <div class="mobile-cta"><div class="mobile-cta-grid"><button class="btn secondary" id="reviewShortcutBtn" type="button"><span class="en">Check Reviews</span><span class="hi">रिव्यू देखें</span></button><button class="btn primary" id="mobileActionBtn" type="button"><span class="en" id="mobileActionEn">Get Report</span><span class="hi" id="mobileActionHi">रिपोर्ट पाएं</span></button></div></div>
+  <div class="mobile-cta"><div class="mobile-cta-grid"><button class="btn primary" id="mobileActionBtn" type="button"><span class="en" id="mobileActionEn">Get Report</span><span class="hi" id="mobileActionHi">रिपोर्ट पाएं</span></button></div></div>
 
   <script>
     (function(){
@@ -696,87 +696,18 @@
       });
     });
 
-    const reviewShortcutBtn=document.getElementById('reviewShortcutBtn');
-    let formEditingTimer=null;
-    let shortcutStateTick=false;
-
-    function activeOrderControl(){
-      const a=document.activeElement;
-      return a && form.contains(a) && /^(INPUT|SELECT|TEXTAREA)$/.test(a.tagName) ? a : null;
-    }
-    function markFormEditing(){
-      document.body.classList.add('form-editing');
-      clearTimeout(formEditingTimer);
-      formEditingTimer=setTimeout(()=>{
-        if(!activeOrderControl()) document.body.classList.remove('form-editing');
-      },700);
-    }
-    function orderIsOnScreen(){
-      if(!orderSection) return false;
-      const r=orderSection.getBoundingClientRect();
-      const vh=window.innerHeight || document.documentElement.clientHeight || 0;
-      return r.bottom>80 && r.top<vh-80;
-    }
-    function updateReviewShortcutState(){
-      shortcutStateTick=false;
-      if(!reviewShortcutBtn) return;
-      // On mobile, disable only the Review shortcut while the order area is on screen.
-      // This prevents the fixed button from accidentally receiving a tap during keyboard/focus changes.
-      // It never changes scroll position and never prevents normal page swiping/scrolling.
-      const locked=window.innerWidth<=780 && orderIsOnScreen();
-      document.body.classList.toggle('order-in-view',locked);
-      reviewShortcutBtn.disabled=locked;
-      reviewShortcutBtn.setAttribute('aria-disabled',locked?'true':'false');
-    }
-    function scheduleReviewShortcutState(){
-      if(shortcutStateTick) return;
-      shortcutStateTick=true;
-      requestAnimationFrame(updateReviewShortcutState);
-    }
-
-    // Native form submission is never used; Razorpay starts only through startPayment().
-    form.addEventListener('submit',e=>e.preventDefault());
-    ['focusin','focusout','input','change','touchstart','pointerdown'].forEach(evt=>{
-      form.addEventListener(evt,()=>{
-        markFormEditing();
-        scheduleReviewShortcutState();
-      }, evt==='touchstart' ? {passive:true} : false);
-    });
-    window.addEventListener('scroll',scheduleReviewShortcutState,{passive:true});
-    window.addEventListener('resize',scheduleReviewShortcutState,{passive:true});
-    if(window.visualViewport){
-      window.visualViewport.addEventListener('resize',scheduleReviewShortcutState,{passive:true});
-      window.visualViewport.addEventListener('scroll',scheduleReviewShortcutState,{passive:true});
-    }
-    updateReviewShortcutState();
-
-    if(reviewShortcutBtn){
-      reviewShortcutBtn.addEventListener('click',e=>{
-        e.preventDefault();
-        e.stopPropagation();
-        updateReviewShortcutState();
-        if(reviewShortcutBtn.disabled) return;
-        const target=document.getElementById('testimonials');
-        if(!target) return;
-        clearSectionHash();
-        target.scrollIntoView({behavior:'smooth',block:'start'});
-      });
-    }
-
     payBtn.addEventListener('click', startPayment);
 
-    // V9.7 mobile sticky guidance: Review shortcut is fixed; primary action follows the visitor's progress.
+
+    // V12.17: one full-width sticky action only.
+    // Until all required details are complete it only sends the visitor to the Details section.
+    // Once the form is complete it becomes the secure checkout button.
     const mobileActionBtn = document.getElementById('mobileActionBtn');
     const mobileActionEn = document.getElementById('mobileActionEn');
     const mobileActionHi = document.getElementById('mobileActionHi');
-    const requiredFieldIds = ['fullName','email','phone','dob','tob','pob','gender'];
     function mobileFormReady(){
       const d=getDetails();
       return Boolean(d.fullName && d.email && isValidEmail(d.email) && d.phone && d.dob && d.tob && d.pob && d.gender);
-    }
-    function orderReached(){
-      if(!orderSection) return false;
-      return (window.scrollY + window.innerHeight*.72) >= orderSection.offsetTop;
     }
     function setMobileActionLabel(en,hi){
       if(mobileActionEn) mobileActionEn.textContent=en;
@@ -784,36 +715,21 @@
     }
     function updateMobileAction(){
       if(!mobileActionBtn) return;
-      if(!orderReached()) setMobileActionLabel('Get Report','रिपोर्ट पाएं');
-      else if(mobileFormReady()) setMobileActionLabel('Pay ₹'+selectedTotal(),'₹'+selectedTotal()+' भुगतान करें');
-      else setMobileActionLabel('Enter Details','विवरण भरें');
-    }
-    function firstIncompleteField(){
-      for(const id of requiredFieldIds){
-        const el=document.getElementById(id);
-        if(!el) continue;
-        const value=String(el.value||'').trim();
-        if(!value || (id==='email' && !isValidEmail(value))) return el;
+      if(mobileFormReady()){
+        const total=selectedTotal();
+        setMobileActionLabel('Pay ₹'+total+' Securely Now','₹'+total+' सुरक्षित भुगतान करें');
+      } else {
+        setMobileActionLabel('Get Report','रिपोर्ट पाएं');
       }
-      return null;
     }
     if(mobileActionBtn){
       mobileActionBtn.addEventListener('click',()=>{
-        if(orderReached() && mobileFormReady()) { startPayment(); return; }
-        const target=orderReached()?firstIncompleteField():orderSection;
-        if(target){
-          target.scrollIntoView({behavior:'smooth',block:target===orderSection?'start':'center'});
-          if(target!==orderSection) setTimeout(()=>{try{target.focus({preventScroll:true});}catch(_){target.focus();}},380);
+        if(mobileFormReady()){
+          startPayment();
+          return;
         }
+        if(orderSection) orderSection.scrollIntoView({behavior:'smooth',block:'start'});
       });
-      let mobileActionTick=false;
-      const scheduleMobileAction=()=>{
-        if(mobileActionTick) return;
-        mobileActionTick=true;
-        requestAnimationFrame(()=>{mobileActionTick=false;updateMobileAction();});
-      };
-      window.addEventListener('scroll',scheduleMobileAction,{passive:true});
-      window.addEventListener('resize',scheduleMobileAction,{passive:true});
       updateMobileAction();
     }
 

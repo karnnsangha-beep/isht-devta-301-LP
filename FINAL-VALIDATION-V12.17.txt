@@ -1,0 +1,41 @@
+DivyaLok Bhakti LP V12.17 - validation
+
+STATUS: PASS
+
+Requested sticky CTA change
+- Sticky Check Reviews button removed from index.html.
+- All runtime JavaScript tied to reviewShortcutBtn removed from index.html.
+- Sticky area contains exactly one primary button: mobileActionBtn.
+- Sticky grid forced to one column; primary button width forced to 100%.
+- Incomplete required details: button label remains "Get Report" and click scrolls only to #order.
+- Complete required details: button becomes "Pay ₹201 Securely Now".
+- If Navagrah +₹99 is selected after completion, label becomes "Pay ₹300 Securely Now".
+- No "Enter Details" sticky state remains.
+
+Jump-risk checks
+- No reviewShortcutBtn element or runtime reference remains in deployed index.html.
+- No Check Reviews sticky text remains in deployed index.html.
+- No form input/change handler contains scrollIntoView/scrollTo.
+- Remaining #testimonials navigation is only the normal explicit Reviews navigation link / section.
+- The sticky Get Report action never targets #testimonials.
+
+Payment/backend checks
+- netlify/ backend tree is byte-for-byte identical to uploaded V12.16 source.
+- Base order mock: 20100 paise PASS.
+- Navagrah order mock: 30000 paise PASS.
+- Forged client total ignored by server PASS.
+- Hindi report language carried into Razorpay order notes PASS.
+- Valid HMAC payment verification PASS.
+- Invalid HMAC rejected PASS.
+
+Regression checks
+- review.html unchanged.
+- review-admin.html unchanged.
+- thank-you.html unchanged.
+- Inline JavaScript syntax PASS.
+- All Netlify JavaScript syntax PASS.
+- No duplicate IDs in index.html.
+- Local asset references in index.html resolve.
+
+Environment limitation
+- A real browser navigation test against localhost/file:// is blocked by the execution environment's administrator policy, so no claim of a live browser/real Razorpay charge test is made.
