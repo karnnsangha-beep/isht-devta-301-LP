@@ -186,7 +186,7 @@ body.creative-v12 .testimonials-shell{margin:24px auto 0;padding:0;background:tr
 body.creative-v12 .review-marquee{overflow-x:auto !important;overflow-y:visible !important;padding:7px 0 12px;cursor:grab;scrollbar-width:none;touch-action:auto !important;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain !important;overscroll-behavior-y:auto !important;scroll-behavior:auto !important;}
 body.creative-v12 .review-marquee::-webkit-scrollbar{display:none;}
 body.creative-v12 .review-marquee.dragging{cursor:grabbing;}
-body.creative-v12 .review-track{display:flex;gap:12px;padding:0 8px;align-items:stretch;will-change:scroll-position;}
+body.creative-v12 .review-track{display:flex;gap:12px;padding:0 8px;align-items:stretch;}
 body.creative-v12 .review-card{
   flex:0 0 250px;width:250px;aspect-ratio:1/1;height:auto;min-height:0;
   display:flex;flex-direction:column;padding:16px;border:1px solid rgba(178,123,22,.25);border-radius:16px;
@@ -263,7 +263,7 @@ body.creative-v12 .mobile-cta{
   background:rgba(255,255,255,.94) !important;border:1px solid rgba(6,63,50,.13) !important;
   box-shadow:0 16px 50px rgba(23,47,40,.16) !important;backdrop-filter:blur(18px);
 }
-body.creative-v12 .mobile-cta-grid{display:grid;grid-template-columns:1fr;gap:0;}
+body.creative-v12 .mobile-cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 body.creative-v12 .mobile-cta .btn{min-height:54px;border-radius:13px;font-size:15px;padding:11px 13px;}
 body.creative-v12 .mobile-cta .btn.secondary{background:#fff !important;color:var(--v12-green) !important;border:1px solid rgba(6,63,50,.32) !important;box-shadow:none !important;}
 body.creative-v12 .mobile-cta .btn.secondary::before{content:'★';font-size:16px;}
@@ -433,7 +433,7 @@ body.creative-v12 .v12-isht-grid,body.creative-v12 .v12-isht-item,body.creative-
 body.creative-v12 .v12-lotus-art{width:min(500px,68vw);aspect-ratio:1/1;height:auto;display:block;margin:0 auto 8px;mix-blend-mode:normal;object-fit:contain;}
 @media(max-width:780px){ body.creative-v12 .v12-lotus-art{width:100%;max-width:none;aspect-ratio:1/1;height:auto;display:block;margin:0 auto 8px;object-fit:contain;} }
 
-/* V12.10 review motion + full review pop-out */
+/* V12.18 static, manually scrollable reviews + full review pop-out */
 body.creative-v12 .review-quote.expanded{display:-webkit-box !important;-webkit-line-clamp:5 !important;max-height:calc(1.42em * 5) !important;overflow:hidden !important;padding-right:0 !important;}
 body.creative-v12 .review-popout-host{width:min(760px,calc(100% - 16px));margin:10px auto 0;}
 body.creative-v12 .review-popout-host:empty{display:none;}
@@ -472,11 +472,6 @@ body.creative-v12 #reviewTrack{overflow-anchor:none;}
 body.creative-v12 #order{overflow-anchor:auto;}
 
 
-/* V12.16 mobile form free-scroll safety */
+/* V12.18 mobile form free-scroll safety */
 body.creative-v12.order-in-view #reviewShortcutBtn{opacity:.58 !important;pointer-events:none !important;}
 body.creative-v12.order-in-view #reviewShortcutBtn:disabled{cursor:default;}
-
-
-/* V12.17 single full-width sticky CTA */
-body.creative-v12 .mobile-cta-grid{grid-template-columns:1fr !important;gap:0 !important;}
-body.creative-v12 #mobileActionBtn{width:100% !important;}

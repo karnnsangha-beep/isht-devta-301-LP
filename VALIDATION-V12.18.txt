@@ -1,0 +1,16 @@
+ISHT DEVTA LP V12.18 — VALIDATION
+
+PASS — index.html and LOCAL-MOBILE-PREVIEW.html inline JavaScript parses successfully.
+PASS — all Netlify function and library JavaScript parses successfully.
+PASS — no continuous review requestAnimationFrame loop remains.
+PASS — no periodic live-review refresh remains.
+PASS — the review track renders a single, static set of cards.
+PASS — reviews retain manual horizontal scrolling and desktop drag support.
+PASS — Read more, Collapse, and reply pop-out handlers remain present.
+PASS — review content freezes before form entry can be affected by a delayed review response.
+PASS — no form focus/input/change/touch/pointer handler calls scrollTo or scrollIntoView.
+PASS — the old preview-only form repair timer and window.scrollTo behavior are removed.
+PASS — sticky CTA labels and intentional CTA navigation remain unchanged.
+PASS — payment price, Razorpay order creation, payment verification, thank-you redirect, and Netlify backup logic remain unchanged.
+PASS — existing page styling, imagery, sections, and responsive layout remain unchanged.
+

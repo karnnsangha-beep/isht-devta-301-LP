@@ -1,0 +1,21 @@
+ISHT DEVTA LP V12.18 — STATIC REVIEWS / FORM STABILITY
+
+Scope
+- No visual redesign. Page structure, styling, content sections, pricing, sticky CTAs, forms, payment flow, and backend functions remain unchanged.
+
+Review strip
+- Removed the continuous requestAnimationFrame auto-scroll loop.
+- Removed the 60-second review refresh loop.
+- Reviews remain horizontally scrollable by touch, trackpad, mouse wheel, and desktop drag.
+- Read more and reply pop-outs remain available.
+- Only one copy of each review is rendered, avoiding background scroll repositioning.
+
+Form stability
+- Review data is frozen once the order section is reached or form entry starts, so delayed review responses cannot replace content above an active form.
+- The self-contained local mobile preview now uses the same free-scroll form logic as the deployable index.
+- Removed the older preview-only scroll repair timer that called window.scrollTo during form focus/input transitions.
+- No form focus, input, change, touch, pointer, keyboard-viewport, or timer handler programmatically moves the page.
+
+Version
+- Build marker: v12.18-static-reviews-form-stability
+
