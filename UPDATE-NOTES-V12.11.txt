@@ -1,0 +1,9 @@
+DivyaLok Bhakti LP V12.11 targeted review-strip fix
+
+Only the review strip code/CSS was changed.
+- auto-scroll speed increased to 10 px/sec mobile, 12 px/sec desktop
+- mobile/tablet horizontal review swiping now uses native browser touch scrolling
+- custom pointer capture is now desktop-mouse only, so it cannot block phone swipes
+- vertical gestures over the review strip remain native page scrolling
+- auto-scroll pauses while the visitor touches/swipes and resumes 0.9 sec after release
+- expanded review pop-out behavior remains unchanged

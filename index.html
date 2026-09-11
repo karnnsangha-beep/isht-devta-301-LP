@@ -426,7 +426,7 @@
       let sourceObserver=null;
       let panelObserver=null;
       let currentSourceCard=null;
-      const reviewSpeed=()=>window.innerWidth<=640?5:7;
+      const reviewSpeed=()=>window.innerWidth<=640?10:12;
 
       function text(el,value){el.textContent=value==null?'':String(value);return el;}
       function stopStripGesture(el){
@@ -594,13 +594,18 @@
           lastTime=performance.now();
         },ms);
       }
+      // Desktop: mouse drag. Mobile/tablet: leave horizontal swiping to the browser's native overflow scroller.
+      // This avoids pointer capture interfering with touch swipes or vertical page scrolling on phones.
       marquee.addEventListener('pointerdown',e=>{
+        if(e.pointerType!=='mouse' || e.button!==0) return;
+        e.preventDefault();
         dragging=true;interacting=true;startX=e.clientX;startScroll=marquee.scrollLeft;autoPosition=startScroll;
         marquee.classList.add('dragging');
         try{marquee.setPointerCapture(e.pointerId);}catch(_){}
       });
       marquee.addEventListener('pointermove',e=>{
-        if(!dragging)return;
+        if(!dragging || e.pointerType!=='mouse')return;
+        e.preventDefault();
         autoPosition=startScroll-(e.clientX-startX);
         marquee.scrollLeft=autoPosition;
       });
@@ -608,11 +613,21 @@
         if(!dragging)return;
         dragging=false;marquee.classList.remove('dragging');
         try{marquee.releasePointerCapture(e.pointerId);}catch(_){}
-        pauseForInteraction(1000);
+        pauseForInteraction(900);
       };
       marquee.addEventListener('pointerup',endDrag);
       marquee.addEventListener('pointercancel',endDrag);
-      marquee.addEventListener('wheel',()=>pauseForInteraction(1000),{passive:true});
+
+      // Mobile/tablet: native touch scrolling in both directions. Auto-scroll pauses while the finger is on the strip
+      // and resumes shortly after the swipe finishes. Vertical gestures continue to scroll the page normally.
+      marquee.addEventListener('touchstart',()=>{
+        interacting=true;
+        clearTimeout(resumeTimer);
+        autoPosition=marquee.scrollLeft;
+      },{passive:true});
+      marquee.addEventListener('touchend',()=>pauseForInteraction(900),{passive:true});
+      marquee.addEventListener('touchcancel',()=>pauseForInteraction(900),{passive:true});
+      marquee.addEventListener('wheel',()=>pauseForInteraction(900),{passive:true});
       marquee.addEventListener('scroll',()=>{
         if(!copyWidth)return;
         let x=marquee.scrollLeft;

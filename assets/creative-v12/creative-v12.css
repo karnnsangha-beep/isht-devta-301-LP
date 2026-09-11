@@ -183,7 +183,7 @@ body.creative-v12 .v12-trust{padding:13px;border:1px solid rgba(178,123,22,.22);
 /* Reviews + FAQ */
 body.creative-v12 #testimonials .v12-inner{max-width:1040px;}
 body.creative-v12 .testimonials-shell{margin:24px auto 0;padding:0;background:transparent !important;border:0 !important;box-shadow:none !important;overflow:hidden;}
-body.creative-v12 .review-marquee{overflow-x:auto !important;overflow-y:visible !important;padding:7px 0 12px;cursor:grab;scrollbar-width:none;touch-action:pan-x pan-y !important;overscroll-behavior:auto !important;}
+body.creative-v12 .review-marquee{overflow-x:auto !important;overflow-y:visible !important;padding:7px 0 12px;cursor:grab;scrollbar-width:none;touch-action:auto !important;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain !important;overscroll-behavior-y:auto !important;scroll-behavior:auto !important;}
 body.creative-v12 .review-marquee::-webkit-scrollbar{display:none;}
 body.creative-v12 .review-marquee.dragging{cursor:grabbing;}
 body.creative-v12 .review-track{display:flex;gap:12px;padding:0 8px;align-items:stretch;will-change:scroll-position;}

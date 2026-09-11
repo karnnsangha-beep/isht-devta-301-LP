@@ -1,0 +1,158 @@
+/* DivyaLok Bhakti review pages — white marble / bottle green / gold theme */
+:root{
+  --bg:#ffffff!important;
+  --bg2:#f7f6f1!important;
+  --panel:rgba(255,255,255,.92)!important;
+  --panel2:rgba(255,255,255,.88)!important;
+  --text:#26312e!important;
+  --ivory:#26312e!important;
+  --muted:#68716f!important;
+  --accent:#063f32!important;
+  --accent2:#0b5b45!important;
+  --accent3:#0e6a50!important;
+  --green:#0b6b50!important;
+  --gold:#b27b16!important;
+  --gold2:#d2aa51!important;
+  --line:rgba(178,123,22,.24)!important;
+  --danger:#b64b4b!important;
+}
+html{background:#fff!important;}
+body{
+  color:#26312e!important;
+  background:#fff url('creative-v12/white-marble.webp') center top/1100px auto repeat!important;
+  min-height:100vh;
+}
+body:before{display:none!important;}
+
+/* Shared top bar / brand */
+.top{
+  background:rgba(255,255,255,.94)!important;
+  border-bottom:1px solid rgba(178,123,22,.18)!important;
+  box-shadow:0 8px 28px rgba(22,52,43,.055)!important;
+  backdrop-filter:blur(16px)!important;
+}
+.brand{color:#063f32!important;font-family:"Cormorant Garamond",Georgia,serif!important;font-weight:700!important;font-size:23px!important;}
+.brand span{color:#063f32!important;}
+.logo{
+  background:transparent!important;color:#b27b16!important;
+  border:1px solid rgba(178,123,22,.38)!important;
+  box-shadow:none!important;border-radius:50%!important;
+  display:grid!important;place-items:center!important;
+}
+
+/* Typography */
+.hero h1,.card h2,.login h2{
+  font-family:"Cormorant Garamond",Georgia,serif!important;
+  color:#063f32!important;
+  letter-spacing:-.015em!important;
+}
+.hero h1 span{background:none!important;color:#b27b16!important;-webkit-text-fill-color:#b27b16!important;}
+.hero p,.lead,.card .sub,.rating-text,.privacy-note,.footer,.statusline,.counts,.spinner,.empty,.amt-label,.giveback span,.promise div,.field input::placeholder,.field textarea::placeholder{color:#68716f!important;}
+.kicker{
+  background:rgba(178,123,22,.07)!important;
+  border:1px solid rgba(178,123,22,.22)!important;
+  color:#8f6415!important;
+}
+
+/* Public review page */
+.confidence,.card,.consent-box,.custom,.giveback,.promise div{
+  background:rgba(255,255,255,.88)!important;
+  border-color:rgba(178,123,22,.22)!important;
+  box-shadow:0 15px 42px rgba(29,57,49,.07)!important;
+  backdrop-filter:none!important;
+}
+.card::before,.confidence::before,.custom::before,.giveback::before,.login::before,.grid .card::before{display:none!important;}
+.confidence{color:#41504a!important;}
+.confidence b{color:#063f32!important;}
+.card h2{color:#063f32!important;}
+.rating-wrap>b,.field label,.consent-box strong,.custom b,.promise b{color:#063f32!important;}
+.star{color:#d7d0bf!important;}
+.star:hover,.star.active{color:#b27b16!important;filter:drop-shadow(0 4px 10px rgba(178,123,22,.15))!important;}
+.field input,.field textarea,.field select,.custom input,.reply-input{
+  background:rgba(255,255,255,.94)!important;
+  border:1px solid rgba(178,123,22,.24)!important;
+  color:#26312e!important;
+  box-shadow:none!important;
+}
+.field input:focus,.field textarea:focus,.field select:focus,.custom input:focus,.reply-input:focus{
+  border-color:rgba(6,63,50,.48)!important;
+  box-shadow:0 0 0 3px rgba(6,63,50,.07)!important;
+  background:#fff!important;
+}
+.consent-box span{color:#4f5b57!important;}
+.consent-box input{accent-color:#063f32!important;}
+.section-rule{border-color:rgba(178,123,22,.19)!important;}
+.amount-card{
+  background:rgba(255,255,255,.88)!important;
+  border-color:rgba(178,123,22,.22)!important;
+  box-shadow:0 10px 30px rgba(29,57,49,.05)!important;
+}
+.amount-card.selected{background:rgba(246,249,247,.96)!important;border-color:rgba(6,63,50,.45)!important;box-shadow:0 0 0 2px rgba(6,63,50,.05)!important;}
+.amt,.rupee{color:#063f32!important;}
+.popular{background:#b27b16!important;color:#fff!important;box-shadow:none!important;}
+.giveback{background:rgba(255,250,239,.9)!important;}
+.giveback-icon{background:rgba(178,123,22,.10)!important;color:#b27b16!important;}
+.giveback b{color:#063f32!important;}
+.btn.primary,button.primary{
+  background:linear-gradient(180deg,#0b5b45,#063f32)!important;
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+  border:1px solid #063f32!important;
+  box-shadow:0 12px 28px rgba(6,63,50,.14)!important;
+}
+.btn.secondary,.btn{
+  background:rgba(255,255,255,.95)!important;
+  color:#063f32!important;
+  border:1px solid rgba(6,63,50,.30)!important;
+  box-shadow:0 8px 22px rgba(29,57,49,.05)!important;
+}
+.status.ok{background:#edf7f1!important;border-color:#b9dcc7!important;color:#20583e!important;}
+.status.warn{background:#fff8e8!important;border-color:#e7cf96!important;color:#795719!important;}
+.status.error{background:#fff1f1!important;border-color:#e6b6b6!important;color:#8e3737!important;}
+#feedbackForm>div[style*="127,217,155"]{background:rgba(238,248,242,.95)!important;border-color:rgba(6,63,50,.18)!important;color:#315344!important;}
+
+/* Review admin dashboard */
+.login,.grid .card{
+  background:rgba(255,255,255,.91)!important;
+  border:1px solid rgba(178,123,22,.22)!important;
+  box-shadow:0 16px 42px rgba(29,57,49,.07)!important;
+  backdrop-filter:none!important;
+}
+.hero p{color:#68716f!important;}
+.logout{
+  background:#fff!important;color:#063f32!important;
+  border:1px solid rgba(6,63,50,.28)!important;
+  box-shadow:none!important;
+}
+.tab{
+  background:rgba(255,255,255,.94)!important;
+  color:#4f5b57!important;
+  border:1px solid rgba(178,123,22,.22)!important;
+  box-shadow:none!important;
+}
+.tab.active{background:#063f32!important;color:#fff!important;border-color:#063f32!important;box-shadow:none!important;}
+.card-head .who strong{color:#063f32!important;}
+.who span{color:#7a817f!important;}
+.stars{color:#b27b16!important;}
+.review{color:#39433f!important;}
+.pill{background:#f8f7f2!important;border-color:rgba(178,123,22,.15)!important;color:#66716d!important;}
+.pill.ok{background:#eff8f2!important;color:#2c6849!important;border-color:#c9e2d2!important;}
+.pill.no{background:#fff2f2!important;color:#974444!important;border-color:#ebc4c4!important;}
+.reply-current{background:#fff9ec!important;border-color:rgba(178,123,22,.20)!important;color:#4e534f!important;}
+.reply-current b{color:#9b6b11!important;}
+.actions button{
+  background:#fff!important;color:#063f32!important;
+  border:1px solid rgba(6,63,50,.24)!important;
+  box-shadow:none!important;
+}
+.actions button.good{background:#edf7f1!important;color:#246344!important;border-color:#badcc7!important;}
+.actions button.bad{background:#fff0f0!important;color:#983f3f!important;border-color:#e5b6b6!important;}
+.actions button.gold{background:#fff8e8!important;color:#8a6115!important;border-color:#e5cf98!important;}
+.private-warning{color:#9a4a39!important;}
+.error{background:#fff1f1!important;border-color:#e5bbbb!important;color:#943e3e!important;}
+.empty{background:rgba(255,255,255,.72)!important;}
+
+@media(max-width:640px){
+  .brand{font-size:20px!important;}
+  .top .wrap{min-height:54px;}
+  .card,.login{border-radius:18px!important;}
+}

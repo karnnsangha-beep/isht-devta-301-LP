@@ -1,0 +1,9 @@
+DivyaLok Bhakti LP V12.12 — Review page + Review Admin white marble theme
+
+Changes:
+- review.html changed from dark/black glass styling to the same white marble + bottle green + gold visual language as the main LP
+- review-admin.html changed from dark/black glass styling to the same white marble + bottle green + gold visual language as the main LP
+- added shared assets/review-marble-theme.css for both pages
+- reused the existing assets/creative-v12/white-marble.webp background
+- no JavaScript or backend logic was changed on either page
+- review submission, optional Dakshina, admin login, moderation, approval, rejection, verification, feature/unfeature and replies remain functionally unchanged
