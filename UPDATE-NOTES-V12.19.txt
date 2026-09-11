@@ -1,0 +1,17 @@
+ISHT DEVTA LP V12.19 - SINGLE CTA FORM GUARD
+
+Issue fixed
+- Removed the fixed "Check Reviews" button and its testimonials scroll handler.
+- Replaced the two-column sticky bar with one full-width "Get Report" button.
+- The sticky label remains "Get Report" until all required details are valid.
+- Once complete, it changes to "Pay ₹201 Securely Now" (or ₹300 when the optional add-on is selected) and starts the existing checkout.
+
+Mobile form stability
+- No focus, input, change, keyboard-resize, or field-to-field handler scrolls the page.
+- While an incomplete form field is focused, taps pass through the fixed bar to the form below it.
+- Review loading and review layout changes stop before the page moves to the order section.
+- The reviews remain manually swipeable, and Read more / reply pop-outs remain available.
+
+Preserved
+- Page design, wording, images, form fields, prices, Razorpay integration, Netlify functions, tracking, legal pages, and thank-you flow are unchanged.
+

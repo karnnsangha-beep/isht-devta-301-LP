@@ -6,7 +6,7 @@
   <title>Isht Devta Discovery Report ₹201 | DivyaLok Bhakti</title>
   <meta name="description" content="Get your personalised Isht Devta Discovery Report for ₹201, including deity direction, mantra and a 21-day sadhana guide. Delivered on WhatsApp within 24-48 hours." />
   <meta name="theme-color" content="#ffffff" />
-  <meta name="lp-build" content="v12.18-static-reviews-form-stability" />
+  <meta name="lp-build" content="v12.19-single-cta-form-guard" />
   <script>
     (function(){
       function setStableMobileHeight(){
@@ -290,7 +290,7 @@ body.creative-v12 .mobile-cta{
   background:rgba(255,255,255,.94) !important;border:1px solid rgba(6,63,50,.13) !important;
   box-shadow:0 16px 50px rgba(23,47,40,.16) !important;backdrop-filter:blur(18px);
 }
-body.creative-v12 .mobile-cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+body.creative-v12 .mobile-cta-grid{display:grid;grid-template-columns:1fr;gap:0;}
 body.creative-v12 .mobile-cta .btn{min-height:54px;border-radius:13px;font-size:15px;padding:11px 13px;}
 body.creative-v12 .mobile-cta .btn.secondary{background:#fff !important;color:var(--v12-green) !important;border:1px solid rgba(6,63,50,.32) !important;box-shadow:none !important;}
 body.creative-v12 .mobile-cta .btn.secondary::before{content:'★';font-size:16px;}
@@ -486,10 +486,11 @@ body.creative-v12 .review-popout-reply.highlight{box-shadow:inset 0 0 0 1px rgba
 }
 
 
-/* V12.14 mobile form-entry safety: keep the sticky bar visible; only Review is inert while typing. */
-body.creative-v12.form-editing .mobile-cta{opacity:1 !important;visibility:visible !important;pointer-events:auto !important;}
-body.creative-v12.form-editing #reviewShortcutBtn{opacity:.58 !important;pointer-events:none !important;}
-body.creative-v12 #reviewShortcutBtn{touch-action:manipulation;}
+/* V12.19: while an incomplete mobile field is focused, taps pass through the fixed bar.
+   Once all details are valid, the same bar becomes the active secure-payment button. */
+@media(max-width:780px){
+  body.creative-v12.form-editing:not(.form-ready) .mobile-cta{pointer-events:none !important;}
+}
 
 
 /* V12.18 mobile form free-scroll safety */
@@ -497,8 +498,7 @@ body.creative-v12 #testimonials,
 body.creative-v12 #reviewMarquee,
 body.creative-v12 #reviewTrack{overflow-anchor:none;}
 body.creative-v12 #order{overflow-anchor:auto;}
-body.creative-v12.order-in-view #reviewShortcutBtn{opacity:.58 !important;pointer-events:none !important;}
-body.creative-v12.order-in-view #reviewShortcutBtn:disabled{cursor:default;}
+/* V12.19 single sticky CTA: there is no fixed Reviews control above the form. */
 
 </style>
 <script>
@@ -696,7 +696,7 @@ body.creative-v12.order-in-view #reviewShortcutBtn:disabled{cursor:default;}
     </div>
   </footer>
 
-  <div class="mobile-cta"><div class="mobile-cta-grid"><button class="btn secondary" id="reviewShortcutBtn" type="button"><span class="en">Check Reviews</span><span class="hi">रिव्यू देखें</span></button><button class="btn primary" id="mobileActionBtn" type="button"><span class="en" id="mobileActionEn">Get Report</span><span class="hi" id="mobileActionHi">रिपोर्ट पाएं</span></button></div></div>
+  <div class="mobile-cta"><div class="mobile-cta-grid"><button class="btn primary" id="mobileActionBtn" type="button"><span class="en" id="mobileActionEn">Get Report</span><span class="hi" id="mobileActionHi">रिपोर्ट पाएं</span></button></div></div>
 
   <script>
     (function(){
@@ -888,8 +888,8 @@ body.creative-v12.order-in-view #reviewShortcutBtn:disabled{cursor:default;}
       }
     }
 
-    // V12.18: static moderated review strip with 5-line truncation.
-    // Visitors can swipe/drag horizontally and scroll the page vertically; no background carousel motion runs during form entry.
+    // V12.19: manually scrollable reviews with no automatic horizontal motion.
+    // Once the visitor heads to the order section, review loading and layout updates stop completely.
     (function initReviewStrip(){
       const marquee=document.getElementById('reviewMarquee');
       const track=document.getElementById('reviewTrack');
@@ -916,6 +916,7 @@ body.creative-v12.order-in-view #reviewShortcutBtn:disabled{cursor:default;}
       let pendingReviewUpdate=null;
       let pendingSignature='';
       let reviewsFrozen=false;
+      const reviewLoadController=typeof AbortController==='function'?new AbortController():null;
       let sourceObserver=null;
       let panelObserver=null;
       let currentSourceCard=null;
@@ -1009,7 +1010,7 @@ body.creative-v12.order-in-view #reviewShortcutBtn:disabled{cursor:default;}
         top.append(person,stars);
 
         const quote=text(document.createElement('p'),review.feedback||'');quote.className='review-quote';
-        const readToggle=text(document.createElement('button'),'Read more ›');readToggle.className='review-read-toggle';readToggle.type='button';readToggle.hidden=true;
+        const readToggle=text(document.createElement('button'),'Read more ›');readToggle.className='review-read-toggle';readToggle.type='button';readToggle.hidden=String(review.feedback||'').length<96;
         stopStripGesture(readToggle);
         readToggle.addEventListener('click',e=>{e.stopPropagation();openReviewPopout(review,card,false);});
 
@@ -1027,37 +1028,18 @@ body.creative-v12.order-in-view #reviewShortcutBtn:disabled{cursor:default;}
         return card;
       }
 
-      function detectLongReviews(){
-        if(popoutOpen)return;
-        track.querySelectorAll('.review-card').forEach(card=>{
-          const quote=card.querySelector('.review-quote');
-          const toggle=card.querySelector('.review-read-toggle');
-          if(!quote||!toggle)return;
-          const styles=getComputedStyle(quote);
-          const lineHeight=parseFloat(styles.lineHeight)||22;
-          const measure=quote.cloneNode(true);
-          measure.className='review-quote review-quote-measure';
-          measure.style.width=Math.max(1,quote.clientWidth)+'px';
-          card.appendChild(measure);
-          const fullHeight=measure.scrollHeight;
-          measure.remove();
-          toggle.hidden=!(fullHeight>(lineHeight*5)+2);
-        });
-      }
-
       function render(reviews){
         closeReviewPopout();
         track.replaceChildren();
         if(!reviews.length){const empty=text(document.createElement('div'),'Customer feedback will appear here after approval.');empty.className='review-loading';track.appendChild(empty);return;}
         reviews.forEach(r=>track.appendChild(makeCard(r)));
         marquee.scrollLeft=0;
-        requestAnimationFrame(detectLongReviews);
       }
 
       async function load(){
         if(reviewsFrozen)return;
         try{
-          const res=await fetch('/api/public-reviews',{headers:{'Accept':'application/json'},cache:'no-store'});
+          const res=await fetch('/api/public-reviews',{headers:{'Accept':'application/json'},cache:'no-store',signal:reviewLoadController?reviewLoadController.signal:undefined});
           const data=await res.json().catch(()=>({}));
           if(!res.ok||!Array.isArray(data.reviews)) throw new Error(data.error||'Could not load reviews');
           if(reviewsFrozen)return;
@@ -1066,7 +1048,7 @@ body.creative-v12.order-in-view #reviewShortcutBtn:disabled{cursor:default;}
             if(popoutOpen){pendingReviewUpdate=data.reviews;pendingSignature=signature;}
             else{lastSignature=signature;render(data.reviews);}
           }
-        }catch(e){console.warn('Live review API unavailable; keeping original reviews on screen.',e);}
+        }catch(e){if(!e||e.name!=='AbortError') console.warn('Live review API unavailable; keeping original reviews on screen.',e);}
       }
 
       // Desktop uses mouse drag. Mobile/tablet use the browser's native two-direction touch scrolling.
@@ -1090,15 +1072,17 @@ body.creative-v12.order-in-view #reviewShortcutBtn:disabled{cursor:default;}
       marquee.addEventListener('pointerup',endDrag);
       marquee.addEventListener('pointercancel',endDrag);
 
-      let resizeTimer=null;
-      window.addEventListener('resize',()=>{
-        clearTimeout(resizeTimer);
-        resizeTimer=setTimeout(()=>{if(!popoutOpen)detectLongReviews();},180);
-      },{passive:true});
-
       // Never replace content above the form after the visitor reaches or starts editing it.
       // This prevents delayed review responses from competing with mobile keyboard/focus scrolling.
-      function freezeReviews(){reviewsFrozen=true;pendingReviewUpdate=null;pendingSignature='';}
+      function freezeReviews(){
+        reviewsFrozen=true;
+        pendingReviewUpdate=null;
+        pendingSignature='';
+        if(reviewLoadController) reviewLoadController.abort();
+      }
+      window.addEventListener('lp:freeze-reviews',freezeReviews,{once:true});
+      marquee.addEventListener('touchstart',freezeReviews,{passive:true,once:true});
+      marquee.addEventListener('pointerdown',freezeReviews,{passive:true,once:true});
       form.addEventListener('pointerdown',freezeReviews,{passive:true,once:true});
       form.addEventListener('focusin',freezeReviews,{once:true});
       if(orderSection&&'IntersectionObserver' in window){
@@ -1113,8 +1097,7 @@ body.creative-v12.order-in-view #reviewShortcutBtn:disabled{cursor:default;}
       load();
     })();
 
-    // V12.18: mobile form-entry safety without scroll locking.
-    // Form focus/input events NEVER move the page. The only automatic section movement comes from an intentional button tap.
+    // V12.19: a single sticky action with no Reviews shortcut and no field-to-field scrolling.
     function clearSectionHash(){
       try{
         if(location.hash) history.replaceState(null,'',location.pathname+location.search);
@@ -1133,13 +1116,12 @@ body.creative-v12.order-in-view #reviewShortcutBtn:disabled{cursor:default;}
         if(!target) return;
         e.preventDefault();
         clearSectionHash();
+        if(target===orderSection) window.dispatchEvent(new Event('lp:freeze-reviews'));
         target.scrollIntoView({behavior:'smooth',block:'start'});
       });
     });
 
-    const reviewShortcutBtn=document.getElementById('reviewShortcutBtn');
     let formEditingTimer=null;
-    let shortcutStateTick=false;
 
     function activeOrderControl(){
       const a=document.activeElement;
@@ -1152,69 +1134,20 @@ body.creative-v12.order-in-view #reviewShortcutBtn:disabled{cursor:default;}
         if(!activeOrderControl()) document.body.classList.remove('form-editing');
       },700);
     }
-    function orderIsOnScreen(){
-      if(!orderSection) return false;
-      const r=orderSection.getBoundingClientRect();
-      const vh=window.innerHeight || document.documentElement.clientHeight || 0;
-      return r.bottom>80 && r.top<vh-80;
-    }
-    function updateReviewShortcutState(){
-      shortcutStateTick=false;
-      if(!reviewShortcutBtn) return;
-      const locked=window.innerWidth<=780 && orderIsOnScreen();
-      document.body.classList.toggle('order-in-view',locked);
-      reviewShortcutBtn.disabled=locked;
-      reviewShortcutBtn.setAttribute('aria-disabled',locked?'true':'false');
-    }
-    function scheduleReviewShortcutState(){
-      if(shortcutStateTick) return;
-      shortcutStateTick=true;
-      requestAnimationFrame(updateReviewShortcutState);
-    }
-
     // Native form submission is never used; Razorpay starts only through startPayment().
     form.addEventListener('submit',e=>e.preventDefault());
-    ['focusin','focusout','input','change','touchstart','pointerdown'].forEach(evt=>{
-      form.addEventListener(evt,()=>{
-        markFormEditing();
-        scheduleReviewShortcutState();
-      },evt==='touchstart'?{passive:true}:false);
-    });
-    window.addEventListener('scroll',scheduleReviewShortcutState,{passive:true});
-    window.addEventListener('resize',scheduleReviewShortcutState,{passive:true});
-    if(window.visualViewport){
-      window.visualViewport.addEventListener('resize',scheduleReviewShortcutState,{passive:true});
-      window.visualViewport.addEventListener('scroll',scheduleReviewShortcutState,{passive:true});
-    }
-    updateReviewShortcutState();
-
-    if(reviewShortcutBtn){
-      reviewShortcutBtn.addEventListener('click',e=>{
-        e.preventDefault();
-        e.stopPropagation();
-        updateReviewShortcutState();
-        if(reviewShortcutBtn.disabled) return;
-        const target=document.getElementById('testimonials');
-        if(!target) return;
-        clearSectionHash();
-        target.scrollIntoView({behavior:'smooth',block:'start'});
-      });
-    }
+    form.addEventListener('focusin',markFormEditing);
+    form.addEventListener('focusout',markFormEditing);
 
     payBtn.addEventListener('click', startPayment);
 
-    // V9.7 mobile sticky guidance: Review shortcut is fixed; primary action follows the visitor's progress.
+    // The label remains "Get Report" until every required detail is valid.
     const mobileActionBtn = document.getElementById('mobileActionBtn');
     const mobileActionEn = document.getElementById('mobileActionEn');
     const mobileActionHi = document.getElementById('mobileActionHi');
-    const requiredFieldIds = ['fullName','email','phone','dob','tob','pob','gender'];
     function mobileFormReady(){
       const d=getDetails();
       return Boolean(d.fullName && d.email && isValidEmail(d.email) && d.phone && d.dob && d.tob && d.pob && d.gender);
-    }
-    function orderReached(){
-      if(!orderSection) return false;
-      return (window.scrollY + window.innerHeight*.72) >= orderSection.offsetTop;
     }
     function setMobileActionLabel(en,hi){
       if(mobileActionEn) mobileActionEn.textContent=en;
@@ -1222,36 +1155,18 @@ body.creative-v12.order-in-view #reviewShortcutBtn:disabled{cursor:default;}
     }
     function updateMobileAction(){
       if(!mobileActionBtn) return;
-      if(!orderReached()) setMobileActionLabel('Get Report','रिपोर्ट पाएं');
-      else if(mobileFormReady()) setMobileActionLabel('Pay ₹'+selectedTotal(),'₹'+selectedTotal()+' भुगतान करें');
-      else setMobileActionLabel('Enter Details','विवरण भरें');
-    }
-    function firstIncompleteField(){
-      for(const id of requiredFieldIds){
-        const el=document.getElementById(id);
-        if(!el) continue;
-        const value=String(el.value||'').trim();
-        if(!value || (id==='email' && !isValidEmail(value))) return el;
-      }
-      return null;
+      const ready=mobileFormReady();
+      document.body.classList.toggle('form-ready',ready);
+      if(ready) setMobileActionLabel('Pay ₹'+selectedTotal()+' Securely Now','₹'+selectedTotal()+' सुरक्षित भुगतान करें');
+      else setMobileActionLabel('Get Report','रिपोर्ट पाएं');
     }
     if(mobileActionBtn){
       mobileActionBtn.addEventListener('click',()=>{
-        if(orderReached() && mobileFormReady()) { startPayment(); return; }
-        const target=orderReached()?firstIncompleteField():orderSection;
-        if(target){
-          target.scrollIntoView({behavior:'smooth',block:target===orderSection?'start':'center'});
-          if(target!==orderSection) setTimeout(()=>{try{target.focus({preventScroll:true});}catch(_){target.focus();}},380);
-        }
+        if(mobileFormReady()) { startPayment(); return; }
+        if(activeOrderControl()) return;
+        window.dispatchEvent(new Event('lp:freeze-reviews'));
+        if(orderSection) orderSection.scrollIntoView({behavior:'smooth',block:'start'});
       });
-      let mobileActionTick=false;
-      const scheduleMobileAction=()=>{
-        if(mobileActionTick) return;
-        mobileActionTick=true;
-        requestAnimationFrame(()=>{mobileActionTick=false;updateMobileAction();});
-      };
-      window.addEventListener('scroll',scheduleMobileAction,{passive:true});
-      window.addEventListener('resize',scheduleMobileAction,{passive:true});
       updateMobileAction();
     }
 
