@@ -1,0 +1,8 @@
+DivyaLok Bhakti LP V12.13 form jump fix
+
+Targeted fix only:
+- prevents the page from jumping to Reviews while customers fill the order form
+- internal section buttons now smooth-scroll without leaving a persistent #section hash
+- sticky bottom CTA is temporarily hidden/disabled while a form field is focused, preventing accidental taps during mobile keyboard resizing
+- form submit-by-enter is blocked; payment still uses the existing Pay button flow
+- no review, payment, theme, pricing, backend, or page-content logic changed

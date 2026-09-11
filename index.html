@@ -199,7 +199,7 @@
     </div>
   </footer>
 
-  <div class="mobile-cta"><div class="mobile-cta-grid"><a class="btn secondary" href="#testimonials"><span class="en">Check Reviews</span><span class="hi">रिव्यू देखें</span></a><button class="btn primary" id="mobileActionBtn" type="button"><span class="en" id="mobileActionEn">Get Report</span><span class="hi" id="mobileActionHi">रिपोर्ट पाएं</span></button></div></div>
+  <div class="mobile-cta"><div class="mobile-cta-grid"><a class="btn secondary" id="reviewShortcutBtn" href="#testimonials"><span class="en">Check Reviews</span><span class="hi">रिव्यू देखें</span></a><button class="btn primary" id="mobileActionBtn" type="button"><span class="en" id="mobileActionEn">Get Report</span><span class="hi" id="mobileActionHi">रिपोर्ट पाएं</span></button></div></div>
 
   <script>
     (function(){
@@ -661,6 +661,56 @@
       setInterval(load,60000);
       requestAnimationFrame(animate);
     })();
+
+    // V12.13: prevent mobile form-entry jumps caused by sticky section anchors / fixed CTAs.
+    // Internal section navigation now scrolls without leaving a persistent #anchor in the URL.
+    function clearSectionHash(){
+      try{
+        if(location.hash) history.replaceState(null,'',location.pathname+location.search);
+      }catch(_){ }
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(link=>{
+      link.addEventListener('click',e=>{
+        const href=link.getAttribute('href');
+        if(!href || href==='#') return;
+        const target=document.querySelector(href);
+        if(!target) return;
+        // If a form control is currently being edited, never let the review shortcut steal focus/scroll.
+        if(link.id==='reviewShortcutBtn' && document.body.classList.contains('form-editing')){
+          e.preventDefault();
+          return;
+        }
+        e.preventDefault();
+        clearSectionHash();
+        target.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+    });
+
+    // Keep the fixed sticky CTA completely out of the touch path while a customer types/selects form data.
+    // This also prevents a keyboard/viewport resize from re-activating the Reviews anchor.
+    let formFocusTimer=null;
+    const formControls=[...orderForm.querySelectorAll('input,select,textarea')];
+    orderForm.addEventListener('submit',e=>e.preventDefault());
+    orderForm.addEventListener('focusin',()=>{
+      clearTimeout(formFocusTimer);
+      clearSectionHash();
+      document.body.classList.add('form-editing');
+    });
+    orderForm.addEventListener('focusout',()=>{
+      clearTimeout(formFocusTimer);
+      formFocusTimer=setTimeout(()=>{
+        if(!orderForm.contains(document.activeElement)) document.body.classList.remove('form-editing');
+      },450);
+    });
+    const reviewShortcutBtn=document.getElementById('reviewShortcutBtn');
+    if(reviewShortcutBtn){
+      ['pointerdown','touchstart'].forEach(evt=>reviewShortcutBtn.addEventListener(evt,e=>{
+        if(document.body.classList.contains('form-editing')){
+          e.preventDefault();
+          e.stopImmediatePropagation();
+        }
+      },{passive:false}));
+    }
 
     payBtn.addEventListener('click', startPayment);
 

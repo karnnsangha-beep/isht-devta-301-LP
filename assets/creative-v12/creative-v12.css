@@ -457,3 +457,7 @@ body.creative-v12 .review-popout-reply.highlight{box-shadow:inset 0 0 0 1px rgba
   body.creative-v12 .review-popout-text{font-size:13.5px;line-height:1.55;}
   body.creative-v12 .review-popout-close{font-size:11px;}
 }
+
+
+/* V12.13 mobile form-entry safety: fixed CTAs cannot capture taps while keyboard/form editing is active */
+body.creative-v12.form-editing .mobile-cta{opacity:0 !important;visibility:hidden !important;pointer-events:none !important;}
